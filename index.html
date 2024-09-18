@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Niklas Lissjos</title>
     <style>
-        html {
-            filter: invert(1) hue-rotate(180deg);
-            background-color: #0f0f0f; /* Inverted from #f0f0f0 */
-        }
         body {
             font-family: 'Courier New', monospace;
-            color: #cccccc; /* Inverted from #333333 */
+            background-color: #0f0f0f;
+            color: #f0f0f0;
             line-height: 1.6;
             margin: 0;
             height: 100vh;
@@ -32,11 +29,11 @@
             margin-bottom: 10px;
         }
         a {
-            color: #ff6a00; /* Adjust link color for better visibility */
+            color: #ff6a00;
         }
         .glitch {
             position: absolute;
-            background: #fff; /* Inverted from #000 */
+            background: #f0f0f0;
             width: 100%;
             height: 2px;
             opacity: 0.2;
@@ -45,7 +42,7 @@
         .glitch-intense {
             height: 4px;
             opacity: 0.4;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Inverted shadow */
+            box-shadow: 0 0 10px rgba(240, 240, 240, 0.5);
         }
         @keyframes glitch-animation {
             0% { transform: translateX(-100%); }
@@ -56,7 +53,7 @@
 <body>
     <div id="content">
         <h1>Niklas Lissjos</h1>
-        Connect with me on LinkedIn: <a href="https://www.linkedin.com/in/niklas-lissjos-86b1b11b4/">Niklas Lissjos</a>
+        this site is not broken, it's just glitchy by design
     </div>
     <script>
         function createGlitch(intense = false) {
