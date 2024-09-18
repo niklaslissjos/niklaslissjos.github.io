@@ -18,61 +18,15 @@
             border-bottom: 2px solid #333;
             padding-bottom: 10px;
         }
-        .typewriter {
-            overflow: hidden;
-            border-right: .15em solid #333;
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: .15em;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-        }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #333; }
-        }
     </style>
 </head>
 <body>
-    <h1 class="typewriter">Your Name</h1>
-    <div id="content"></div>
-
-    <script>
-        const content = [
-            "Welcome to my personal website!",
-            "I'm a [Your Profession/Title] based in [Your Location].",
-            "My skills include [Skill 1], [Skill 2], and [Skill 3].",
-            "Feel free to reach out at: your.email@example.com"
-        ];
-
-        function typeWriter(text, i, fnCallback) {
-            if (i < text.length) {
-                document.querySelector("#content").innerHTML = text.substring(0, i+1) + '<span aria-hidden="true"></span>';
-                setTimeout(function() {
-                    typeWriter(text, i + 1, fnCallback)
-                }, 100);
-            } else if (typeof fnCallback == 'function') {
-                setTimeout(fnCallback, 700);
-            }
-        }
-
-        function startTextAnimation(i) {
-            if (typeof content[i] == 'undefined') {
-                setTimeout(function() {
-                    startTextAnimation(0);
-                }, 20000);
-            } else if (i < content[i].length) {
-                typeWriter(content[i], 0, function() {
-                    startTextAnimation(i + 1);
-                });
-            }
-        }
-
-        startTextAnimation(0);
-    </script>
+    <h1>Your Name</h1>
+    <div id="content">
+        <p>Welcome to my personal website!</p>
+        <p>I'm a [Your Profession/Title] based in [Your Location].</p>
+        <p>My skills include [Skill 1], [Skill 2], and [Skill 3].</p>
+        <p>Feel free to reach out at: your.email@example.com</p>
+    </div>
 </body>
 </html>
-
