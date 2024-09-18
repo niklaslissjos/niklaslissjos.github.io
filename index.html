@@ -1,27 +1,78 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Michael Truell</title>
-
     <meta charset="UTF-8">
-    <meta name="description" content="Michael Truell's website">
-    <meta name="author" content="Michael Truell">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Personal Website</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #333;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #333; }
+        }
+    </style>
 </head>
-
 <body>
-    <div id='holder'>
-        <div id='left'></div>
-        <div id='middle'>
-            <h1>Michael Truell</h1>
-            <p>I'm building <a href="https://cursor.so/">Cursor</a> to speed up software engineering.</p>
-            <p>In the past, I've enjoyed working on statistical math research, LLM-driven recommendation systems, high-throughput drug pipelines, and popular programming competitions. I studied CS and Math at MIT.</p>
-            <p>Connect with me on <a href="https://github.com/truell20">github</a>, <a href="https://linkedin.com/in/michael-t-5b1bbb122/">linkedin</a>, or at mntruell at gmail dot com!</p>
-        </div>
-        <div id='right'></div>
-    </div>
+    <h1 class="typewriter">Your Name</h1>
+    <div id="content"></div>
+
+    <script>
+        const content = [
+            "Welcome to my personal website!",
+            "I'm a [Your Profession/Title] based in [Your Location].",
+            "My skills include [Skill 1], [Skill 2], and [Skill 3].",
+            "Feel free to reach out at: your.email@example.com"
+        ];
+
+        function typeWriter(text, i, fnCallback) {
+            if (i < text.length) {
+                document.querySelector("#content").innerHTML = text.substring(0, i+1) + '<span aria-hidden="true"></span>';
+                setTimeout(function() {
+                    typeWriter(text, i + 1, fnCallback)
+                }, 100);
+            } else if (typeof fnCallback == 'function') {
+                setTimeout(fnCallback, 700);
+            }
+        }
+
+        function startTextAnimation(i) {
+            if (typeof content[i] == 'undefined') {
+                setTimeout(function() {
+                    startTextAnimation(0);
+                }, 20000);
+            } else if (i < content[i].length) {
+                typeWriter(content[i], 0, function() {
+                    startTextAnimation(i + 1);
+                });
+            }
+        }
+
+        startTextAnimation(0);
+    </script>
 </body>
 </html>
+
