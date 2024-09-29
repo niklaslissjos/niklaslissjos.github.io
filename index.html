@@ -86,8 +86,13 @@
         async function updateSolarRadiation() {
             const lat = 59.3293; // Stockholm latitude
             const lon = 18.0686; // Stockholm longitude
-            const start = new Date().toISOString().split('T')[0]; // Today's date
+            
+            // Use yesterday's date
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            const start = yesterday.toISOString().split('T')[0];
             const end = start; // Same as start for single day
+            
             const parameters = 'ALLSKY_SFC_SW_DWN'; // All Sky Surface Shortwave Downward Irradiance
             const apiUrl = `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${parameters}&community=RE&longitude=${lon}&latitude=${lat}&start=${start}&end=${end}&format=JSON`;
 
