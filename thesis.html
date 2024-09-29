@@ -248,7 +248,18 @@
         background-color: rgba(30, 30, 30, 0.7);
     }
 
-
+    .copyright {
+        position: fixed;
+        top: 50%;
+        right: -40px;
+        transform: rotate(-90deg) translateY(-50%);
+        transform-origin: right center;
+        font-size: 12px;
+        color: #808080;
+        padding: 10px;
+        white-space: nowrap;
+        z-index: 9999;
+    }
   </style>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
@@ -262,6 +273,19 @@
 </head>
 
 <body>
+
+
+
+  <div class="copyright">
+    Copyright &copy; <span id="year"></span> Niklas Lissjos. All rights reserved.
+</div>
+
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+
+
 
   <a href="index.html" class="back-link"> &#8598; Back</a>
 
