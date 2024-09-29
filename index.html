@@ -98,14 +98,14 @@
 <body>
 
     <div class="solar-info">
-        <p>Solar Radiation in Stockholm: 
+        <p>Solar Radiation in San Diego: 
             <span id="radiation-value">Loading...</span> 
             <span id="radiation-unit"></span>
         </p>
         <p id="radiation-timestamp"></p>
         
 
-        <small>/ Data provided by NASA POWER Project. This value represents the daily average of all sky surface shortwave downward irradiance for the previous day in Stockholm, Sweden. It's updated hourly and helps in understanding the solar energy potential in the area.</small>
+        <small>/ Data provided by NASA POWER Project. This value represents the daily average of all sky surface shortwave downward irradiance for the previous day in San Diego, California. It's updated hourly and helps in understanding the solar energy potential in the area.</small>
     
     
         <br><br>
@@ -155,8 +155,8 @@
 
         // NASA POWER API call and update
         async function updateSolarRadiation() {
-            const lat = 59.3293; // Stockholm latitude
-            const lon = 18.0686; // Stockholm longitude
+            const lat = 32.7157; // San Diego latitude
+            const lon = -117.1611; // San Diego longitude
             
             // Use yesterday's date in YYYYMMDD format
             const yesterday = new Date();
