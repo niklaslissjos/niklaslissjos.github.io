@@ -84,16 +84,16 @@
         .copyright {
             position: fixed;
             top: 50%;
-            right: -65px; /* Adjust this value as needed */
+            right: 0;  /* Changed from negative value */
             transform: rotate(90deg) translateY(-50%);
             transform-origin: right center;
-            font-size: 12px;
-            color: #f0f0f0;
-            opacity: 0.7;
-            background-color: rgba(80, 80, 80, 0.7);
-            padding: 5px 10px;
+            font-size: 16px;  /* Increased for visibility */
+            color: white;  /* Changed for contrast */
+            background-color: red;  /* Changed for visibility */
+            padding: 10px;  /* Increased padding */
             border-radius: 5px;
             white-space: nowrap;
+            z-index: 9999;  /* Ensure it's on top */
         }
     </style>
 </head>
@@ -126,8 +126,8 @@
         <b>Built by Niklas Lissjos</b></small>
     </div>
 
-    <div class="copyright">
-        &copy; <span id="year"></span> Niklas Lissjos. All rights reserved.
+    <div class="copyright" style="background-color: red; color: white; font-size: 16px;">
+        Copyright Test &copy; <span id="year">2024</span> Niklas Lissjos
     </div>
 
     <script>
