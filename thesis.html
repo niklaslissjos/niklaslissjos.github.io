@@ -1,0 +1,2954 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>main</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="titlepage">
+<p><span class="smallcaps">Off-grid Photovoltaics system design and
+simulation:<br />
+A case study using irradiation data</span></p>
+<p>Bachelor’s Thesis in Electrical Engineering by</p>
+<p><span class="smallcaps">Niklas Lissjos</span></p>
+<p>Stavanger, Norway 2020 Faculty of Science and Technology Department
+of Electrical Engineering and Computer Science</p>
+<p><span class="smallcaps">University of Stavanger</span></p>
+</div>
+<h1 class="unnumbered" id="abstract">Abstract</h1>
+<p>This thesis provides an insight into photovoltaics energy system
+design and simulation. The report describes each step along the design
+path for an electrical system for off-grid use. Solar power feasibility
+at northern latitudes has been a focus, and a supplied case study using
+solar irradiation data courtesy of the European Organization for the
+Exploitation of Meteorological Satellites. Because this study covers an
+off-grid system, it means a battery-bank is part of the design. System
+simulations are performed for the case study, located in Norway. Based
+on a winter-optimized design and component efficiency factors, it is
+concluded feasible with the help of a relatively large PV array. When
+designing a PV energy system, there can be different practical
+limitations present. Therefore, alternative methods are needed. In
+parallel with the design process, a simple web application is developed
+as a tool and resource for this field of technology.</p>
+<h1 class="unnumbered" id="acknowledgements">Acknowledgements</h1>
+<p>I would like to thank my supervisor Prof. Karl Skretting, at the
+University of Stavanger, who has provided helpful guidance and
+discussions along the way. And a special thanks to Daniel Philipp at
+Germany’s National Meteorological Service, the Deutscher Wetterdienst,
+who has given helpful advice and guidance during the irradiation data
+extraction and evaluation process.</p>
+<div class="flushright">
+<p>Stavanger, Spring 2020<br />
+Niklas Lissjos</p>
+</div>
+<p>[]</p>
+<h1 id="introduction">Introduction</h1>
+<p><em>“Energy is the only universal currency: one of its many forms
+must be transformed to another in order for stars to shine, planets to
+rotate, plants to grow, and civilizations to evolve.”</em></p>
+<p>– Vaclav Smil</p>
+<p>Photovoltaic energy is the electric energy obtained by capturing and
+absorbing photons given off by the sun to the earth’s surface. This way
+of generating electrical power is based on the photovoltaic (PV) effect.
+It is done using photovoltaic cells that are produced using advanced
+semiconductor technology. The thesis is focused on the field of off-grid
+photovoltaic systems, meaning an electrical system that has energy
+storage and is independent of the electric power grid. This is sometimes
+called a stand-alone system.</p>
+<h2 id="aim-and-objectives">Aim and Objectives</h2>
+<p>The project aims to present an organized way of system design and
+evaluation of the main components, as well as making use of
+meteorological radiation data for the purpose. The report presents a
+step-by-step method where a case study is used to form an example. This
+case study is a fictionalized small house with relatively low energy
+demands, located in Stavanger, Norway. The report is not meant to be a
+complete design guide but to give an insight into analyzing feasibility,
+efficiency, and losses. Neither does the thesis aim to cover the
+economic aspects of solar energy, but rather the technological side. The
+minimum energy usage requirements of the case study house are mapped and
+based around this, a study on the feasibility of solar power at northern
+latitudes is formed. Because the winter weather and sun conditions, at
+the specific location, are the most challenging, this is a focus
+throughout the design. A battery bank is being sized based on capacity
+requirements and component losses. Solar radiation charging capabilities
+are based on meteorological data statistics. The amount of energy
+converted by the PV modules is evaluated based on factors such as
+optimal angle, temperature, and PV module conversion efficiency. The
+system component sizes and efficiencies found are merged into Python
+code for simulations. The designed system is simulated to test, verify,
+and draw conclusions. A simple web application is developed as a tool
+for some of the steps along the way.</p>
+<h2 id="motivation">Motivation</h2>
+<p>The production of clean energy is of major importance today and in
+the future. Sustainable living and environmental consciousness are
+becoming a more significant part of each and everyone’s lives. The
+thesis topic and objective is chosen and formulated based on an interest
+in sustainable energy generation for the future and off-grid living
+technologies. The steps described in the report are aimed at hobbyists
+or engineers interested in designing efficient photovoltaic systems
+without blindly trusting available solar energy kits. For homeowners
+wanting to "go solar", efficiency numbers are most likely not as
+important as the cost per watt output. However, for someone to purposely
+find appropriate components and an accurate cost per watt output, it is
+crucial to understand how the different system components performes
+under different weather conditions.</p>
+<h1 id="background-theory">Background Theory</h1>
+<p>This chapter summarizes the theoretical background needed to work
+through and understand the methods and results presented later in this
+report. A focus is on solar radiation energy conversion and how the
+obtained energy can be stored. The chapter also includes some theory on
+energy consumption, and other components needed to design a complete
+system.</p>
+<h2 id="up">Electrical Units</h2>
+<ul>
+<li><p>Power, <span class="math inline"><em>P</em></span>, SI unit Watt
+[W] or Joules per second <span
+class="math inline">[<em>J</em><em>s</em><sup>−1</sup>]</span></p>
+<ul>
+<li><p>Electrical power [W] : The rate of performing work, or electrical
+energy transferred per unit time.</p></li>
+<li><p><span class="math inline">[<em>W</em>]</span> &amp; [VA]: These
+two units of power referes to real power and apparent power. Volt ampere
+[VA] is used to specify apparent power, when dealing with AC and
+reactive elements. Reactive elements is anything that has inductance or
+capacitance. Kilowatt [kW] represents real power, which per definition
+comes from resistive elements. Almost all electrical equipment, cables
+etc. has more or less inductive and capacitive elements, but only when
+using AC it will cause apparent power. [VA] specifications is therefore
+found for inverters and AC loads.</p></li>
+</ul></li>
+<li><p>Energy, <span class="math inline"><em>E</em></span>, SI unit
+joules <span class="math inline">[<em>J</em>]</span>.</p>
+<ul>
+<li><p>Electrical energy: Potential energy stored in, or due to electric
+fields. Defined as power over a certain time and is denoted in watthours
+<span class="math inline">[<em>W</em><em>h</em>]</span>.<br />
+Energy can be found by integrating the continous power over time as
+follows: <span
+class="math display"><em>E</em> = ∫<sub><em>a</em></sub><sup><em>b</em></sup><em>P</em>(<em>t</em>)<em>d</em><em>t</em></span>
+Alternatively, when energy figures is wanted, based on discrete power
+data, it can be found through the trapezoidal method, as shown in
+equation <a href="#trapes" data-reference-type="ref"
+data-reference="trapes">[trapes]</a>. Useful for simulations and other
+software calculations. <span class="math display">$$\label{trapes}
+		\int_{a}^{b} P(t) dt \approx
+(b-a)\Bigg(\frac{P(a)+P(b)}{2}\Bigg)$$</span></p></li>
+</ul></li>
+<li><p>Electrical charge, <span class="math inline"><em>Q</em></span>,
+SI unit coulombs <span class="math inline">[<em>C</em>]</span>.</p>
+<ul>
+<li><p>1 [<span class="math inline"><em>C</em></span>] is defined as 1
+ampere transferred during 1 second. More commonly denoted in
+ampere-hours, [<span class="math inline"><em>A</em><em>h</em></span>].
+The relation between Ah and C is: <span
+class="math inline">1[<em>A</em><em>h</em>] = 3600[<em>C</em>]</span></p></li>
+</ul></li>
+</ul>
+<h2 id="photovoltaic-technology">Photovoltaic Technology</h2>
+<p>Publicly available radiation data from various online sources can be
+used for the dimenzioning of a PV powered electrical system.</p>
+<h4 id="cm-saf-radiation-data">CM SAF Radiation Data</h4>
+<p>The Satellite Facility on Climate Monitoring (CM SAF) based in
+Germany and Belgium, is an integral part of the European Organization
+for the Exploitation of Meteorological Satellites (EUMETSAT) <span
+class="citation" data-cites="cm_saf_overview"></span>. CM SAF develops,
+generates, and distributes satellite-derived solar energy-related data
+products. The data, holding various specifications and parameters can be
+ordered(free of charge) through their web user interface, and comes in
+the fileformat Tape Archive (TAR , also referred to as tarball). The
+files can be downloaded or sent other ways. The data from CM SAF can be
+analyzed in several different ways, but using R and the RStudio tool
+called "the CM SAF R Toolbox" provided by CM SAF, the file can be
+prepared, analyzed and visualized. This data has good geographical
+coverage and contains many useful parameters <span class="citation"
+data-cites="rtoolbox"></span>.</p>
+<h3 id="pandr">Radiation and Photons</h3>
+<p>As radiation data is available as different parameters with various
+specifications, there is some background knowledge needed to be able to
+find, understand and make use of the appropriate data.</p>
+<h4 id="photons">Photons</h4>
+<p>Energy from the sun, in the form of electromagnetic (EM) radiation,
+is carried by photons to the earth’s surface. Photons is particles of
+light that is characterized by a wavelength (<span
+class="math inline"><em>λ</em></span>). Photon energy can be denoted in
+joules [J] or electron-volts [eV], where electron-volts is the energy
+recovered in the photovoltaic semiconductor technology <span
+class="citation" data-cites="pveducation"></span>. <span
+class="math display">$$\label{ph_energy_j}
+	E = \frac{hc}{\lambda}[J] = \frac{1.24}{\lambda}[eV]$$</span></p>
+<ul>
+<li><p><span class="math inline"><em>h</em></span>, is the
+<em>Planck</em> constant, <span
+class="math inline">6.626 ⋅ 10<sup>−34</sup></span> [<span
+class="math inline"><em>k</em><em>g</em><em>m</em><sup>2</sup><em>s</em><sup>−1</sup></span>]</p></li>
+<li><p><span class="math inline"><em>c</em></span>, is the speed of
+light <span class="math inline">2.998 ⋅ 10<sup>8</sup></span> [<span
+class="math inline"><em>m</em><em>s</em><sup>−1</sup></span>]</p></li>
+<li><p>1 [eV] = <span
+class="math inline">1.602 ⋅ 10<sup>−19</sup></span> [J]. The energy
+required to raise an electron through 1 volt is <span
+class="math inline">1.602 ⋅ 10<sup>−19</sup></span> joules <span
+class="citation" data-cites="pveducation"></span>.</p></li>
+<li><p>The wavelength <span class="math inline"><em>λ</em></span>, is
+denoted in micrometer [<span
+class="math inline"><em>μ</em><em>m</em></span>], and the different
+wavelength’s make up the light spectrum that travels to earth.</p></li>
+</ul>
+<h4 id="radiation">Radiation</h4>
+<p>Energy from the sun, in the form of convection, and naturally
+occuring radiation, is at all times reaching the earth. Below, is a
+summary of definitions needed further in this section, to understand how
+this radiation behaves when entering and passing through the atmosphere
+<span class="citation" data-cites="messenger"></span>.</p>
+<ul>
+<li><p>Solar radiation: Electromagnetic energy radiated by the
+sun.</p></li>
+<li><p>Solar irradiation: The amount of radiation that is absorbed by a
+surface on the earth. Power per unit area which is commonly denoted in
+watts per squaremeter, <span
+class="math inline">[<em>W</em><em>m</em><sup>−2</sup>]</span></p></li>
+<li><p>Direct beam solar radiation: Solar radiation that reaches the
+earth’s surface without being diffused.</p></li>
+<li><p>Diffuse solar radiation: The solar radiation that is absorbed,
+reflected or scattered when passing through the atmosphere.</p></li>
+<li><p>Reflected solar radiation: The solar radiation that is reflected
+by a surface.</p></li>
+<li><p>Global solar radiation: The sum of direct, diffuse and reflected
+solar radiation.</p></li>
+<li><p>Solar spectrum: The range of wavelengths that the sun
+radiates.</p></li>
+<li><p>Zenith: An imaginary line perpendicular to the earth surface at
+the point of interest (on earth), pointing up in the sky.</p></li>
+<li><p>Solar zenith angle, SZA or <span
+class="math inline"><em>θ</em><sub><em>Z</em></sub></span>: The angle
+between the zenith and the line to center of the sun.</p></li>
+</ul>
+<p>The full EM spectrum from the sun is the assemble of different EM
+radiations <span class="citation" data-cites="nasa_em"></span>, such as
+Gamma-ray, Ultraviolet (UV), and Microwaves. Still, not all solar
+radiation is useful with photovoltaics <span class="citation"
+data-cites="tudelft"></span>.</p>
+<figure>
+<img src="spectral_irr_1" id="irr1"
+alt="Typical spectrum of wavelengths reaching the earth. Air-mass (AM) and the ASTM standard are explained below. Plot data from Matlab Fileexchange ." />
+<figcaption aria-hidden="true">Typical spectrum of wavelengths reaching
+the earth. Air-mass (AM) and the ASTM standard are explained below. Plot
+data from Matlab Fileexchange <span class="citation"
+data-cites="matlab"></span>.</figcaption>
+</figure>
+<p>The energy for each wavelength that reaches the earth is just a
+fraction of what is being radiated and consists roughly of Infrared(IR),
+visible light, and Ultraviolett(UV). The dotted lines in figure <a
+href="#irr1" data-reference-type="ref" data-reference="irr1">2.1</a>
+indicate roughly where these three different radiation types meet. The
+middle section shows the visible light and composes 44 percent of the
+energy reaching the earth’s surface. The left part at only 9 percent of
+received energy is the UV light. The right section is IR, which at 47
+percent is the most significant fraction of energy reaching the earth
+<span class="citation" data-cites="tudelft"></span>.</p>
+<ul>
+<li><p>The AM parameters seen in figure <a href="#irr1"
+data-reference-type="ref" data-reference="irr1">2.1</a> is short for Air
+mass. AM is a ratio of lenght parameter that describes the distance
+travelled by the sun rays, from entering the atmosphere til reaching the
+earth surface <span class="citation" data-cites="messenger"></span>.
+<span class="math display">$$\label{am}
+	\textrm{Air mass, AM} = \frac{\textrm{Path length
+traveled}}{\textrm{Vertical depth of the atmosphere}}$$</span> When the
+pathlength travelled is the shortest, AM equals 1, and that is when the
+sun rays is perpendicular to the earth surface. As in most cases, the
+sun rays will have an angle through the atmosphere, causing a longer
+path length. In some places at noon, AM equals approximately 1 in summer
+and 2 in the winter. This will differ largely between different
+latitudes, and generally we get more scattering and more losses at
+higher latitudes beacuse of the longer path length <span
+class="citation" data-cites="messenger"></span>. AM can be calculated
+using cosine of the SZA<span
+class="math inline">(<em>θ</em><sub><em>Z</em></sub>)</span> as seen in
+equation <a href="#am2" data-reference-type="ref"
+data-reference="am2">[am2]</a> <span class="citation"
+data-cites="tudelft"></span>. <span class="math display">$$\label{am2}
+	AM = \frac{1}{cos(\theta_{Z})}$$</span> AM 0 is extraterrestrial, and is
+used in space applications. As part of Standard Test Conditions (STC),
+AM 1.5 is being used as an industry standard for computations and to
+state PV module nominal capacities. Using 1.5 AM gives a way of setting
+a standard of fixed light spectrum, giving a simulated atmosphere during
+laboratory testing. More about STC in section <a href="#Pmrp"
+data-reference-type="ref" data-reference="Pmrp">2.2.3</a> <span
+class="citation" data-cites="messenger"></span>.</p></li>
+<li><p>ASTM G-173-03 is a standard that forms a terrestrial (on earth)
+solar spectral irradiance distribution . It also defines a set of
+specified atmospheric reference conditions for evaluations in PV. This
+standard was founded by the American Society for Testing and Materials
+(ASTM) in conjunction with the PV industry and US government
+laboratories <span class="citation" data-cites="nrel"></span>.</p></li>
+</ul>
+<p>Below is a brief summary of definitions and useful radiation
+parameters that is available in satellite derived data from CMSAF and
+others.</p>
+<ul>
+<li><p>Irradiance:</p>
+<ul>
+<li><p>Solar spectral irradiance (SSI): The power (radiant flux)
+received by the outer atmosphere (AM 0) in a unit surface area for a
+specified wavelength interval (d<span
+class="math inline"><em>λ</em></span>), with the units [<span
+class="math inline"><em>W</em><em>m</em><sup>−2</sup><em>μ</em><em>m</em><sup>−1</sup></span>]
+<span class="citation" data-cites="noaa"></span>. See AM 0 in figure <a
+href="#irr1" data-reference-type="ref"
+data-reference="irr1">2.1</a>.</p></li>
+<li><p>Irradiance: The integral of the spectral irradiance extended to
+all wavelengths of interest. With the units watts per square meter:
+Looking back at figure <a href="#irr1" data-reference-type="ref"
+data-reference="irr1">2.1</a>, this would correspond to the area under
+one curve. <span class="math display">$$\label{irr_int}
+			\textnormal{Irradiance}, I =
+\int_{0}^{\lambda}P(\lambda)d\lambda$$</span> where P<span
+class="math inline">(<em>λ</em>)</span> is the spectral power
+density.</p></li>
+<li><p>Shortwave Incoming Solar Radiation (SIS): The irradiance reaching
+earth on a horizontal surface, in the wavelength range of 0.2 to 4 <span
+class="math inline"><em>μ</em></span>m. In theory the result from an
+integral like equation <a href="#irr_int" data-reference-type="ref"
+data-reference="irr_int">[irr_int]</a>, with the units watts per square
+meter. Commonly, high-resolution SIS data is achieved from
+satellite-derived values where it is calculated as below <span
+class="citation" data-cites="UH"></span>. <span
+class="math display">$$\textnormal{SIS = (1 - CAL)} \cdot
+\textnormal{SIS\_ clear\_ sky}$$</span> where, CAL is the Effective
+Cloud Albedo. A higher CAL value indicates that clouds reflect a larger
+amount of solar radiation. SIS_ clear_ sky is the surface solar
+irradiance if no clouds. SIS data can often be acquired as daily,
+monthly or yearly averages. The SIS parameter therefore gives a good
+value for further PV calculation, involving the different effecting
+factors we have on the ground <span class="citation"
+data-cites="UH"></span>.</p></li>
+<li><p>Spectrally resolved irradiance (SRI): Another type of irradiance
+parameter often available from satellite monitoring. SRI data contain
+the spectrally resolved shortwave radiation, where the spectrum is split
+up into small wavelength bands. This parameter is therefore similar to
+SIS but separated into discrete wavelength bands. SRI data can be
+numerically integrated to output SIS, or the spectrum of interest <span
+class="citation" data-cites="sis_data"></span>.</p></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>Radiation:</p>
+<ul>
+<li><p>Units of energy that can be found by taking the time integral of
+the irradiance extended over a given period of time. Radiation data can
+for example be found in kilowatthours per squaremeter per day <span
+class="citation" data-cites="tudelft"></span>.</p></li>
+</ul></li>
+</ul>
+<h3 id="pvct">PV Cell Technology</h3>
+<p>To absorb and convert photon energy, PV cell technology is being
+used. The PV cell can be manufactured using different techniques and is
+usually produced using Silicon (Si). Monocrystalline and Polycrystalline
+silicon cell technology is the two most commonly used in currently
+available modules. Very shortly described the PV cell is built up of
+silicon and the electric current occurs at a pn-junction. P and N-type
+silicon is produced by doping the materials. A PN-junction is then made
+up of these two doped materials. An electric field occurs between the P
+and N part when photons from the sun reach the PN-junction. And from
+this, electron hole pairs occurs. A voltage will develop across the
+PN-junction when the incident radiation and photon energy exceeds the
+bandgap energy <span class="citation" data-cites="pveducation"></span>.
+To summarize the production of the PV cell semiconducting material, the
+main steps is explained below. From Quartzite rock, metallurgical
+silicon is produced through several steps and processes, where finally
+the silicon is purified through melting. At this stage the material can
+be used to various applications not only for the semiconductor industry
+<span class="citation" data-cites="tudelft"></span>.</p>
+<ul>
+<li><p>Next phase is the production of polycrystalline silicon rods
+through another melting and purifying process. At this point, silicon
+wafers can be produced from the silicon rods. The wafers is obtained by
+sawing the rods using a wire saw technique, followed by refining steps
+such as polishing <span class="citation"
+data-cites="ren_energy"></span>.</p></li>
+<li><p>Or, multi/monocrystalline ingots can be produced, through a
+process where one single crystal of silicon is made, as opposed to
+polycrystalline which is essentially made from many silicon fragments
+melted together. This second step can generally make the monocrystalline
+cell more expensive but in return, more efficient <span class="citation"
+data-cites="tudelft"></span>.</p></li>
+</ul>
+<p>Looking at operational characteristics of the PV cell, it is known
+that the bandgap energy varies from material to material but silicon
+needs approximately <span class="math inline">1.11</span> [eV] <span
+class="citation" data-cites="messenger"></span>. Wavelength (<span
+class="math inline"><em>λ</em></span>), smallar then about 1.1 <span
+class="math inline"><em>μ</em><em>m</em></span> will uphold the energy
+required for silicon-based PV cells. Looking at figure <a href="#irr1"
+data-reference-type="ref" data-reference="irr1">2.1</a> we can see that
+these wavelengths is in the near IR range and below. This means that PV
+cells can absorb and convert energy with wavelengths in the range of
+approximately 0.2 to 1.1 <span
+class="math inline"><em>μ</em><em>m</em></span> <span class="citation"
+data-cites="sciencing.com"></span>.</p>
+<h4 id="ideal-pv-cell-equivalent-circuit">Ideal PV Cell Equivalent
+Circuit</h4>
+<p>Even though there are different manufacturing techniques and
+semiconductor metallurgy, the main characteristics of most PV cells can
+be modelled and approximated by the below ideal cell equivalent circuit.
+This can help to evaluate different situations and understand
+characteristics. By using this circuit model, it is possible to work
+with Kirchoff’s circuit law’s and derive formulas for testing and
+understanding <span class="citation" data-cites="eq_circ"></span>.</p>
+<div class="circuitikz">
+<p>(0,0) to[isource = <span
+class="math inline"><em>I</em><sub><em>p</em><em>h</em></sub></span>]
+(0,3) to[short, -*] (3,3) to[short, -*] (6,3) (3,3) to[diode,
+i&gt;_=<span class="math inline"><em>I</em><sub><em>D</em></sub></span>]
+(3,0) – (0,0) (3,3) – (6,3) to[resistor = <span
+class="math inline"><em>R</em><sub><em>s</em><em>h</em></sub></span>,
+i&gt;_=<span
+class="math inline"><em>I</em><sub><em>R</em><sub><em>s</em><em>h</em></sub></sub></span>]
+(6,0) – (3,0) (6,3) to[resistor = <span
+class="math inline"><em>R</em><sub><em>s</em></sub></span>, i&gt;_=<span
+class="math inline"><em>I</em></span>] (12,3) to[short, o-*] (12,3)
+node[anchor=west]<span>+</span> (6,0) – (12,0) to[short, o-*] (12,0)
+node[anchor=west]<span>-</span>;</p>
+</div>
+<ul>
+<li><p>Current source <span
+class="math inline"><em>I</em><sub><em>p</em><em>h</em></sub></span>
+represents the photovoltaic effect of light intensity on the cell. The
+more sunlight available, the more current will flow <span
+class="citation" data-cites="pveducation"></span>.</p></li>
+<li><p>The diode will model how the cell operates without sunlight
+present <span class="citation"
+data-cites="pveducation"></span>.</p></li>
+<li><p>Shunt resistance <span
+class="math inline"><em>R</em><sub><em>s</em><em>h</em></sub></span>
+occurs from imperfections in the semicondutor material which under
+different conditions presents alternative paths for the current. Can be
+seen as "leaks" around the edges of the semiconductor <span
+class="citation" data-cites="tudelft"></span>.</p></li>
+<li><p>Series resistance <span
+class="math inline"><em>R</em><sub><em>S</em></sub></span> comes mainly
+from three places. It is some resistance when current moves through the
+semiconductor material, the interface/contact where the metal contacts
+connect to the semiconductor material, and in in the metal contacts
+themselves <span class="citation" data-cites="tudelft"></span>.</p></li>
+</ul>
+<p>By using Kirchoff’s current law’s, ideal circuit element equations
+and ohms law, the below characteristic equation describing the PV cell
+output current is found <span class="citation"
+data-cites="messenger"></span>. <span class="math display">$$I = I_{ph}
+- I_S \Big(e^{(\frac{V_D}{nV_T})}-1\Big) - \frac{V +
+IR_{s}}{R_{SH}}$$</span></p>
+<ul>
+<li><p><span class="math inline"><em>I</em><sub><em>S</em></sub></span>
+is the reverse saturation current as normally seen in the Shockley diode
+equation.</p></li>
+<li><p>n is the diode ideality factor. Ideally n = 1.</p></li>
+<li><p><span class="math inline"><em>V</em><sub><em>T</em></sub></span>
+is the thermal voltage. <span class="math inline">$V_{T} =
+\frac{kT}{q}$</span>, where k is the Boltzmann constant, T for
+temperature and q = electron charge. <span
+class="math inline"><em>V</em><sub><em>T</em></sub>≈</span> 0.0259 volts
+at <span class="math inline">$25\degree$</span>C <span class="citation"
+data-cites="messenger"></span>.</p></li>
+<li><p>Output voltage V is across the PV cell +/- terminals.</p></li>
+</ul>
+<p>Based on the ideal cell circuit in figure <a href="#cell_equivalent"
+data-reference-type="ref"
+data-reference="cell_equivalent">[cell_equivalent]</a>, it is evident
+that, to get the most out of this circuit it required for <span
+class="math inline"><em>R</em><sub><em>S</em></sub></span> to have zero
+resistance and <span
+class="math inline"><em>R</em><sub><em>s</em><em>h</em></sub></span> to
+have infinite resistance. Disregarding the resistors, imagining no
+sunlight available, the PV cell acts as a diode. And when the cell
+receives radiation from the sun, the current <span
+class="math inline"><em>I</em><sub><em>p</em><em>h</em></sub></span>
+appears as illustrated in figure <a href="#iv1"
+data-reference-type="ref" data-reference="iv1">2.2</a>. The part of the
+irradiated curve inside the green rectangle are what is usually seen
+up-side-down, as shown in figure <a href="#iv2"
+data-reference-type="ref" data-reference="iv2">2.3</a> <span
+class="citation" data-cites="pveducation"></span>.</p>
+<figure>
+<img src="iv_curve_1" id="iv1"
+alt="Illustration of the PV cell IV-curve origin" />
+<figcaption aria-hidden="true">Illustration of the PV cell IV-curve
+origin</figcaption>
+</figure>
+<p>Looking back at the equivalent circuit in figure <a
+href="#cell_equivalent" data-reference-type="ref"
+data-reference="cell_equivalent">[cell_equivalent]</a>, it is a fact
+that the current <span
+class="math inline"><em>I</em><sub><em>p</em><em>h</em></sub></span>,
+will be the biggest when the cell is shorted without load, i.e. load
+voltage is zero. <span
+class="math inline"><em>I</em><sub><em>p</em><em>h</em></sub></span>
+will on the other hand be zero when no load is connected, and the
+open-circuit voltage <span
+class="math inline"><em>V</em><sub><em>O</em><em>C</em></sub></span> is
+then at its biggest. This results in: <span
+class="math inline"><em>I</em><sub><em>S</em><em>C</em></sub></span> =
+<span
+class="math inline"> − <em>I</em><sub><em>p</em><em>h</em></sub></span>,
+and the IV curve is plotted as shown in figure <a href="#iv2"
+data-reference-type="ref" data-reference="iv2">2.3</a> <span
+class="citation" data-cites="pveducation"></span>.</p>
+<h4 id="mppt">Maximum Power Point</h4>
+<p>Because power is defined as P = U x I, there will be a specific point
+on the IV curve where power (P) is the biggest. This point is called the
+Maximum power point (MPP). This is visualized in figure <a href="#iv2"
+data-reference-type="ref" data-reference="iv2">2.3</a> by the gray
+marked area that would represent power. MPP on the IV-curve, will be
+where this gray "power area" is the biggest possible <span
+class="citation" data-cites="mppta"></span>. The real IV-curve for a PV
+cell or module is found in laboratories under Standard test conditions
+(STC), as explained in section <a href="#Pmrp" data-reference-type="ref"
+data-reference="Pmrp">2.2.3</a>.</p>
+<figure>
+<img src="ideal_cell_iv_1" id="iv2"
+alt="Illustration of Ideal PV cell Power, IV curve, and MPP." />
+<figcaption aria-hidden="true">Illustration of Ideal PV cell Power, IV
+curve, and MPP.</figcaption>
+</figure>
+<p>To get the most power out of a PV cell, it needs to be forced to work
+at the MPP. Since the cell and the IV-curve will constantly vary from
+factors such as temperature and irradiance, the MPP will also change as
+a result. By connecting a load directly to a cell or module this would
+not operate very efficiently, but instead this is solved and handled
+using a technique called Maximum power point tracking(MPPT), which is
+handled by a charge controller <span class="citation"
+data-cites="mppta"></span>. Besides MPPT, the cell temperature is a
+factor that affects the efficiency remarkably. Voltage drops from
+increasing internal resistance at higher cell temperatures, and current
+increases very little, therefore resulting in a power loss <span
+class="citation" data-cites="messenger"></span>. For the entire PV
+module, there will be more factors to consider, such as soiling and
+shading. More about this in section <a href="#Pmrp"
+data-reference-type="ref" data-reference="Pmrp">2.2.3</a>.</p>
+<h3 id="Pmrp">PV Module Ratings and Properties</h3>
+<p>PV modules or solar panels as the modules are commonly called, is
+built up by a number of PV cells to output a certain voltage. In PV
+powered systems, a number of PV modules is connected and together forms
+a PV array that can supply the system with power.</p>
+<figure>
+<img src="victron_mono_module_cell" id="onemodule"
+alt="6 x 12 Monocrystalline PV Module, with a single cell indicated. Image from Victron Energy, used with permission ." />
+<figcaption aria-hidden="true">6 x 12 Monocrystalline PV Module, with a
+single cell indicated. Image from Victron Energy, used with permission
+<span class="citation"
+data-cites="monocrystalline"></span>.</figcaption>
+</figure>
+<figure>
+<img src="victron_mono_module_array_1" id="sixmodules"
+alt="PV array with one string of 6 PV Modules." />
+<figcaption aria-hidden="true">PV array with one string of 6 PV
+Modules.</figcaption>
+</figure>
+<h4 id="standard-test-condition">Standard Test Condition</h4>
+<p>Or shortly called STC, is an industry-standard for the conditions
+where PV Modules is being tested and rated in laboratories. Thanks to
+this standard of test conditions, modules can be accurately compared.
+The STC consists of the following three criteria that is used during
+laboratory testing <span class="citation" data-cites="stc"></span>:</p>
+<ul>
+<li><p>Irradiance(artificial) of 1000 [<span
+class="math inline"><em>W</em><em>m</em><sup>−2</sup></span>]</p></li>
+<li><p>Cell temperature of 25[C]</p></li>
+<li><p>Air mass: 1.5 AM</p></li>
+</ul>
+<h4 id="manufacturer-information">Manufacturer Information</h4>
+<p>Using the STC, PV module manufacturers can test and declare a number
+of electrical properties. These data can be found on the product
+datasheet. Since the STC is a controlled testing environment, the
+parameters has fixed values under STC <span class="citation"
+data-cites="stc"></span>.</p>
+<ul>
+<li><p>MPP voltage <span
+class="math inline">[<em>V</em><sub><em>m</em><em>p</em><em>p</em></sub>]</span>,
+is the voltage found under STC, where the module outputs the most
+power.</p></li>
+<li><p>MPP current <span
+class="math inline">[<em>I</em><sub><em>m</em><em>p</em><em>p</em></sub>]</span>,
+is the current found under STC, where the module outputs the most
+power.</p></li>
+<li><p>Watt-peak <span
+class="math inline">[<em>W</em><sub><em>p</em></sub>]</span>, is the
+nominal power output under STC, based on <span
+class="math inline"><em>V</em><sub><em>m</em><em>p</em><em>p</em></sub></span>
+and <span
+class="math inline"><em>I</em><sub><em>m</em><em>p</em><em>p</em></sub></span>.
+This is the value that is commonly advertised as the module
+output.</p></li>
+<li><p>Module efficiency <span class="math inline">[%]</span>, tells how
+big part of the suns power that can be converted to electrical power.
+Common values ranges from 15 to 23 percent. It is found as follows <span
+class="citation" data-cites="tudelft"></span>: <span
+class="math display">$$\textnormal{PV module efficiency, }\eta_{mpp} =
+100\% * \Bigg(\frac{P_{MPP}}{P_{sunlight}}\Bigg)$$</span> Where, <span
+class="math inline"><em>P</em><sub><em>s</em><em>u</em><em>n</em><em>l</em><em>i</em><em>g</em><em>h</em><em>t</em></sub></span>
+is 1000 watts per square meter, under STC.</p></li>
+</ul>
+<p>Beyond STC parameters, manufacturers declare physical dimensions,
+characteristic curves, a nominal operating temperature and electrical
+properties under the nominal temperature. A tempererature coefficient of
+power is declared in percent per degree celcius. This is a coefficient
+stating how big loss to expect per degree celsius change. The
+coefficient is negative since efficiency goes down with increasing
+temperature <span class="citation" data-cites="messenger"></span>.</p>
+<h4 id="shading-and-mismatch-losses">Shading and Mismatch Losses</h4>
+<p>A shaded or mismatched cell in a module behaves like "a clog in the
+pipe", as resistivity will go up and make the current drop. Other than
+shading, this phenomenon can also be caused by soiling, aging or other
+damage to a cell or module. A cell that gets raised resistance like
+this, also heats up quickly, which will result in degraded performance
+of that cell<span class="citation" data-cites="messenger"></span>. The
+solution to this is bypass-diodes. This can be an issue at cells in a
+module, but also in a string of modules when parts of a module gets
+shaded. To avoid this problem as much as possible, bypass-diodes is
+integrated in PV modules, and it can be added to the strings in a solar
+array<span class="citation" data-cites="messenger"></span>.</p>
+<figure>
+<img src="modulebypass" id="modulebypass"
+alt="Illustration of PV module built-in bypass-diodes." />
+<figcaption aria-hidden="true">Illustration of PV module built-in
+bypass-diodes.</figcaption>
+</figure>
+<p>The PV module configuration of cells, and use of bypass-diodes can be
+found from the product datasheet. For example, a 60 cell module has
+three built in bypass diodes that can each bypass a string of 20 cells
+in the module <span class="citation" data-cites="lgneon"></span>. These
+different factors discussed above will cause a loss that is very hard to
+set up a general number or equation for. Shading over large areas of a
+PV array will have a big impact and can quickly halve the output. This
+is simply a thing that needs to be avoided in order to achieve a system
+as efficient as possible. According to NREL, soiling, shading, and cell
+mismatch often cause 2 to 3 percent losses <span class="citation"
+data-cites="nrel_2"></span>.</p>
+<h3 id="maximizing">Maximizing Absorbed Irradiation</h3>
+<p>Established definitions and parameters used for the topic has been
+summarized below:</p>
+<ul>
+<li><p>Meridian: Lines that passes between south/north pole parallel to
+the prime meridian. The prime meridian, also called the Greenwich
+meridian, since it is passing through Greenwich.</p></li>
+<li><p>Longitude: Measure distance in degrees, east or west of the prime
+meridian. The prime meridian is defined to be the 0 degree longitude,
+with plus/minus 180 degrees, all longitudes covers the earth.</p></li>
+<li><p>Equator: Is in the center of earth in relation to its rotational
+axis, defined as 0 degree latitude, with plus/minus 90 degrees covering
+the earth between south/north pole.</p></li>
+<li><p>Latitude: Positive degrees counted from the equator towards the
+north pole, and vice versa towards the south pole.</p></li>
+<li><p>Solar noon: At a specific location, the time where the sun
+reaches the highest position in the sky, meaning the sun crosses the
+meridian the location. Solar noon occurs at different hours at different
+locations since the earth rotational axis is tilted 23.5<span
+class="math inline">$\degree$</span>, in relation to a perpendicular
+line with the sun <span class="citation"
+data-cites="messenger"></span>.</p></li>
+<li><p>Solar altitude angle: The suns angular height in relation to the
+horizontal. 0 degress at sunrise/sunset and at most 90 degrees at solar
+noon. <span class="citation" data-cites="pveducation"></span></p></li>
+<li><p>Module elevation angle, <span
+class="math inline"><em>θ</em></span>: The angle of which the PV module
+is tilted in relation to the horizontal.</p></li>
+<li><p>Module azimuth angle: The angle of which the PV module is rotated
+along the horizon, in relation to the equator. Also called the compass
+direction.</p></li>
+<li><p>Declination angle: The angle of which the earth rotational axis
+is tilted in relation to a perpendicular line towards the suns center.
+See figure <a href="#declinaton" data-reference-type="ref"
+data-reference="declinaton">2.8</a>.</p></li>
+<li><p>June and December solstice: The time of year where the sun is
+either at its largest or smallest altitude angle. The suns biggest
+altitude angle of the year is June 21, and the least on December 21.
+<span class="citation" data-cites="messenger"></span></p></li>
+<li><p>True south: The heading from any point on earth, towards the
+south pole.</p></li>
+<li><p>Equinox: When the motion of the sun crosses the equator</p></li>
+</ul>
+<figure>
+<img src="Solar_declination" id="solstices"
+alt="Example of the suns daily angles at a specific location ." />
+<figcaption aria-hidden="true">Example of the suns daily angles at a
+specific location <span class="citation"
+data-cites="solstices"></span>.</figcaption>
+</figure>
+<p>The earth rotates around its axis once per day, as well as orbiting
+in an elliptical path around the sun ones during a year, as shown in
+figure <a href="#declinaton" data-reference-type="ref"
+data-reference="declinaton">2.8</a>. Because of the earth’s tilted axis
+in relation to the sun, the declination angle <span
+class="math inline"><em>δ</em></span> appears. This angle varies between
+23.45<span class="math inline">$\degree$</span> in the summer, and
+-23.45<span class="math inline">$\degree$</span> in the winter <span
+class="citation" data-cites="messenger"></span>.</p>
+<figure>
+<img src="declination" id="declinaton"
+alt="Illustration of the earth’s orbit, and the declination angle \delta." />
+<figcaption aria-hidden="true">Illustration of the earth’s orbit, and
+the declination angle <span
+class="math inline"><em>δ</em></span>.</figcaption>
+</figure>
+<p>There is two angles of the PV module that needs to be considered when
+planning an optimal mounting position. The elevation angle (<span
+class="math inline"><em>θ</em></span>), and the azimuth angle, as shown
+in figure <a href="#azimuthelevation" data-reference-type="ref"
+data-reference="azimuthelevation">2.9</a>.</p>
+<figure>
+<img src="azimuthelevation" id="azimuthelevation"
+alt="Illustration of azimuth and elevation angle of a PV module." />
+<figcaption aria-hidden="true">Illustration of azimuth and elevation
+angle of a PV module.</figcaption>
+</figure>
+<h4 id="solar-tracking">Solar Tracking</h4>
+<p>An alternative to mounting the module or array in a fixed position is
+to use a solar tracker. One or two axis, solar trackers, is a piece of
+equipment that makes the module/array automatically follow the sun for
+optimal irradiation absorption. The two-axis tracker adjusts both
+elevation and azimuth, whilst the one axis tracker, is slightly simpler
+and changes only the azimuth angle. Solar tracking maximizes the
+intersection with the sun’s rays. Figure <a href="#elevation"
+data-reference-type="ref" data-reference="elevation">2.10</a>
+illustrates the cosine to angle relation, that dictates the sun rays
+radiation components that can be absorbed by the PV module <span
+class="citation" data-cites="messenger"></span>.</p>
+<figure>
+<img src="pvtilt2" id="elevation"
+alt="Illustration showing the effect of PV module elevation towards the sun." />
+<figcaption aria-hidden="true">Illustration showing the effect of PV
+module elevation towards the sun.</figcaption>
+</figure>
+<p>The gain from using a solar tracker versus a fixed position depends
+on many factors. In <em>Photovoltaics Systems Engineering</em> <span
+class="citation" data-cites="messenger"></span>, it is stated that
+two-axis tracking in a desert climate, can help achieve up to 50 percent
+more energy during summer and 20 percent during winter in best-case
+scenarios. But locations affected by more diffuse solar radiation such
+as Seattle WA, would gain 35 percent in summer and only 9 percent in
+winter time. It is also stated that a PV module can have an azimuth
+angle offset from the solar noon of up to 22.5 degrees, with no more
+than a 2 percent irradiation loss. Common in smaller installations is to
+use a fixed position where the aim is to find the optimal angles, for
+most possible irradiation absorbance <span class="citation"
+data-cites="messenger"></span>.</p>
+<h4 id="optimal-pv-module-elevation-angle">Optimal PV Module Elevation
+Angle</h4>
+<p>The illustration in figure <a href="#declinaton"
+data-reference-type="ref" data-reference="declinaton">2.8</a> explains
+why the declination angle <span class="math inline"><em>δ</em></span>
+will have a sinusoidal behavior. During summer in the northern
+hemisphere, it will alternate between <span
+class="math inline">$23.45\degree$</span> and <span
+class="math inline">$0\degree$</span>, and similarly, in winter it will
+alternate between <span class="math inline">$-23.45\degree$</span> and
+<span class="math inline">$0\degree$</span>. The average seasonal
+declination angle is found using the same method, as when finding an
+average sinusoidal voltage output, <span
+class="math inline">2<em>A</em>/<em>π</em></span>, wherein this case,
+the amplitude is the declination degrees. Resulting in: <span
+class="math inline">$2\cdot-23.45\degree / \pi \approx -14.93
+\degree$</span>, which is average angle for wintertime. Based on this,
+it is common practice to set the optimal PV module elevation angle as
+follows:<span class="citation" data-cites="messenger"></span></p>
+<ul>
+<li><p>For best average winter performance, elevation angle = (<span
+class="math inline"><em>l</em><em>a</em><em>t</em><em>i</em><em>t</em><em>u</em><em>d</em><em>e</em> + 14.93</span>)</p></li>
+<li><p>For best average summer performance, elevation angle = (<span
+class="math inline"><em>l</em><em>a</em><em>t</em><em>i</em><em>t</em><em>u</em><em>d</em><em>e</em> − 14.93</span>)</p></li>
+</ul>
+<h4 id="optimal-pv-module-azimuth-angle">Optimal PV Module Azimuth
+Angle</h4>
+<p>From the perspective of the earth and the northern hemisphere, the
+sun is traveling from east to west along the horizon, at different solar
+noon altitude depending on location and season. An optimal azimuth angle
+for a specific location would be the direction of the sun at solar noon,
+which is true south for the northern hemisphere. Looking away from
+possible diffuse solar radiation, the irradiation will be at its
+strongest at solar noon thanks to the fact that air mass will be the
+least at the time. See equation <a href="#am" data-reference-type="ref"
+data-reference="am">[am]</a>. The intensity of the irradiation on the
+module will decrease rapidly before and after one hour from solar noon
+because of air mass, and the sun’s angle of 15<span
+class="math inline">$\degree$</span> traveled per hour <span
+class="citation" data-cites="messenger"></span>. Solar noon can be
+calculated based on Astronomy, but it is beyond the scope of this
+project. This can instead be found at various online resources. For
+example at <em>www.timeanddate.com</em> <span class="citation"
+data-cites="timeanddate"></span>. Data covering Stavanger in December
+21th 2019, states that solar noon is occoring at 12:34, at 180<span
+class="math inline">$\degree$</span> South, with an altitude angle of
+8<span class="math inline">$\degree$</span> <span class="citation"
+data-cites="timeanddate"></span>.</p>
+<h2 id="batterybackground">Batteries</h2>
+<p>A battery is an electrochemical device that could be extensively
+described to fully understand. Instead this section summarizes the main
+parameters, characteristics and efficiency on an electrical level.</p>
+<p>There are two main categories of batteries: Primary and secondary
+type, where the primary group covers the non-rechargable. Since
+recharging is one of the key reasons of a battery bank in an off grid PV
+system, the following information covers exclusively secondary type
+batteries.</p>
+<h4 id="parameters">Parameters</h4>
+<ul>
+<li><p>Voltage: Battery nominal voltage, resulting from a series
+connection of cells with a nominal voltage.</p></li>
+<li><p>Capacity: Battery nominal capacity, usually stated in [Ah], but
+can also be denoted in coulomb, [<span
+class="math inline"><em>C</em></span>].</p></li>
+<li><p>State of charge, SOC: Gives a value in percent that tells how big
+part of the energy remains in the battery. Calculated as follows: <span
+class="citation" data-cites="tudelft"></span> <span
+class="math display">$$SOC = \Bigg(\frac{[J_{available}]}{[C_{batt}]
+\cdot [V]}\Bigg) \cdot 100\%$$</span> where, [<span
+class="math inline"><em>J</em><sub><em>a</em><em>v</em><em>a</em><em>i</em><em>l</em><em>a</em><em>b</em><em>l</em><em>e</em></sub></span>]
+is the energy available, [<span
+class="math inline"><em>C</em><sub><em>b</em><em>a</em><em>t</em><em>t</em></sub></span>]
+is the battery capacity in coulombs and [<span
+class="math inline"><em>V</em></span>] is the battery voltage.</p></li>
+<li><p>Depth of discharge, DOD: Gives a value in percent that tells how
+big part of the batteries energy that has been used. Calculated as
+follows: <span class="citation" data-cites="tudelft"></span> <span
+class="math display">$$DOD = \Bigg(\frac{[J_{discharged}]}{[C_{batt}]
+\cdot [V]}\Bigg) \cdot 100\%$$</span> where, [<span
+class="math inline"><em>J</em><sub><em>d</em><em>i</em><em>s</em><em>c</em><em>h</em><em>a</em><em>r</em><em>g</em><em>e</em><em>d</em></sub></span>]
+is the discharged energy. <span
+class="math inline"><em>S</em><em>O</em><em>C</em></span> and <span
+class="math inline"><em>D</em><em>O</em><em>D</em></span> complement
+each other such that <span
+class="math inline"><em>S</em><em>O</em><em>C</em> + <em>D</em><em>O</em><em>D</em> = 100%</span></p></li>
+<li><p>Cycle life: The number of charge/discharge cycles a battery can
+handle until the capacity goes under 80% of the nominal capacity. Often
+stated as different numbers depending on DOD. <span class="citation"
+data-cites="victron_batt"></span></p></li>
+<li><p>Volumetric Energy Density: Used to compare batteries energy
+stored per unit volume. Critical specification for compact mobile
+devices. Denoted in <span
+class="math inline">[<em>W</em><em>h</em></span> <span
+class="math inline"><em>l</em><sup>−1</sup>]</span>. <span
+class="citation" data-cites="uniwashington"></span></p></li>
+<li><p>Gravimetric energy density: Used to compare battery capacity per
+unit weight. Denoted in <span
+class="math inline">[<em>W</em><em>h</em>(<em>k</em><em>g</em>)<sup>−1</sup>]</span>.
+<span class="citation" data-cites="uniwashington"></span></p></li>
+<li><p>Battery efficiency: The efficiency of electrical energy storage,
+which gives information about losses during charge and discharge cycles
+(Sometimes called round trip efficiency). Calculated as shown below
+<span class="citation" data-cites="tudelft"></span>. <span
+class="math display">$$\eta_{batt} =
+\Bigg(\frac{[J_{out}]}{[J_{in}]}\Bigg) * 100\%
+	\label{batt_efficiency}$$</span></p></li>
+</ul>
+<h4 id="battery-types-and-characteristics">Battery Types and
+Characteristics</h4>
+<p>To summarize, here is four of the most common secondary type
+batteries<span class="citation" data-cites="tudelft"></span>:</p>
+<ul>
+<li><p>Lead acid:</p>
+<ul>
+<li><p>A well proven battery design, affordable and easily available for
+a big range of service areas.</p></li>
+<li><p>Normally requires maintenance, vented surroundings and space
+consuming compared to other newer battery technology. As a result of
+poor maintenance and or overcurrents, comes "gassing", which means the
+battery will vapor an explosive gas. Other premature aging comes from
+electrode corrosion and sulphation. Sensitive to deep DOD compared to
+Li-ion. <span class="citation" data-cites="tudelft"></span>.</p></li>
+<li><p>The lead acid battery’s cell consists of two electrodes, anode
+and an cathode which is made of lead(Pb). The electrodes is positioned
+in a canister with electrolyte. The electrolyte, in liquid or gel form
+contains ions and can be decomposed by electrolysis.</p></li>
+<li><p>Lead acid batteries come in different designs such as Absorbent
+glass mat (AGM) which is an high technology developement that is sealed,
+maintenance free and can handle extreme vibrations. There is also gel
+designs where the electrolyte is no longes liquid and therefore can be
+mounted in any position <span class="citation"
+data-cites="tudelft"></span>.</p></li>
+</ul></li>
+<li><p>Lithium ion, Li-ion:</p>
+<ul>
+<li><p>Rapidly developed in recent years, and extensively used in
+everything from cellphones to electric cars.</p></li>
+<li><p>Benefits from high energy density compared to most other
+commercially available technologies. More robust to deeper DOD.</p></li>
+<li><p>Maintenance free technology with one of the highest energy
+densities available in todays battery market.</p></li>
+<li><p>Li-ion batteries comes in a number of different designs that
+utilizes different electrode materials. Examples of commonly used
+electrode materials is lithium iron phosphate, lithium manganese oxide,
+lithium cobalt oxide and graphite.</p></li>
+<li><p>Lithium ions move between anode and catode during
+charge/discharge, and the high voltage and charge storage per unit mass
+is in part possible beacuse of the relatively small lithium ions. <span
+class="citation" data-cites="uniwashington"></span></p></li>
+</ul></li>
+<li><p>Nickel metal hydride, Ni-MH:</p>
+<ul>
+<li><p>Good energy density, comparable to the lithium ion.</p></li>
+<li><p>The drawback with the nickel metal hydrite is that it suffers
+from a high rate of self discharge rate. <span class="citation"
+data-cites="tudelft"></span></p></li>
+</ul></li>
+<li><p>Nickel cadmium, Ni-Cd:</p>
+<ul>
+<li><p>Considerably lower energy density than lithium ion.</p></li>
+<li><p>Suffers from the "memory effect", meaning it needs to be fully
+discharged at every cycle to keep its capacity and lifetime. <span
+class="citation" data-cites="tudelft"></span></p></li>
+</ul></li>
+</ul>
+<figure>
+<img src="ragone1" id="ragone"
+alt="Ragone plot illustrating volumetric and gravimetric energy density of various battery types ." />
+<figcaption aria-hidden="true">Ragone plot illustrating volumetric and
+gravimetric energy density of various battery types <span
+class="citation" data-cites="ragone"></span>.</figcaption>
+</figure>
+<p>Generally the battery capacity becomes smaller at lower temperatures,
+but the battery lifetime improves from operating under colder
+conditions. Overheating damages the battery, and this usually comes from
+overcharging<span class="citation" data-cites="tudelft"></span>. For
+analysis of a batterys characteristics, ambient temperature statistics
+for specific geographical location will be useful. This can be found
+online at publicly available sources. For Norway, <em>Norsk
+Klimaservicesenter</em><span class="citation"
+data-cites="norsk_klima_servicesenter"></span>, is a valuable resource
+of weather and climate data. As an example, yearly average temperature
+data for Stavanger and December can be located. Data from the years 2015
+to 2019 is localized and used to find an average based on these five
+years <span class="citation"
+data-cites="norsk_klima_servicesenter"></span>.</p>
+<p><span class="math display">$$\label{averagetemp}
+\frac{(6.2 + 6.1 + 3.5 + 4.1 + 5.3)}{5} = 5.04 \hspace{1mm} [\degree
+C]$$</span></p>
+<h2 id="Osc">Other System Components</h2>
+<h4 id="charge-controller">Charge Controller</h4>
+<p>A solar charge controller is a power electronics device specifically
+built to handle the needs and conditions that a PV system requires. The
+charge controller interconnects the PV array, battery bank and the load,
+and to handle this it has several built in functionalities. A PV system
+is constantly changing from external parameters such as irradiance and
+ambient temperatrue. And energy usage will not happen synchrously with
+charging. It is therefor important to control a number of parameters.
+Below is an overview of some of the most important and commonly built in
+functionalities <span class="citation" data-cites="tudelft"></span>.</p>
+<ul>
+<li><p>Maximum power point tracking, MPPT, which makes sure that most
+possible power is being extracted from the PV array, dynamically at all
+times <span class="citation" data-cites="mppta"></span>. Further
+described under section <a href="#pvct" data-reference-type="ref"
+data-reference="pvct">2.2.2</a>.</p></li>
+<li><p>Pulse width modulation, PWM, is used in early type charge
+controllers to control battery charging voltage. This technology does
+not optimize the PV power output such as the MPPT does, and is therefor
+not desired when chasing efficiency <span class="citation"
+data-cites="pwm"></span>.</p></li>
+<li><p>Voltage and current regulation, set to meet the specific battery
+requirements and limitations <span class="citation"
+data-cites="victron_easysolar"></span>.</p></li>
+<li><p>Temperature feedback from batteries. Automatically adjusts
+charge/discharge parameters depending on operating temperature, from
+choosen battery type <span class="citation"
+data-cites="victron_easysolar"></span>.</p></li>
+</ul>
+<h4 id="inverter">Inverter</h4>
+<p>An inverter is needed to convert the battery DC voltage to AC, 230 or
+110 volts depending on geographical location standards. For bigger
+installations it is possible to get inverters for three phase output.
+Some manufacturers offer a charge controller with integrated inverter.
+Two important specifications to consider below <span class="citation"
+data-cites="victron_easysolar"></span></p>
+<ul>
+<li><p>Continuous watts, which means the power that will be used
+normally.</p></li>
+<li><p>Maximum instantaneous(surge) watts, required by the loads for a
+short instance of time. Could for example be caused by an electric motor
+starting up.</p></li>
+</ul>
+<h4 id="dc-power-transfer-losses">DC Power Transfer Losses</h4>
+<p>To be able to determine losses in cabling it is necessary to know
+voltage, current and resistace for the wires in question <span
+class="citation" data-cites="electricalengineering"></span>. The DC
+cable power efficiency <span
+class="math inline"><em>η</em><sub><em>w</em><em>i</em><em>r</em><em>e</em></sub></span>
+can be calculated as follows: <span class="math display">$$\eta_{wire} =
+100\% \cdot \frac{P_{out}}{P_{in}} = 100\% \cdot \frac{(V_{in} -
+V_{drop} ) \cdot I}{V_{in} \cdot I}$$</span> where, <span
+class="math display"><em>V</em><sub><em>d</em><em>r</em><em>o</em><em>p</em></sub> = <em>I</em> ⋅ <em>R</em><sub><em>w</em><em>i</em><em>r</em><em>e</em></sub></span>
+<span
+class="math inline"><em>R</em><sub><em>w</em><em>i</em><em>r</em><em>e</em></sub></span>
+can be found using the wire resistance formula<span class="citation"
+data-cites="electricalengineering"></span> below: <span
+class="math display">$$\label{cableresistance}
+R_{wire} = \frac{\rho \cdot l}{A}$$</span> where,</p>
+<ul>
+<li><p><span class="math inline"><em>ρ</em></span> is resistivity in
+ohm-meters <span class="math inline">$[\ohm m ]$</span>. See table in
+figure <a href="#wireresistivity" data-reference-type="ref"
+data-reference="wireresistivity">[wireresistivity]</a> for resistivity
+in commomly used wire materials.</p></li>
+<li><p>l is the wire lenght in meters.</p></li>
+<li><p>A is the cross-sectional area of the wire in square
+meters.</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th colspan="2" style="text-align: center;">Table of wire resistivity
+<span class="math inline">(<em>ρ</em>)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Conductor material</td>
+<td style="text-align: left;"><span class="math inline">$[\ohm m
+]$</span> at 300 Kelvin</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Copper</td>
+<td style="text-align: left;"><span
+class="math inline">1.72 ⋅ 10<sup>−8</sup></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Aluminium</td>
+<td style="text-align: left;"><span
+class="math inline">2.73 ⋅ 10<sup>−8</sup></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Carbon</td>
+<td style="text-align: left;"><span
+class="math inline">3.5 ⋅ 10<sup>−5</sup></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gold</td>
+<td style="text-align: left;"><span
+class="math inline">2.27 ⋅ 10<sup>−8</sup></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Silver</td>
+<td style="text-align: left;"><span
+class="math inline">1.63 ⋅ 10<sup>−8</sup></span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="energy_consumpt">Energy Consumption</h2>
+<p>According to the European Union, certain products require energy
+labels along with standard product information. The labelling standard
+at the time of writing is following the <em>European Parliament</em>
+directive 2010/30/EU<span class="citation"
+data-cites="eu_label_directive"></span>. This energy labelling has a
+ranking scale from A to G with three additional grades added on top of
+Class A. These additional grades is <span
+class="math inline"><em>A</em><sup>+</sup></span>, <span
+class="math inline"><em>A</em><sup>++</sup></span> and <span
+class="math inline"><em>A</em><sup>+ + +</sup></span>. <span
+class="citation" data-cites="eu_labels"></span> Stated in the <em>Selina
+Consumer Guide</em> <span class="citation" data-cites="selina"></span>,
+published by the European Commision, the average household standby
+electricty losses is found to be 11% during a survey made across EU
+countries. In the same study by the European Commision it is declared
+that the International Energy Agency expect that by 2030, 15% of total
+appliance electricity consumption in Europe could be due to standby
+functions <span class="citation" data-cites="selina"></span>. Listed
+below is common household energy consumers.</p>
+<ul>
+<li><p>Washing mashine: Miele WDD020WCS is a highly efficient appliance
+with energy Class A+++. It uses 0.9 [kWh] at a standard 60[<span
+class="math inline">$\degree$</span>C] program, at full load <span
+class="citation" data-cites="washing_machine"></span>. <span
+class="math inline">→</span> 0.9 [kWh] / 1 hour <span
+class="math inline">≈</span> 900 [W] continuous (at 1 hour 60[<span
+class="math inline">$\degree$</span>C] program).</p></li>
+<li><p>Fridge/freezer: Bosch KGE36VW4A combination fridge/freezer, is a
+highly efficient appliance with energy Class A+++. It uses 161
+kWh/annum. <span class="citation" data-cites="fridge"></span>. <span
+class="math inline">→</span> 161 [kWh] / 365 days <span
+class="math inline">⋅</span> 24 hours <span class="math inline">≈</span>
+18.4 [W] continuous.</p></li>
+<li><p>Water heater: Nibe Nibette 15, is a small 13.5 liter water heater
+that uses 1000 [W] on one phase. It is sufficient for quick showers and
+other washing needs. It uses 1.2 hours to heat water from 10[<span
+class="math inline">$\degree$</span>C] to 80[<span
+class="math inline">$\degree$</span>C], and has energy Class C <span
+class="citation" data-cites="nibette"></span>.</p></li>
+<li><p>Water boiler: Power consumption varies from model to model and
+1500 [W] is a common figure.</p></li>
+<li><p>Induction cooktop: Power consumption varies from model to model
+and 2000 [W] is a common figure.</p></li>
+<li><p>Wireless router: Can be found with 5 watt consumption.</p></li>
+<li><p>Lighting: 5 watt LED’s is common replacements for 40 watt
+incandescent lamps that emits approximately the same lumen.</p></li>
+<li><p>Laptop charger: Apple Macbook chargers is available in different
+watts. One option is listed at 45 W.</p></li>
+</ul>
+<h2 id="webapp">Web Application Developement</h2>
+<p>A web based application using traditional HTML in combination with
+Python as back-end programming language is a popular method and good
+alternative to PHP. The HTML to Python interface can be done using the
+Flask microframework. The Flask framework requires minimal code and
+installations to get up and running, and can thereafter be expanded with
+numerous modules depending on end product needs. It is therefore
+suitable for basic websites, as well as highly sofisticated
+applications. Flask is providing quickstart code snippets, along with
+good documentation <span class="citation" data-cites="flask"></span>.
+For developement of responsive design and front-end graphics, it is
+common to use both CSS and Javascript. This can be made easy by using
+the open source toolkit from Bootstrap <span class="citation"
+data-cites="bootstrap"></span>. The Bootstrap framework can be used
+without installations through their CDN. There is many different ways of
+deplyoing a Flask application to make it accessible on the internet.
+Linux servers is commonly used, and can be set up using a cloud Linux
+server at one of many available hosts. Web applications of this kind, is
+usually deployed to a virtual machine on the server, where the user can
+install and configure using SSH.<span class="citation"
+data-cites="linode"></span></p>
+<h1 id="methodology">Methodology</h1>
+<p>This chapter is based on an off-grid PV system case study, which
+consists of a fictionalized small house with relatively small energy
+demands located in Stavanger, Norway. The case study system design, is
+based around specific minimum energy demands, where required PV array
+size and angles is calculated. Six main steps lead forward to final
+simulations of the complete system. As the case study covers a year
+round living scenario in Stavanger, it is known that the solar energy
+bottleneck will be during wintertime. Therefore from section <a
+href="#solar_irr" data-reference-type="ref"
+data-reference="solar_irr">3.3</a> onwards, the month with the least
+available irradiation (December) has been used as a basis for design,
+simulation and analysis. In other situations where the PV array size is
+a bottleneck, a slightly different method is required (Explanied in
+section <a href="#bottleneck" data-reference-type="ref"
+data-reference="bottleneck">3.4.4</a>). In parallel with the case study
+project, a simple web application is developed as an online tool. The
+web application is built for personal use during this project, but also
+as a future resource for anyone interested. The application has
+functionalities to facilitate steps 1 to 4 below.</p>
+<div class="center">
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1. Mapping of system loads. . Battery-bank
+dimensioning. . Solar irradiation evaluation.</td>
+<td style="text-align: left;">4. PV array sizing and considerations. .
+MPPT Charge-controller &amp; inverter. . System simulation.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The system block diagram in figure <a href="#blockdiagram"
+data-reference-type="ref"
+data-reference="blockdiagram">[blockdiagram]</a>, is made to get a
+simple overview of the PV system main components. Indicated in this
+diagram, is the different efficiency parameters(<span
+class="math inline"><em>η</em></span>) that has been considered in the
+coming sections. = [draw, fill=blue!20, rectangle, minimum height=8em,
+minimum width=13em] = [pin edge=<span>to-,thin,black</span>]</p>
+<table>
+<thead>
+<tr class="header">
+<th colspan="2" style="text-align: center;">Summary of considered
+efficiency parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Efficiency:</td>
+<td style="text-align: left;">Parameter:</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PV module maximum power point</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>m</em><em>p</em><em>p</em></sub></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PV module operating temperature</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>p</em><em>v</em> − <em>t</em><em>e</em><em>m</em><em>p</em></sub></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PV module optimal angle</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>a</em><em>n</em><em>g</em><em>l</em><em>e</em></sub></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PV array to controller cable</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>a</em><em>r</em><em>r</em><em>a</em><em>y</em> − <em>c</em><em>b</em><em>l</em></sub></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Inverter</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>i</em><em>n</em><em>v</em></sub></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Charge controller</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>c</em><em>h</em><em>a</em><em>r</em><em>g</em><em>e</em> − <em>c</em><em>t</em><em>r</em><em>l</em></sub></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Battery cable</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>c</em><em>b</em><em>l</em></sub></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Battery roundtrip</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>r</em><em>o</em><em>u</em><em>n</em><em>d</em> − <em>t</em><em>r</em><em>i</em><em>p</em></sub> = <em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>c</em><em>h</em><em>n</em><em>g</em></sub> * <em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>d</em><em>c</em><em>h</em><em>n</em><em>g</em></sub></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Battery temperature effect on
+capacity</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>t</em><em>e</em><em>m</em><em>p</em></sub></span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Inverter to load cable</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>l</em><em>o</em><em>a</em><em>d</em> − <em>c</em><em>b</em><em>l</em></sub></span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Standby power losses</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>s</em><em>t</em><em>a</em><em>n</em><em>d</em><em>b</em><em>y</em></sub></span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="mapping_loads">Mapping of System Loads</h2>
+<p>An important task when designing a PV powered system for off-grid
+use, is to gather and list information about energy comsumption. The
+list should contain all appliances including small electronic gadgets.
+This will give a good overview of where the biggest amount of power
+goes. In many cases the energy usage can be minimized by using more
+energy efficient appliances and hence a suitable pv/battery system can
+be designed. For example, it might be feasable to upgrade to a newer and
+more energy efficient fridge. This case study, based on a fictionalized
+house, is equipped for simple but year-round living. It is not
+electricity-dependent for heating. The heating is instead envisioned to
+be handled by, for example, a woodstove. Page #1 in the web application
+(Appendix A) can be useful to find daily watthours similar to what is
+done in figure <a href="#consumers" data-reference-type="ref"
+data-reference="consumers">[consumers]</a>.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Consumer</th>
+<th style="text-align: left;">Watt</th>
+<th style="text-align: left;">Hours</th>
+<th style="text-align: left;">[Wh]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">LED lighting</td>
+<td style="text-align: left;">4pcs. <span class="math inline">⋅</span> 5
+= 20</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">240</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Wireless router</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">24</td>
+<td style="text-align: left;">120</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Laptop charger</td>
+<td style="text-align: left;">45</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">225</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Washing machine</td>
+<td style="text-align: left;">900</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">900</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Water boiler</td>
+<td style="text-align: left;">1500</td>
+<td style="text-align: left;">0.3</td>
+<td style="text-align: left;">450</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Induction cooktop</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">4000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Water heater</td>
+<td style="text-align: left;">1000</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">3000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fridge/freezer</td>
+<td style="text-align: left;">18.4</td>
+<td style="text-align: left;">24</td>
+<td style="text-align: left;">441.6</td>
+</tr>
+<tr class="odd">
+<td colspan="4" style="text-align: center;">Total [Wh]: 9376.6</td>
+</tr>
+</tbody>
+</table>
+<p>The electrical power in an off-grid PV system will essentially have a
+DC side and a AC side. The DC power transfer will happen mostly between
+PV array to controller/inverter. And AC power will be from inverter out
+to appliances. The power losses in the AC side of the electrical system,
+will be similar to the losses of any conventional household. This is
+mostly from standby losses, as covered in section <a
+href="#energy_consumpt" data-reference-type="ref"
+data-reference="energy_consumpt">2.5</a>. Assuming that 11 percent of
+total energy consumption is caused by cabling and standby losses in the
+230 volt, AC part of the system, the total watthours is recalculated as
+follows:</p>
+<p><span class="math display">$$\frac{9376.6}{100\% - 11\%} =
+\frac{9376.6}{89\%} \approx 10536 \textnormal{ [Wh]} = 10.536
+\textnormal{ [kWh], total per day.}
+\label{24henergy}$$</span></p>
+<p>With the standby and AC-cabling losses now included in the daily
+total energy usage, it is covered for <span
+class="math inline"><em>η</em><sub><em>s</em><em>t</em><em>a</em><em>n</em><em>d</em><em>b</em><em>y</em></sub></span>
+and <span
+class="math inline"><em>η</em><sub><em>l</em><em>o</em><em>a</em><em>d</em> − <em>c</em><em>b</em><em>l</em></sub></span>,
+shown in the block diagram (figure <a href="#blockdiagram"
+data-reference-type="ref"
+data-reference="blockdiagram">[blockdiagram]</a>). The proposed 24 hour
+timeline in figure <a href="#timeline" data-reference-type="ref"
+data-reference="timeline">3.1</a> is set up based on the table in figure
+<a href="#consumers" data-reference-type="ref"
+data-reference="consumers">[consumers]</a> and a possible scenario of
+use.</p>
+<figure>
+<img src="timeline" id="timeline"
+alt="24 hour timeline of power usage." />
+<figcaption aria-hidden="true">24 hour timeline of power
+usage.</figcaption>
+</figure>
+<p>For the purpose of simulations later in this report, the consumption
+timeline in figure <a href="#timeline" data-reference-type="ref"
+data-reference="timeline">3.1</a>, is translated into a kW consumption
+curve. The resulting power curve shown in figure <a
+href="#kwconsumption" data-reference-type="ref"
+data-reference="kwconsumption">3.2</a>, is produced using values from
+the table in figure <a href="#consumers" data-reference-type="ref"
+data-reference="consumers">[consumers]</a> and the timeline in figure <a
+href="#timeline" data-reference-type="ref"
+data-reference="timeline">3.1</a>.</p>
+<figure>
+<img src="kWconsumption" id="kwconsumption"
+alt="24 hour consumption curve, based on usage table and timeline." />
+<figcaption aria-hidden="true">24 hour consumption curve, based on usage
+table and timeline.</figcaption>
+</figure>
+<p>With a focus on correct daily energy consumption (10.536 kWh), this
+curve is actualized using Python, through an interpolated list of
+values. The curve is then numerically integrated, using the trapezoidal
+method (section <a href="#up" data-reference-type="ref"
+data-reference="up">2.1</a>), to verify the daily kilowatthours towards
+the result in equation <a href="#24henergy" data-reference-type="ref"
+data-reference="24henergy">[24henergy]</a>.</p>
+<h2 id="batterybanksection">Battery-bank Dimensioning</h2>
+<p>The battery-bank in an off-grid PV system is built up of a number of
+batteries, configured in series and or parallel to supply the
+appropriate voltage needed. The purpose of the battery-bank is to be
+able to store and later distribute the needed energy. Energy storage is
+needed since the solar irradiance curve versus load curve, will not
+match up. It also helps cover up for seasonal fluctuations as for
+example, diffuse solar radiation in combination with higher load
+demands. Because the case study location is Stavanger where the weather
+is challenging for PV power, the battery-bank has been calculated based
+on a two day backup scenario. Two days of heavy clouds is not unusual,
+especially during wintertime. With the unwanted "memory effect" in Ni-CD
+technology and high rate of self-discharge in Ni-MH, it is clear that
+Lead Acid and Li-ion batteries make better choices for a PV system
+(Section <a href="#batterybackground" data-reference-type="ref"
+data-reference="batterybackground">2.3</a>). As the Ragone plot in
+figure <a href="#ragone" data-reference-type="ref"
+data-reference="ragone">2.11</a> illustrates, the lead acid battery will
+be considerably bigger and heavier than any Li-ion battery with the same
+capacity. And as this project has been focused on efficient technology
+rather than affordable components, lithium-ion has been used for the
+case study. Specifically the Victron Energy, <em>25,6v/200Ah
+Lithium-Iron-Phosphate Battery Smart</em><span class="citation"
+data-cites="victron_batt"></span>. Considering power transfer losses, it
+is in most cases beneficial to work with higher voltages since it
+results in lower currents. Based on equation <a href="#vdrop"
+data-reference-type="ref" data-reference="vdrop">[vdrop]</a> in chapter
+2, less current results in less <span
+class="math inline"><em>V</em><sub><em>d</em><em>r</em><em>o</em><em>p</em></sub></span>,
+which in turn results in better DC cable efficiency. and 48 volt is
+commonly used in larger systems, and for the sake of best possible
+efficiency, a 48 volt battery bank is decided for the case study.
+Knowing that battery capacity will decrease when operating at colder
+temperatures (section <a href="#batterybackground"
+data-reference-type="ref" data-reference="batterybackground">2.3</a>),
+ambient temperature has been used for battery bank sizing.</p>
+<ul>
+<li><p>Battery round trip efficiency (<span
+class="math inline"><em>η</em><sub><em>r</em><em>o</em><em>u</em><em>n</em><em>d</em> − <em>t</em><em>r</em><em>i</em><em>p</em></sub></span>)
+is stated at 92 percent, for all LiFePO4 batteries from Victron. <span
+class="citation" data-cites="victron_batt"></span> For the purpose of
+simulation later in the report, battery round trip efficiency is split
+up as follows: <span
+class="math inline"><em>η</em><sub><em>r</em><em>o</em><em>u</em><em>n</em><em>d</em> − <em>t</em><em>r</em><em>i</em><em>p</em></sub> = <em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>c</em><em>h</em><em>n</em><em>g</em></sub> ⋅ <em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>d</em><em>c</em><em>h</em><em>n</em><em>g</em></sub></span>
+For simplicity the charging/discharging efficiencies is assumed similar
+and therefor the round trip efficiency is split equally in two. <span
+class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>c</em><em>h</em><em>n</em><em>g</em></sub> = <em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>d</em><em>c</em><em>h</em><em>n</em><em>g</em></sub> = 96[%]</span>
+Resulting in: <span
+class="math inline">96[%] ⋅ 96[%] ≈ 92[%] = <em>η</em><sub><em>r</em><em>o</em><em>u</em><em>n</em><em>d</em> − <em>t</em><em>r</em><em>i</em><em>p</em></sub></span></p></li>
+<li><p>Best stated cycle-life is achived by operating at 50 percent DOD.
+<span class="citation" data-cites="victron_batt"></span></p></li>
+<li><p>Ambient temperature effect on capacity (<span
+class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>t</em><em>e</em><em>m</em><em>p</em></sub></span>)
+:</p>
+<ul>
+<li><p>Victron datasheet states Nominal capacity at 25[<span
+class="math inline">$\degree$</span>C] to be 200 [Ah], and 160 [Ah] at
+0[<span class="math inline">$\degree$</span>C].</p></li>
+<li><p>Assuming the rate of capacity change is proportional to change in
+temperature, one can find a ratio as follows: = 1,6 [Ah/<span
+class="math inline">$\degree C]$</span> The remaining percentage of the
+nominal 200 amphour capacity, at the operating temperature, can then be
+found using the ratio above. Average ambient temperature for December in
+Stavanger is 5.04 [<span class="math inline">$\degree$</span>C](equation
+<a href="#averagetemp" data-reference-type="ref"
+data-reference="averagetemp">[averagetemp]</a>). (25<span
+class="math inline">$\degree$</span> C - 5.04<span
+class="math inline">$\degree$</span> C) = 19.96 [<span
+class="math inline">$\degree$</span>C] drop from nominal 25 [<span
+class="math inline">$\degree$</span>C] at 200 [Ah]. <span
+class="math inline">$\degree$</span> C <span
+class="math inline">⋅</span> 1.6 = 31.936 [Ah] drop from nominal 200
+[Ah]. <span class="math display">$$\rightarrow \eta_{batt-temp} =
+\frac{200-31.936}{200} \cdot 100[\%] \approx 84[\%], \textnormal{ of
+nominal 200[Ah] capacity.}$$</span></p></li>
+</ul></li>
+</ul>
+<p>To find the necessary battery-bank capacity, the below steps is
+followed. Page #2 in the web application (Appendix A) can be used to
+find and experiment with these five steps.</p>
+<ol>
+<li><p>Daily energy usage from equation <a href="#24henergy"
+data-reference-type="ref" data-reference="24henergy">[24henergy]</a>
+compensated for the battery round-trip efficency: <span
+class="math inline">10.536</span> [kWh] <span
+class="math inline">⋅</span> <span class="math inline"> ≈ 11.451</span>
+[kWh]</p></li>
+<li><p>The result from step 1, compensated for the preferred 50 percent
+DOD: <span class="math inline">11.451</span> [kWh] <span
+class="math inline">⋅</span> <span class="math inline"> ≈ 22.902</span>
+[kWh] Note: DOD can be up to 80 percent using Li-ion, to help minimizing
+battery bank capacity.</p></li>
+<li><p>The result from step 2, compensated for capacity drop at lower
+operating temperature: <span class="math inline">22.902</span> [kWh]
+<span class="math inline">⋅</span> <span
+class="math inline"> ≈ 27.264</span> [kWh]</p></li>
+<li><p>The result from step 3, multiplied by the desired number of
+backup days. In this case 2 days: <span
+class="math inline">27.264</span> [kWh] <span
+class="math inline">⋅</span> 2 <span class="math inline">≈</span> 54.529
+[kWh]</p></li>
+<li><p>Divide the result from step 4 with the desired battery bank
+voltage. In this case 48 volt is desried: <span
+class="math inline">54.529</span> [kWh] <span
+class="math inline">/</span> 48 <span class="math inline">≈</span> 1136
+[Ah]</p></li>
+</ol>
+<p>Note: Inverter and charge-controller losses has not been considered
+at this stage, but included later in the simulations section. With the
+calculated battery-bank capacity figure, battery configuration comes
+next. A series connection of two 24[V]/200[Ah] batteries results in
+48[V]/200[Ah]. And by paralleling 5 of these battery pairs, a
+battery-bank of nominal 48 volt and 1000 amphours is obtained. This is
+slightly below the calculated needed battery capacity, but adequacy is
+later analyzed through simulation.</p>
+<figure>
+<img src="batterybank" id="batterybank"
+alt="Illustration of 48v/1000Ah battery bank, built of 24v/200Ah batteries." />
+<figcaption aria-hidden="true">Illustration of 48v/1000Ah battery bank,
+built of 24v/200Ah batteries.</figcaption>
+</figure>
+<p>To find the loss in the cable connecting the battery bank to
+inverter/charge-controller (<span
+class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>c</em><em>b</em><em>l</em></sub></span>),
+the maximal instantaneous current drawn by the load is used. Battery
+cable length of 3 meter has been used for the example case study. Based
+on the power curve in figure <a href="#kwconsumption"
+data-reference-type="ref" data-reference="kwconsumption">3.2</a>, a
+daily power peak of 2043.4 watts is drawn when the induction cooktop is
+used. This causes a current at: [W] / 48 [V] <span
+class="math inline">≈</span> 42.57 [A], daily peak current. To calculate
+the battery cable loss, it is necessary to know the cable
+cross-sectional area. Which will depend on the specific cable
+manufacturers specifications and recommendation. In this case, a
+recommendation table from Victron, and the peak current of 42.57 amps,
+is used decide on 16 squaremillimeter area. The recommendation states,
+this should be sufficient with some margin <span class="citation"
+data-cites="victron_cables"></span>. Making use of equation <a
+href="#cableresistance" data-reference-type="ref"
+data-reference="cableresistance">[cableresistance]</a> and the
+resistivity <span class="math inline"><em>ρ</em></span>, for copper from
+figure <a href="#wireresistivity" data-reference-type="ref"
+data-reference="wireresistivity">[wireresistivity]</a>, the battery
+cable efficiency percentage is found through the steps below: <span
+class="math display">$$R_{wire} = \frac{1.72 \cdot 10^{-8} \cdot 3}{16
+\cdot 10^{-6}} \approx 3.2 \hspace{1mm} [m\ohm]$$</span> <span
+class="math display">$$V_{drop} = I \cdot R_{wire} = 42.57
+\hspace{1mm}  [A] \cdot 3.2 \hspace{1mm} [m\ohm] \approx
+136 \hspace{1mm} [mV]$$</span> <span
+class="math display">$$\label{batterycableefficiency}
+	\eta_{batt-cbl} = 100\% \cdot \frac{48 - 0,136 \cdot 10^{-3}}{48}
+\approx 99.9997 [\%]$$</span> With the result in equation <a
+href="#batterycableefficiency" data-reference-type="ref"
+data-reference="batterycableefficiency">[batterycableefficiency]</a> it
+is tempting to say that the battery cable losses is negligible, but it
+is accounted for later in the report during simulation, and where the
+total system efficiency is summarized. Note: Calculating cable loss
+using the peak-current is a close approximation. To find the exact loss,
+an integration based on the instantaneous current would be required.</p>
+<h2 id="solar_irr">Solar Irradiation Evaluation</h2>
+<p>The solar irradiation data used for the Stavanger case study is of
+SIS specifications aquired from CMSAF. SIS data properties has been
+explained in section <a href="#pandr" data-reference-type="ref"
+data-reference="pandr">2.2.1</a>, and most importanly to understand,
+that this data is given in watts per squaremeter, reaching the earth
+surface on an <em>horizontal surface</em>, including the photon
+wavelengths usable by PV technology. This means, the angles of the
+module will say quite alot about the amounts of irradation that is
+actually possible to absorb and use, especially at latitudes far from
+the equator. The PV module angles is accounted for in the next section.
+A histogram of monthly average irradiation for Stavanger is produced
+from the CMSAF supplied NetCDF data files, using Python with additional
+packages(see Appendix B). This histogram, in figure <a href="#histstvg"
+data-reference-type="ref" data-reference="histstvg">3.4</a>, is based on
+ten years of statistics covering monthly average irradiation.</p>
+<figure>
+<img src="hist_stvg" id="histstvg"
+alt="Irradiation histogram covering the case study location. Watts per horizontal square-meter. Copyright 2020 EUMETSAT " />
+<figcaption aria-hidden="true">Irradiation histogram covering the case
+study location. Watts per horizontal square-meter. Copyright 2020
+EUMETSAT <span class="citation"
+data-cites="sis_data"></span></figcaption>
+</figure>
+<p>At Page #3 in the web application (Appendix A), monthly average
+irradiation can be found and compared. With the current version of the
+application, two locations can be compared and evaluated at a time, with
+data covering 30 different locations available.</p>
+<p>With a starting point from this data, the month with the least
+average irradiation is used further. This is found to be December with
+an average of 7.8 watts per squaremeter. To be able to later simulate an
+24 hour scenario of the PV system, a irradiation charging curve is
+needed. To achieve this, the irradiation data together with sunhour
+information, is translated into an 24 hour continous curve. In addition
+to the solar noon time (12:34), found in section <a href="#maximizing"
+data-reference-type="ref" data-reference="maximizing">2.2.4</a>, the
+below information is extracted online, for Stavanger in December 21th
+2019 <span class="citation" data-cites="timeanddate"></span>.</p>
+<ul>
+<li><p>Sunrise at 09:29, at 138<span
+class="math inline">$\degree$</span> SE</p></li>
+<li><p>Sunset at 15:40, at 222<span class="math inline">$\degree$</span>
+SW</p></li>
+<li><p>Daylight length of 6 hours, and 11 minutes.</p></li>
+</ul>
+<figure>
+<img src="irradiation_charging" id="irr_charge_curve"
+alt="Daily average solar irradiation curve, based on SIS data (Horizontal surface)." />
+<figcaption aria-hidden="true">Daily average solar irradiation curve,
+based on SIS data (Horizontal surface).</figcaption>
+</figure>
+<p>The 24 hour irradiation curve in figure <a href="#irr_charge_curve"
+data-reference-type="ref" data-reference="irr_charge_curve">3.5</a> is
+produced using the same method as the consumption curve (figure <a
+href="#kwconsumption" data-reference-type="ref"
+data-reference="kwconsumption">3.2</a>), based on the three points
+below. The average value of this curve is calculated to verify 7.8 as
+desired. This has served as a basis for coming calculations and finally
+simulations to test out PV array and battery-bank size.</p>
+<ul>
+<li><p>Satellite aquired average irradiation data from ten years of
+statistics, delivered by CMSAF. See Appendix B.</p></li>
+<li><p>Sunrise, sunset and solar noon hours as described on this
+page.</p></li>
+<li><p>Typical sunhours pattern where the suns radiation stays
+approximately the same one hour before and after solar noon. See section
+<a href="#maximizing" data-reference-type="ref"
+data-reference="maximizing">2.2.4</a>.</p></li>
+</ul>
+<h2 id="pv_array_sizing">PV Array Sizing and Considerations</h2>
+<p>For the purpose of the case study, the sections below cover the gain
+from optimal angles, required PV array size, and PV array output. A
+fixed PV array installation has been chosen for this study, based on
+arguments discussed in Chapter 5. Aside from the case study, for
+situations where the PV array size is the bottleneck, an alternative
+method is described in section <a href="#bottleneck"
+data-reference-type="ref" data-reference="bottleneck">3.4.4</a>.</p>
+<h3 id="arraygain">Gain from Optimal Angles</h3>
+<h4 id="optimal-elevation-angle">Optimal Elevation Angle</h4>
+<p>Ideally it is desired for the incident angle <span
+class="math inline"><em>θ</em><sub><em>i</em></sub></span> to be 0,
+which means an optimal angle is obtained.</p>
+<figure>
+<img src="direct_irr_angles" id="directirrangles"
+alt="Illustration of defined angles relative to horizontal." />
+<figcaption aria-hidden="true">Illustration of defined angles relative
+to horizontal.</figcaption>
+</figure>
+<p>In reality with a fixed PV module position it is all about minimizing
+<span class="math inline"><em>θ</em><sub><em>i</em></sub></span> through
+out the day. Latitude for Stavanger is 59<span
+class="math inline">$\degree$</span>, and an optimal elevation
+angle(<span class="math inline"><em>θ</em></span>) for December is
+desired. Following section <a href="#Pmrp" data-reference-type="ref"
+data-reference="Pmrp">2.2.3</a>, the result is: <span
+class="math display">$$\label{optimal_angle}
+59\degree + 14.6\degree = 73.6\degree = \theta$$</span> The next step is
+to find out what this specific optimal elevation angle can give in
+return, based on the horizontal surface SIS data. The different angles
+in relation to horizontal from figure <a href="#directirrangles"
+data-reference-type="ref" data-reference="directirrangles">3.6</a>, is
+being used below to derive equations, and finally to end up with the two
+cases in equation <a href="#case1" data-reference-type="ref"
+data-reference="case1">[case1]</a> and <a href="#case2"
+data-reference-type="ref" data-reference="case2">[case2]</a>.</p>
+<p><span class="math display">$$\theta_{i} = 90\degree -
+(\theta_{Z}+(90\degree - \theta))$$</span> <span
+class="math display">$$\rightarrow \theta_{i} = 90\degree -
+\theta_{Z}-(90\degree - \theta)$$</span> <span
+class="math display">$$\rightarrow \theta_{i} = 90\degree -
+\theta_{Z}-90\degree + \theta$$</span> <span
+class="math display"> → <em>θ</em><sub><em>i</em></sub> = <em>θ</em> − <em>θ</em><sub><em>Z</em></sub></span>
+Direct beam solar radiation (<span
+class="math inline"><em>I</em><sub><em>B</em></sub></span>) as explained
+in section <a href="#pandr" data-reference-type="ref"
+data-reference="pandr">2.2.1</a>, is the radiation that will reach earth
+without diffusion. In this case <span
+class="math inline"><em>I</em><sub><em>B</em></sub></span> will be
+replaced by an expression of the SIS irradiation (<span
+class="math inline"><em>I</em><sub><em>S</em><em>I</em><em>S</em></sub></span>).
+Based on some basic trigonometry and figure <a href="#directirrangles"
+data-reference-type="ref" data-reference="directirrangles">3.6</a>, it
+is possible to set up the relations in equation <a href="#I_pv"
+data-reference-type="ref" data-reference="I_pv">[I_pv]</a> &amp; <a
+href="#I_b" data-reference-type="ref" data-reference="I_b">[I_b]</a>.
+<span
+class="math display"><em>I</em><sub><em>P</em><em>V</em></sub> = <em>I</em><sub><em>B</em></sub> ⋅ <em>c</em><em>o</em><em>s</em>(<em>θ</em><sub><em>i</em></sub>)</span>
+<span class="math display">$$\label{I_b}
+I_{B} = \frac{I_{SIS}}{cos(\theta_{Z})}$$</span> Where <span
+class="math inline"><em>I</em><sub><em>P</em><em>V</em></sub></span> is
+the irradiance in watts per square-meter on to the PV module surface.
+Substituting to get an expression involving the two angles: <span
+class="math display">$$\label{optimal_angles}
+I_{PV} = \frac{I_{SIS}}{cos(\theta_{Z})} \cdot cos(\theta_{i}) =
+\frac{cos(\theta_{i})}{cos(\theta_{Z})} \cdot I_{SIS}$$</span> From the
+last expression in equation <a href="#optimal_angles"
+data-reference-type="ref"
+data-reference="optimal_angles">[optimal_angles]</a>, two cases has been
+considered. Case 1: When the sun beams is parallel to the normal vector
+of the PV module. Meaning the exact optimal angle, and <span
+class="math inline"><em>θ</em><sub><em>i</em></sub></span> = 0<span
+class="math inline">$\degree$</span>. Which also means that <span
+class="math inline"><em>θ</em><sub><em>Z</em></sub> = <em>θ</em></span>
+and the equation <a href="#case1" data-reference-type="ref"
+data-reference="case1">[case1]</a> can be written. This case would be
+valid for a well working two-axis tracker. <span
+class="math display">$$\label{case1}
+I_{PV} = \frac{1}{cos(\theta)} \cdot I_{SIS}$$</span> Case 2: Second
+case is when <span
+class="math inline"><em>θ</em><sub><em>Z</em></sub> ≠ <em>θ</em><sub><em>i</em></sub></span>
+and <span class="math inline"><em>θ</em><sub><em>i</em></sub>&gt;</span>
+0. For installations without solar tracking. <span
+class="math display">$$\label{case2}
+I_{PV} = \frac{cos(\theta_{i})}{cos(\theta)} \cdot I_{SIS}$$</span></p>
+<p>For further evaluations, Case 2 has been used, which is most
+realistic for a fixed PV module installation. Now, combining the facts
+that the sun is traveling 15 degrees per hour, and that full irradiation
+is present for only one hour before/after solar noon (section <a
+href="#Pmrp" data-reference-type="ref" data-reference="Pmrp">2.2.3</a>).
+During these <span class="math inline">±</span>15 degrees travel of the
+sun in relation to solar noon, the solar altitude angle will change just
+slightly. Based on this, the approximation of <span
+class="math inline"><em>θ</em><sub><em>i</em></sub></span> = 5<span
+class="math inline">$\degree$</span> has been used as an average in the
+Case 2 equation (<a href="#case2" data-reference-type="ref"
+data-reference="case2">[case2]</a>). Using <span
+class="math inline"><em>θ</em><sub><em>i</em></sub></span> = 5<span
+class="math inline">$\degree$</span> in the calculation will add a small
+irradiation loss which is natural, since a fixed position will never
+fulfill <span class="math inline"><em>θ</em><sub><em>i</em></sub></span>
+= 0<span class="math inline">$\degree$</span>.</p>
+<h4 id="optimal-azimuth-angle">Optimal Azimuth Angle</h4>
+<p>Azimuth angle for a fixed installation will be optimized by pointing
+the module at true south, which is equivalent to the sun’s direction at
+solar noon. As explained in section <a href="#Pmrp"
+data-reference-type="ref" data-reference="Pmrp">2.2.3</a> with
+background from the book Photovoltaics Systems Engineering<span
+class="citation" data-cites="messenger"></span>, less than 2 percent
+irradiation loss is common at up to 22.5<span
+class="math inline">$\degree$</span> degrees azimuth angle offset. With
+the short duration of sun-hours in Stavanger during December month,
+azimuth angle offset will not likely be bigger than 22.5<span
+class="math inline">$\degree$</span>. This can also be seen from the
+"narrow" sun curve illustrated in figure <a href="#irr_charge_curve"
+data-reference-type="ref" data-reference="irr_charge_curve">3.5</a>.
+Based on this information, an approximation is made to use a 2% loss
+(<span
+class="math inline"><em>η</em><sub><em>a</em><em>z</em><em>i</em><em>m</em><em>u</em><em>t</em><em>h</em></sub></span>
+= 98[%]) for the fixed azimuth angle.</p>
+<h4 id="optimal-elevation-and-azimuth-angle-efficiency">Optimal
+Elevation and Azimuth Angle Efficiency</h4>
+<p>Utilizing equation <a href="#case2" data-reference-type="ref"
+data-reference="case2">[case2]</a> from case two, the angles found, and
+the azimuth loss, the optimal angle efficiency (<span
+class="math inline"><em>η</em><sub><em>a</em><em>n</em><em>g</em><em>l</em><em>e</em></sub></span>)
+is found: <span class="math display">$$\label{n_angle}
+\eta_{angle} = \eta_{azimuth} \cdot \frac{cos(\theta_{i})}{cos(\theta)}
+= 98[\%] \cdot  \frac{cos(5\degree)}{cos(76.4\degree)} \approx 415.18
+[\%]$$</span> To summarize <span
+class="math inline"><em>η</em><sub><em>a</em><em>n</em><em>g</em><em>l</em><em>e</em></sub></span>
+: This is the factor that, thanks to the optimized angles, will improve
+and increase the amount of absorbed photon energy at latitudes and
+seasons where the sun is not perpendicular to the earth horizontal
+surface, when using SIS data. This effect of incident angle is
+illustrated in figure <a href="#elevation" data-reference-type="ref"
+data-reference="elevation">2.10</a>. Note: The value found in equation
+<a href="#n_angle" data-reference-type="ref"
+data-reference="n_angle">[n_angle]</a> is specific for this case study,
+but the method can be used to find gain or loss at any location and PV
+module elevation. <span
+class="math inline"><em>η</em><sub><em>a</em><em>n</em><em>g</em><em>l</em><em>e</em></sub></span>,
+is next used to approximate the actual average irradiation (<span
+class="math inline"><em>I</em><sub><em>P</em><em>V</em></sub></span>),
+on to the PV module surface. <span class="math display">$$\label{ipv}
+I_{PV} = \eta_{angle} \cdot I_{SIS} = 423.66 \% \cdot 7,8 \textnormal{
+[W}m^{-2}] \approx 32.38 \textnormal{ [W}m^{-2}]$$</span></p>
+<h3 id="arrayarea">Required PV Array Size</h3>
+<p>At this point, an estimation of the needed PV array surface area is
+calculated based on <span
+class="math inline"><em>I</em><sub><em>P</em><em>V</em></sub></span> and
+the PV module characteristics. Equation <a href="#arrayA"
+data-reference-type="ref" data-reference="arrayA">[arrayA]</a> is
+formulated to output an approximation of needed PV array area in square
+meters, required to recharge the consumed energy during one average day.
+<span class="math display">$$\label{arrayA}
+A = \frac{E_{D} }{T \cdot I_{PV} \cdot \eta_{mpp} \cdot
+\eta_{pv-temp}}$$</span></p>
+<ul>
+<li><p><span class="math inline"><em>A</em></span> = The PV array area
+in <span class="math inline">[<em>m</em><sup>2</sup>]</span></p></li>
+<li><p><span class="math inline"><em>E</em><sub><em>D</em></sub></span>
+= 10536 [<span class="nodecor">Wh</span>], Daily minimum energy usage
+(equation <a href="#24henergy" data-reference-type="ref"
+data-reference="24henergy">[24henergy]</a>).</p></li>
+<li><p><span class="math inline"><em>T</em></span> = 24 hours, <span
+class="math inline">[<em>h</em>]</span>.</p></li>
+<li><p><span
+class="math inline"><em>I</em><sub><em>P</em><em>V</em></sub></span> =
+32.38 [<span
+class="math inline"><em>W</em><em>m</em><sup>−2</sup></span>],
+Irradiation on the PV modules (equation <a href="#ipv"
+data-reference-type="ref" data-reference="ipv">[ipv]</a>).</p></li>
+<li><p><span
+class="math inline"><em>η</em><sub><em>m</em><em>p</em><em>p</em></sub></span>
+= 19.8 [%], Maximum power point conversion efficiency, of the LG Neon
+340 watt PV module used in this case study. <span class="citation"
+data-cites="lgneon"></span></p></li>
+<li><p><span
+class="math inline"><em>η</em><sub><em>p</em><em>v</em> − <em>t</em><em>e</em><em>m</em><em>p</em></sub></span>,
+defined and found below, based on the “Temperature coefficient of power”
+covered in section <a href="#Pmrp" data-reference-type="ref"
+data-reference="Pmrp">2.2.3</a>. <span
+class="math inline">$\eta_{pv-temp} =\alpha_{p} \cdot \Delta =
+(-0.36\cdot(5.04\degree-25\degree)) \approx 7.19$</span> [<span
+class="math inline">%</span>],</p>
+<ul>
+<li><p>Temperature coefficient(<span class="math inline">$\alpha_{p} =
+-0.36\%/\degree$</span>), and nominal temperature(25<span
+class="math inline">$\degree C$</span>), from PV module datasheet <span
+class="citation" data-cites="lgneon"></span>.</p></li>
+<li><p>Ambient temperature average(5.04<span
+class="math inline">$\degree C$</span>) for Decemeber in Stavanger
+(equation <a href="#averagetemp" data-reference-type="ref"
+data-reference="averagetemp">[averagetemp]</a>).</p></li>
+</ul></li>
+</ul>
+<p>Resulting in: <span class="math display">$$\label{neededarea}
+A = \frac{10536}{24 \cdot 32.38 \cdot 19.8\% \cdot 107.19\%} \approx
+63.88 \textnormal{ } [m^{2}]$$</span> Note: square meters of effective
+PV module surface area, at 76.4 degrees angle, will cause practical
+problems in many real situations. Even though this area can be split up
+between several sub-arrays. For situations where PV array space is
+strictly limited, see section <a href="#bottleneck"
+data-reference-type="ref" data-reference="bottleneck">3.4.4</a>. One LG
+Neon PV module has effective surface dimensions of approximately 1000 x
+1650 mm, which means approximately 1.65 <span
+class="math inline"><em>m</em><sup>2</sup></span> <span class="citation"
+data-cites="lgneon"></span>. Based on the result from equation <a
+href="#neededarea" data-reference-type="ref"
+data-reference="neededarea">[neededarea]</a>, next is to find an
+estimate of how many PV modules that is needed. <span
+class="math display">$$63.88 [m^{2}] / 1.65 [m^{2}] \approx
+\textnormal{39 PV modules needed.}$$</span> <span
+class="math display">$$\rightarrow 39 \textnormal{ modules} \cdot 1.65
+\textnormal{ }[m^{2}] \approx 64.4 \textnormal{ }[m^{2}]$$</span>
+Meaning, 39 modules will give an area slightly over what is found in
+equation <a href="#neededarea" data-reference-type="ref"
+data-reference="neededarea">[neededarea]</a>. Page #4 in the web
+application (Appendix A), consists of a slightly simplified PV Array
+Sizing Calculator. The application is utilizing an algorithm, assuming
+that incident sun angle <span
+class="math inline"><em>θ</em><sub><em>i</em></sub></span> relative to
+the PV module has an average value of 5 degrees, as well as neglecting
+losses from a fixed azimuth angle and high operating temperatures. The
+user is required to input the location latitude, irradiation, energy
+usage, and PV module efficiency. An optimal angle is internally
+calculated, and the estimated array area is returned.</p>
+<div class="minted">
+<p><span>python</span> @app.route(’/4’, methods=[’POST’]) def
+page4_calc(): latitude = float(request.form[’latitude’]) i_sis =
+float(request.form[’i_sis’]) e_d = float(request.form[’e_d’]) mpp_e =
+float(request.form[’mpp_e’]) if latitude &gt;= 0: theta = latitude +
+14.6 elif latitude &lt; 0: theta = latitude - 14.6 array_area = (e_d *
+math.cos(theta)) / (24 * math.cos(5) * i_sis * (mpp_e/100)) array_area =
+round(array_area,2); return render_template(’page4.html’, array_area =
+array_area)</p>
+</div>
+<h3 id="pv-array-output-curves">PV Array Output Curves</h3>
+<p>Based on values found in section <a href="#arrayarea"
+data-reference-type="ref" data-reference="arrayarea">3.4.2</a> and <a
+href="#arraygain" data-reference-type="ref"
+data-reference="arraygain">3.4.1</a>, an PV array average power output
+(<span
+class="math inline"><em>P</em><sub><em>a</em><em>v</em><em>e</em><em>r</em><em>a</em><em>g</em><em>e</em></sub></span>)
+has been found. <span
+class="math display"><em>P</em><sub><em>a</em><em>v</em><em>e</em><em>r</em><em>a</em><em>g</em><em>e</em></sub> = <em>A</em> ⋅ <em>I</em><sub><em>P</em><em>V</em></sub> ⋅ <em>η</em><sub><em>m</em><em>p</em><em>p</em></sub> ⋅ <em>η</em><sub><em>p</em><em>v</em> − <em>t</em><em>e</em><em>m</em><em>p</em></sub></span>
+<span
+class="math display"> → 64.4[<em>m</em><sup>2</sup>] ⋅ 32.38[<em>W</em><em>m</em><sup>−2</sup>] ⋅ 19.8[%] ⋅ 107.19[%] ≈ 0.443[<em>k</em><em>W</em>]</span>
+The PV array output power curve in figure <a href="#chargingcurve"
+data-reference-type="ref" data-reference="chargingcurve">3.7</a>, is
+produced for later use during simulation. The curve is a rescaled
+version, based on the horizontal surface irradiation curve in figure <a
+href="#irr_charge_curve" data-reference-type="ref"
+data-reference="irr_charge_curve">3.5</a>, which now holds the <span
+class="math inline"><em>P</em><sub><em>a</em><em>v</em><em>e</em><em>r</em><em>a</em><em>g</em><em>e</em></sub></span>
+value.</p>
+<figure>
+<img src="kWcharging24" id="chargingcurve"
+alt="PV array output charging curve, for an average December day." />
+<figcaption aria-hidden="true">PV array output charging curve, for an
+average December day.</figcaption>
+</figure>
+<p>Whilst the dark green curve line is showing the charging value at
+different hours, the green shaded area underneath the curve would be
+kilowatthours in a day, if integrated. The plot also illustrates an
+average daily maximum charging, of close to 2.1 kilowatts, which is
+maintaned for about 2 hours during mid day. This curve represents a
+close approximation of an average day’s available charging from the PV
+array in December. Note: For sizing of charge-controller and cables,
+summer peak power should be evaluated.</p>
+<p>Irradiation and PV array output during a particular day in the month
+could turn out to be both better or worse than the average charging
+curve in figure <a href="#chargingcurve" data-reference-type="ref"
+data-reference="chargingcurve">3.7</a>. Therefore, in preperation for
+simulations, two alternative curves is produced, from now on called
+<em>Good day</em> and <em>Bad day</em>.</p>
+<ul>
+<li><p>Figure <a href="#goodday" data-reference-type="ref"
+data-reference="goodday">3.8</a>: PV array output Good day charging
+curve, based on an average days charging and a factor of 1.5. <span
+class="math inline">→</span> 0.443 <span
+class="math inline">[<em>k</em><em>W</em>]</span> <span
+class="math inline">⋅</span> 1.5 = 0.6645 <span
+class="math inline">[<em>k</em><em>W</em>]</span> = Good day
+average.</p></li>
+<li><p>Figure <a href="#badday" data-reference-type="ref"
+data-reference="badday">3.9</a>: PV array output Bad day charging curve,
+based on an average days charging and a factor of 0.5. <span
+class="math inline">→</span> 0.443 <span
+class="math inline">[<em>k</em><em>W</em>]</span> <span
+class="math inline">⋅</span> 0.5 = 0.2215 <span
+class="math inline">[<em>k</em><em>W</em>]</span> = Bad day
+average.</p></li>
+</ul>
+<figure>
+<img src="goodday" id="goodday"
+alt="PV array output charging curve, for a Good day." />
+<figcaption aria-hidden="true">PV array output charging curve, for a
+Good day.</figcaption>
+</figure>
+<figure>
+<img src="badday" id="badday"
+alt="PV array output charging curve, for a Bad day." />
+<figcaption aria-hidden="true">PV array output charging curve, for a Bad
+day.</figcaption>
+</figure>
+<h3 id="bottleneck">PV Array as a Bottleneck</h3>
+<p>This alternative method sequence, has not been used for the case
+study, but can be used in cases where the physical PV array space is
+strictly limited to for example, a specific roof or wall square
+meters.</p>
+<ol>
+<li><p>Based on equation <a href="#arrayA" data-reference-type="ref"
+data-reference="arrayA">[arrayA]</a>, the below formula is derived, and
+can be used to determine energy available, given specific square meters
+(A) available. <span
+class="math display"><em>E</em><sub><em>D</em></sub> = <em>A</em> ⋅ <em>T</em> ⋅ <em>I</em><sub><em>P</em><em>V</em></sub> ⋅ <em>η</em><sub><em>m</em><em>p</em><em>p</em></sub> ⋅ <em>η</em><sub><em>p</em><em>v</em> − <em>t</em><em>e</em><em>m</em><em>p</em></sub></span>
+Where, <span class="math inline"><em>T</em></span>, <span
+class="math inline"><em>I</em><sub><em>P</em><em>V</em></sub></span>,
+<span
+class="math inline"><em>η</em><sub><em>m</em><em>p</em><em>p</em></sub></span>,
+and <span
+class="math inline"><em>η</em><sub><em>p</em><em>v</em> − <em>t</em><em>e</em><em>m</em><em>p</em></sub></span>
+can be found as previously described in section <a
+href="#pv_array_sizing" data-reference-type="ref"
+data-reference="pv_array_sizing">3.4</a>.</p></li>
+<li><p>With the energy available (<span
+class="math inline"><em>E</em><sub><em>D</em></sub></span>), found in
+step one, Page #1 in the web application can be used to "test out"
+combinations of appliances and possible amounts of energy
+consumption.</p></li>
+<li><p>Having found the energy consumption, in step two, battery bank
+capacity can be calculated as described in section <a
+href="#batterybanksection" data-reference-type="ref"
+data-reference="batterybanksection">3.2</a>.</p></li>
+</ol>
+<h2 id="mppt-charge-controller-and-inverter">MPPT Charge-Controller and
+Inverter</h2>
+<p>With a background from battery characteristics described in section
+<a href="#Osc" data-reference-type="ref" data-reference="Osc">2.4</a>, a
+charge controller configured for the battery type will protect from
+overcharging and high temperatures, which will help increase the
+lifetime of the battery-bank significantly. Overcharging essentially
+means that voltage and or current during charging is not within
+specifications. This brings us to the fact that a charge controller is
+needed. In my opinion, this battery protecting technology, and the MPPT,
+is what makes the difference in high-end products. The <em>Victron
+EasySolar-II</em> <span class="citation"
+data-cites="victron_easysolar"></span>, chosen for the case study, has
+integrated <em>MultiPlus-II inverter/charger</em>, as well as
+<em>SmartSolar MPPT -Tr</em> solar charge controller. This all-in-one
+solar power control unit is found suitable by evaluation continous
+current and maximum surge current limits <span class="citation"
+data-cites="victron_controllers"></span>. The inverter, and charge
+controller electronics is consuming some power, and will therefor cause
+small power losses.</p>
+<ul>
+<li><p>Inverter efficiency (<span
+class="math inline"><em>η</em><sub><em>i</em><em>n</em><em>v</em></sub></span>)
+is stated in the product datasheet to <span
+class="math inline">95[%]</span>.</p></li>
+<li><p>Charge controller efficiency (<span
+class="math inline"><em>η</em><sub><em>c</em><em>h</em><em>a</em><em>r</em><em>g</em><em>e</em> − <em>c</em><em>t</em><em>r</em><em>l</em></sub></span>)
+is stated to <span class="math inline">98[%]</span>.</p></li>
+</ul>
+<p>Finally in this section the PV-array to charge-controller cable
+efficiency (<span
+class="math inline"><em>η</em><sub><em>a</em><em>r</em><em>r</em><em>a</em><em>y</em> − <em>c</em><em>b</em><em>l</em></sub></span>)
+has been found. This cable is assumed to be 5 meter long, for the sake
+of this example. Furtherly a recommendation of 35 squaremeter cable is
+followed <span class="citation"
+data-cites="victron_controllers"></span>, for the Victron charge
+controller<span class="citation" data-cites="victron_easysolar"></span>
+that will be used as example. 48 volt design from array to MPPT is also
+choosen based on efficiency considerations and Victron datasheet <span
+class="citation" data-cites="victron_easysolar"></span>. To find the PV
+array cable efficiency, it is necessary to find the array cable
+resistance. Following equation <a href="#cableresistance"
+data-reference-type="ref"
+data-reference="cableresistance">[cableresistance]</a> and resistivity
+for copper cable from figure <a href="#wireresistivity"
+data-reference-type="ref"
+data-reference="wireresistivity">[wireresistivity]</a>, the below is
+found: Copper cable: <span
+class="math inline"><em>ρ</em> = 1.72 ⋅ 10<sup>−8</sup></span> <span
+class="math display">$$R_{wire} = \frac{1.72\cdot10^{-8} \cdot
+5}{35\cdot10^{-6}} \approx 0.0025 [\ohm]$$</span> The maximum average
+charging current, and voltage drop, is found using maximum PV array
+power output (Found in figure <a href="#chargingcurve"
+data-reference-type="ref" data-reference="chargingcurve">3.7</a>). <span
+class="math display"><em>I</em><sub><em>m</em><em>a</em><em>x</em></sub> = <em>P</em><sub><em>m</em><em>a</em><em>x</em></sub>/<em>v</em><em>o</em><em>l</em><em>t</em><em>a</em><em>g</em><em>e</em> ≈ 2.1[<em>k</em><em>W</em>]/48[<em>V</em>] = 43.75[<em>A</em>]</span>
+<span class="math display">$$V_{drop} = I_{max} \cdot R_{wire} = 43.75
+[A] \cdot 0.0025[\ohm] \approx 0.11 [V]$$</span></p>
+<p><span class="math display">$$\rightarrow \eta_{array-cbl} = 100[\%]
+\cdot \frac{48 - 0.11}{48} = 100[\%] \cdot \frac{47.89}{48} \approx
+99.77[\%]$$</span></p>
+<h2 id="systsim">System Simulation</h2>
+<p>In preparation for the system simulations, all efficiency parameters
+is divided into two main categories as follows.</p>
+<ul>
+<li><p>Category 1: Parameters during battery charging from solar
+irradiation: <span
+class="math inline"><em>η</em><sub><em>m</em><em>p</em><em>p</em></sub>, <em>η</em><sub><em>p</em><em>v</em> − <em>t</em><em>e</em><em>m</em><em>p</em></sub>, <em>η</em><sub><em>a</em><em>n</em><em>g</em><em>l</em><em>e</em></sub>, <em>η</em><sub><em>a</em><em>r</em><em>r</em><em>a</em><em>y</em> − <em>c</em><em>b</em><em>l</em></sub>, <em>η</em><sub><em>c</em><em>h</em><em>a</em><em>r</em><em>g</em><em>e</em> − <em>c</em><em>t</em><em>r</em><em>l</em></sub>, <em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em><em>e</em><em>r</em><em>y</em> − <em>c</em><em>b</em><em>l</em></sub>, <em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>c</em><em>h</em><em>n</em><em>g</em></sub>, <em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>t</em><em>e</em><em>m</em><em>p</em></sub></span></p></li>
+<li><p>Category 2: Parameters during battery discharging to loads: <span
+class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>d</em><em>c</em><em>h</em><em>n</em><em>g</em></sub>, <em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em><em>e</em><em>r</em><em>y</em> − <em>c</em><em>b</em><em>l</em></sub>, <em>η</em><sub><em>i</em><em>n</em><em>v</em></sub>, <em>η</em><sub><em>l</em><em>o</em><em>a</em><em>d</em> − <em>c</em><em>b</em><em>l</em></sub>, <em>η</em><sub><em>s</em><em>t</em><em>a</em><em>n</em><em>b</em><em>y</em></sub>, <em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>t</em><em>e</em><em>m</em><em>p</em></sub></span></p></li>
+</ul>
+<p>The idea of the system simulation is to test and verify the
+dimensioning that has been done up to this point. With the simulation
+set up and working, this also gives a chance to experiment with the
+battery-bank capacity. The simulation is done using Python, with some
+additional packages such as Matplotlib to visualize the plots. The
+desired outcome of the simulation is to visualize the following two
+subplots over a 24 and 72 hour scenario.</p>
+<ul>
+<li><p>Subplot 1:</p>
+<ul>
+<li><p>Content: Charging/discharging of the battery-bank in
+kilowatts.</p></li>
+<li><p>Approach : The list in Python representing charging values for
+figure <a href="#pv_array_sizing" data-reference-type="ref"
+data-reference="pv_array_sizing">3.4</a>, is multiplied by the Category
+1 power transfer loss factors. In the same way the Category 2 factors is
+multiplied by the discharging list values for the curve (fig. <a
+href="#kwconsumption" data-reference-type="ref"
+data-reference="kwconsumption">3.2</a>) in section <a
+href="#mapping_loads" data-reference-type="ref"
+data-reference="mapping_loads">3.1</a>. The new charging list is then
+subtracted by the "new" discharge list, to produce the desired battery
+charging/discharging subplot for the simulation.</p></li>
+</ul></li>
+<li><p>Subplot 2:</p>
+<ul>
+<li><p>Content: SOC of the battery-bank in percent.</p></li>
+<li><p>Approach: The Subplot 1 values in KW is numerically integrated
+(using the Trapezoidal method), to obtain capacity usage in kWh. Based
+on chosen battery bank capacity, the incident battery state could then
+be calculated. From the chosen battery-bank capacity and capacity usage,
+the SOC is found for Subplot 2.</p></li>
+</ul></li>
+</ul>
+<h1 id="results-and-analysis">Results and Analysis</h1>
+<p>In this chapter, a summary and visualization of system losses is
+utilized for analysis. The simulation methodology explained in section
+<a href="#systsim" data-reference-type="ref"
+data-reference="systsim">3.6</a>, is applied to visualize and analyze
+different scenarios of sun conditions. Finally, in section <a
+href="#Uer" data-reference-type="ref" data-reference="Uer">4.3</a>, the
+potential untapped solar energy during summer has been evaluated.</p>
+<h2 id="system-losses">System Losses</h2>
+<p>To visualize and analyze the case study PV system losses, three
+Sankey diagrams is produced based on the Category 1 and Category 2
+losses, as defined in section <a href="#systsim"
+data-reference-type="ref" data-reference="systsim">3.6</a>, as well as
+one final overall system loss diagram. Note, that these diagrams of
+losses is based on December month conditions, and percentages will
+therefore deviate slightly during other times of the year.</p>
+<ol>
+<li><p>Category 1 loss table, diagram and comments.</p></li>
+<li><p>Category 2 loss table, diagram and comments.</p></li>
+<li><p>Overall PV system loss table, diagram and comments.</p></li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th colspan="5" style="text-align: center;">Category 1 losses
+sequence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Efficiency</td>
+<td style="text-align: left;">Parameter</td>
+<td style="text-align: left;">Value [%]</td>
+<td style="text-align: left;">Remaining [%]</td>
+<td style="text-align: left;">Loss [%]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Maximum power point</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>m</em><em>p</em><em>p</em></sub></span></td>
+<td style="text-align: left;">19.8</td>
+<td style="text-align: left;">19.8</td>
+<td style="text-align: left;">80.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Array cable</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>a</em><em>r</em><em>r</em><em>a</em><em>y</em> − <em>c</em><em>b</em><em>l</em></sub></span></td>
+<td style="text-align: left;">99.95</td>
+<td style="text-align: left;">19.79</td>
+<td style="text-align: left;">0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Charge controller</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>c</em><em>h</em><em>a</em><em>r</em><em>g</em><em>e</em> − <em>c</em><em>t</em><em>r</em><em>l</em></sub></span></td>
+<td style="text-align: left;">98</td>
+<td style="text-align: left;">19.39</td>
+<td style="text-align: left;">0.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Battery cable</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>c</em><em>b</em><em>l</em></sub></span></td>
+<td style="text-align: left;">99.9997</td>
+<td style="text-align: left;">19.38998</td>
+<td style="text-align: left;">0.00002</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Battery charging</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>c</em><em>h</em><em>n</em><em>g</em></sub></span></td>
+<td style="text-align: left;">96</td>
+<td style="text-align: left;">18.61</td>
+<td style="text-align: left;">0.78</td>
+</tr>
+<tr class="odd">
+<td colspan="5" style="text-align: center;">Total loss: 81.39%</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Maximum power point efficiency usually is not considered a
+system loss, but chosen to be included in this partial loss
+consideration.</p>
+<figure>
+<img src="cat1losses" id="cat1sankey"
+alt="Category 1 losses Sankey diagram, based on figure [cat1table]." />
+<figcaption aria-hidden="true">Category 1 losses Sankey diagram, based
+on figure <a href="#cat1table" data-reference-type="ref"
+data-reference="cat1table">[cat1table]</a>.</figcaption>
+</figure>
+<p>Category 1 losses analysis comments:</p>
+<ul>
+<li><p>The most significant potential for improvement is at the maximum
+power point efficiency. This PV module component parameter makes it
+evident that the development of PV technology is a relevant field that
+will have a big impact on solar energy conversion in the
+future.</p></li>
+<li><p>The second-largest loss happens at the battery bank during
+charging. This is due to battery type characteristics and shows us that
+battery choice is essential when designing a system with a focus on
+efficiency.</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th colspan="5" style="text-align: center;">Category 2 losses
+sequence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Efficiency:</td>
+<td style="text-align: left;">Parameter</td>
+<td style="text-align: left;">Value [%]</td>
+<td style="text-align: left;">Remaining [%]</td>
+<td style="text-align: left;">Loss [%]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Battery discharging</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>d</em><em>c</em><em>h</em><em>n</em><em>g</em></sub></span></td>
+<td style="text-align: left;">96</td>
+<td style="text-align: left;">96</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Battery cable</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>c</em><em>b</em><em>l</em></sub></span></td>
+<td style="text-align: left;">99.9997</td>
+<td style="text-align: left;">95.9999</td>
+<td style="text-align: left;">0.0001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Inverter</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>i</em><em>n</em><em>v</em></sub></span></td>
+<td style="text-align: left;">95</td>
+<td style="text-align: left;">91.2</td>
+<td style="text-align: left;">4.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Load cable</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&amp; standby power</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&amp; <span
+class="math inline"><em>η</em><sub><em>s</em><em>t</em><em>a</em><em>n</em><em>d</em><em>b</em><em>y</em></sub></span></td>
+<td style="text-align: left;">89</td>
+<td style="text-align: left;">81.17</td>
+<td style="text-align: left;">10.03</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td colspan="5" style="text-align: center;">Total loss: 18.83%</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="cat2losses" id="cat2sankey"
+alt="Category 2 losses Sankey diagram, based on figure [cat2table]." />
+<figcaption aria-hidden="true">Category 2 losses Sankey diagram, based
+on figure <a href="#cat2table" data-reference-type="ref"
+data-reference="cat2table">[cat2table]</a>.</figcaption>
+</figure>
+<p>Category 2 losses analysis comments:</p>
+<ul>
+<li><p>A relatively big loss is caused by cabling and standby-losses at
+the loads. Shows the importance of choosing energy efficient appliances
+and to disconnect gadgets not in use to minimize standby power
+consumption.</p></li>
+<li><p>Inverter efficiency causes the second-largest loss during power
+consumption from the battery-bank. Indicates the importance of
+considering inverter characteristics when choosing a component.</p></li>
+</ul>
+<p>Overall system losses can be summarized and viewed in slightly
+different ways, since charging and discharging happens simultaneously
+and changes dynamically as sun and consumption changes over time. It is,
+in this case, made simple by assuming that battery discharging happens
+after charging.</p>
+<table>
+<thead>
+<tr class="header">
+<th colspan="5" style="text-align: center;">Overall system losses
+sequence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Efficiency</td>
+<td style="text-align: left;">Parameter</td>
+<td style="text-align: left;">Value [%]</td>
+<td style="text-align: left;">Remaining [%]</td>
+<td style="text-align: left;">Loss [%]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Array cable</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>a</em><em>r</em><em>r</em><em>a</em><em>y</em> − <em>c</em><em>b</em><em>l</em></sub></span></td>
+<td style="text-align: left;">99.95</td>
+<td style="text-align: left;">99.95</td>
+<td style="text-align: left;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Charge controller</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>c</em><em>h</em><em>a</em><em>r</em><em>g</em><em>e</em> − <em>c</em><em>t</em><em>r</em><em>l</em></sub></span></td>
+<td style="text-align: left;">98</td>
+<td style="text-align: left;">97.95</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Battery cable</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>c</em><em>b</em><em>l</em></sub></span></td>
+<td style="text-align: left;">99,9997</td>
+<td style="text-align: left;">97.9499</td>
+<td style="text-align: left;">0.0001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Battery charging</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>c</em><em>h</em><em>n</em><em>g</em></sub></span></td>
+<td style="text-align: left;">96</td>
+<td style="text-align: left;">94.03</td>
+<td style="text-align: left;">3.92</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Battery discharging</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>d</em><em>c</em><em>h</em><em>n</em><em>g</em></sub></span></td>
+<td style="text-align: left;">96</td>
+<td style="text-align: left;">90.27</td>
+<td style="text-align: left;">3.76</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Battery cable</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>c</em><em>b</em><em>l</em></sub></span></td>
+<td style="text-align: left;">99.9997</td>
+<td style="text-align: left;">90.2699</td>
+<td style="text-align: left;">0.0001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Inverter</td>
+<td style="text-align: left;"><span
+class="math inline"><em>η</em><sub><em>i</em><em>n</em><em>v</em></sub></span></td>
+<td style="text-align: left;">95</td>
+<td style="text-align: left;">85.76</td>
+<td style="text-align: left;">4.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Load cable</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&amp; standby power</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&amp; <span
+class="math inline"><em>η</em><sub><em>s</em><em>t</em><em>a</em><em>n</em><em>d</em><em>b</em><em>y</em></sub></span></td>
+<td style="text-align: left;">89</td>
+<td style="text-align: left;">76.33</td>
+<td style="text-align: left;">9.43</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td colspan="5" style="text-align: center;">Total loss: 23.67%</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="overall_sankey" id="overallsankey"
+alt="Overall system losses Sankey diagram, based on figure [overall_loss_table]." />
+<figcaption aria-hidden="true">Overall system losses Sankey diagram,
+based on figure <a href="#overall_loss_table" data-reference-type="ref"
+data-reference="overall_loss_table">[overall_loss_table]</a>.</figcaption>
+</figure>
+<p>Overall PV system losses analysis comments:</p>
+<ul>
+<li><p>Number one cause of power losses comes from standby losses, based
+on statistics as stated in the background theory chapter.</p></li>
+<li><p>Second largest cause of system losses comes from system
+components such as inverter, battery and charge-controller.</p></li>
+<li><p>Cabling causes relatively little loss.</p></li>
+</ul>
+<h2 id="simulation-results">Simulation Results</h2>
+<p>The first simulation result (figure <a href="#sim1"
+data-reference-type="ref" data-reference="sim1">4.4</a>) following the
+steps outlined in section <a href="#systsim" data-reference-type="ref"
+data-reference="systsim">3.6</a> confirms that the PV array sizing is
+sufficient for the battery-bank and energy usage for the case study at
+an average day. Initial SOC at midnight (start of simulation) is set to
+be 80 percent.</p>
+<figure>
+<img src="24hsim2" id="sim1"
+alt="Simulation result of 24 hours, based on the average irradiation." />
+<figcaption aria-hidden="true">Simulation result of 24 hours, based on
+the average irradiation.</figcaption>
+</figure>
+<p>The simulation shows that after 24 hours of simultaneous charging and
+energy consumption, the battery SOC is back to 80 percent. This is a
+good sign, but important to note is that this is based on an average
+days irradiation, meaning all days of the month is looking the same,
+which in turn means that irradiation could be both better or worse.
+These better or worse scenarios are further analyzed through the
+following simulations.</p>
+<p>The battery-bank is in chapter 3 sized to last as a two day backup
+with the average energy consumption. To verify this, the simulation in
+figure <a href="#sim2" data-reference-type="ref"
+data-reference="sim2">4.5</a> over 72 hours of zero solar charging is
+done.</p>
+<figure>
+<img src="72hsim1" id="sim2"
+alt="72 hour simulation, based on average consumption and zero sun." />
+<figcaption aria-hidden="true">72 hour simulation, based on average
+consumption and zero sun.</figcaption>
+</figure>
+<p>SOC had gone down to 50 percent after approximately 48 hours, which
+is calculated for with the desired DOD of 50 percent. Testing the SOC
+recovery time, another simulation (figure <a href="#sim3"
+data-reference-type="ref" data-reference="sim3">4.6</a>) is run over 72
+hours with an initial SOC of 50 percent and the Good day sun
+conditions.</p>
+<figure>
+<img src="72hsim2" id="sim3"
+alt="72 hour simulation, based on average consumption and Good day sun." />
+<figcaption aria-hidden="true">72 hour simulation, based on average
+consumption and Good day sun.</figcaption>
+</figure>
+<p>The simulation now indicates that it takes about three days of Good
+day sun conditions to recover from two days of zero charging from the
+sun.</p>
+<p>Since it is more realistic to receive small amounts of charging
+rather than zero charging, even during a cloudy period, it is desired to
+simulate this scenario. The following simulation covering 72 hours using
+the Bad day sun conditions is run.</p>
+<figure>
+<img src="72hsim3"
+alt="System simulation of average consumption and Bad day sun conditions." />
+<figcaption aria-hidden="true">System simulation of average consumption
+and Bad day sun conditions.</figcaption>
+</figure>
+<p>Evaluating figure <a href="#sim3" data-reference-type="ref"
+data-reference="sim3">4.6</a> at 48 hours, the SOC had now decreased
+only about 20 percent. Indicating that the battery-bank capacity could
+possibly be smaller and still keep up as a two-day backup. The simulated
+battery capacity is decreased to 18 kilowatt-hours (figure <a
+href="#sim4" data-reference-type="ref" data-reference="sim4">4.7</a>),
+where it now shows a DOD of 50 percent after 48 hours.</p>
+<figure>
+<img src="72hsim4" id="sim4"
+alt="System simulation with battery bank capacity reduced to 18 kWh. " />
+<figcaption aria-hidden="true">System simulation with battery bank
+capacity reduced to 18 kWh. </figcaption>
+</figure>
+<h2 id="Uer">Untapped Energy Resource</h2>
+<p>The focus throughout the report is centered around system design,
+optimized for average winter (December) conditions, which can recharge
+the minimum daily consumption found in section <a href="#mapping_loads"
+data-reference-type="ref" data-reference="mapping_loads">3.1</a>. This
+design approach, at this geographic location, results in significantly
+more electrical energy available during summer, even though the PV array
+angle is optimized for winter. This untapped energy is in this section
+calculated through some approximations for analysis purposes.</p>
+<figure>
+<img src="irradiation_june" id="june_irr"
+alt="Available solar irradiation (SIS), during an average June day in Stavanger. Irradiation peak value of approximately 380 watts per horizontal squaremeter, in comparison to the 38 watts per squaremeter peak (figure 3.5) for December. (Illustration curve produced using the methods described in section 3.3.) " />
+<figcaption aria-hidden="true">Available solar irradiation (SIS), during
+an average June day in Stavanger. Irradiation peak value of
+approximately 380 watts per horizontal squaremeter, in comparison to the
+38 watts per squaremeter peak (figure <a href="#irr_charge_curve"
+data-reference-type="ref" data-reference="irr_charge_curve">3.5</a>) for
+December. (Illustration curve produced using the methods described in
+section <a href="#solar_irr" data-reference-type="ref"
+data-reference="solar_irr">3.3</a>.) </figcaption>
+</figure>
+<p>Optimal PV module elevation angle for June (at latitude 59<span
+class="math inline">$\degree$</span>) would be 44.4<span
+class="math inline">$\degree$</span> (section <a href="#maximizing"
+data-reference-type="ref" data-reference="maximizing">2.2.4</a>), and
+since the system is instead winter optimized with an elevation angle
+fixed at 76.3 degrees, there will be an angle offset of 31.9 degress
+from the June optimal. In addition, the daily sun curve (figure <a
+href="#june_irr" data-reference-type="ref"
+data-reference="june_irr">4.8</a>) is considerably wider than the
+corresponding December curve (figure <a href="#irr_charge_curve"
+data-reference-type="ref" data-reference="irr_charge_curve">3.5</a>).
+This means more loss caused by the fixed azimuth angle, and an
+approximation of 20 percent loss (80 percent efficiency) is used to
+calculate the June angle-efficiency (<span
+class="math inline"><em>η</em><sub><em>a</em><em>n</em><em>g</em><em>l</em><em>e</em>, <em>J</em><em>u</em><em>n</em><em>e</em></sub></span>).
+Based on the same theory, and method as equation <a href="#n_angle"
+data-reference-type="ref" data-reference="n_angle">[n_angle]</a>. <span
+class="math display">$$\eta_{angle, June} = 80[\%] \cdot  \frac{cos(5 +
+31.9\degree)}{cos(76.4\degree)} \approx
+2.72 [\%]$$</span> Resulting in merely a 2.72 percent average improved
+irradiation absorption through the 76.3 degrees elevated PV modules,
+compared to a horizontal mount, in June. (Down from <span
+class="math inline"><em>η</em><sub><em>a</em><em>n</em><em>g</em><em>l</em><em>e</em></sub></span>
+= 415.18 percent in December.) This makes sense, since the solar
+altitude angle is significantle larger, during summer. Average June
+irradiation on to the PV modules, <span
+class="math inline"><em>I</em><sub><em>P</em><em>V</em></sub></span>
+(potentially absorbed power), is calculated below. <span
+class="math display">$$\label{I_pv_june}
+I_{PV} = 102.72 [\%] \cdot 217.3 \textnormal{ [W}m^{-2}] \approx 223.21
+\textnormal{ [W}m^{-2}]$$</span> Based on equation <a href="#neededarea"
+data-reference-type="ref" data-reference="neededarea">[neededarea]</a>,
+the PV array June average daily output <span
+class="math inline"><em>E</em><sub><em>D</em></sub></span>, is found.
+<span class="math display">$$E_{D} = 64.4[m^{2}] \cdot 24[h] \cdot
+223.21[Wm^{-2}] \cdot 19.8[\%] \cdot 107.19[\%] \approx 73 \textnormal{
+} [kWh]$$</span> Subtracting the minimum daily consumption from equation
+<a href="#24henergy" data-reference-type="ref"
+data-reference="24henergy">[24henergy]</a>, to find the potential
+"untapped" energy. <span class="math display">$$E_{untapped} = 73
+\textnormal{ } [kWh] - 10.536 \textnormal{ } [kWh] \approx 62
+\textnormal{ } [kWh]$$</span> This means that the energy consumption
+could potentially be increased by a factor of 5 during June average
+conditions. Since this case study covers off-grid system design, this
+energy could not be sold as grid-tied systems can. But, this available
+energy could with great advantage be used for something like additional
+water heating.</p>
+<h1 id="conclusions-and-future-work">Conclusions and Future Work</h1>
+<h2 id="conclusions">Conclusions</h2>
+<ul>
+<li><p>The web application version 1.5 is launched to <a
+href="http://www.techoffgrid.com"
+class="uri">http://www.techoffgrid.com</a> and can be of use when
+utilizing this methodology, or individual calculations. I consider the
+application not fully developed, but a good foundation with great
+potential of being expanded with more functionalities.</p></li>
+<li><p>A backup sized battery-bank is an essential consideration at
+locations with highly diffuse radiation, but not as crucial for a
+weekend-house/cabin since the weekdays would allow recharging. From an
+economic point of view, considering the simulation results in figure <a
+href="#sim3" data-reference-type="ref" data-reference="sim3">4.6</a>
+&amp; <a href="#sim4" data-reference-type="ref"
+data-reference="sim4">4.7</a>, it might be a good idea to configure the
+battery-bank into a slightly smaller capacity and then expand if
+needed.</p></li>
+<li><p>The gain from a solar tracking device is small at locations of
+northern latitudes during seasons of highly diffuse radiation (as
+described in section <a href="#maximizing" data-reference-type="ref"
+data-reference="maximizing">2.2.4</a>.). A tracking device would also
+add moving parts to the system, that in turn adds possible sources of
+mechanical issues and required maintenance. Tracking devices could, on
+the other hand, be a good alternative for someone wanting to maximize
+possible PV module output at very limited space, or in large-scale
+applications where it is economically defendable.</p></li>
+<li><p>Lower temperatures are beneficial for PV module efficiency but
+can negatively affect battery capacity. Therefore a good idea to store a
+battery-bank in a tempered area at cold climate locations. Aging of a
+battery can be highly affected by how it is used, what temperatures it
+operates in, and at what kind of currents it operates. Battery
+datasheets usually state cycle life at different DOD, at a given
+operating temperature range, as well as recommended charge/discharge
+currents. An ideal lifetime of a battery could, therefore, theoretically
+be determined from the stated cycle life if we had a fixed DOD and knew
+how often it would be cycled. In reality, the DOD and temperature will
+vary on different occasions. These parameters need to be considered when
+designing a battery bank to get the most out of it.</p></li>
+<li><p>Publically available solar irradiation data can be of great help
+when sizing and running simulations. However, it is important to
+understand the difference between radiation specification types. It is
+also crucial to know how and at what time of year the system will be
+used. Unlike the case study, a summer use only scenario would require a
+significantly smaller PV-array, considering more sun-hours and higher
+irradiation, as shown in figure <a href="#histstvg"
+data-reference-type="ref" data-reference="histstvg">3.4</a>
+histogram.</p></li>
+<li><p>The 39 modules and 64.4 square meter PV array dimension suggested
+for the case study, would require quite a big roof. It could, for
+instance, be divided into two sub-arrays where one is roof-mounted, and
+the other part is ground-mounted.</p></li>
+<li><p>Simulations show that off-grid year-round living at northern
+latitudes using solar energy for household electricity is possible if
+conscious decisions are made. An optimal angle is of crucial importance
+at northern latitudes for efficient photovoltaic energy conversion,
+mainly because of the significant difference in irradiation availability
+for summer versus winter.</p></li>
+</ul>
+<h2 id="future-work">Future Work</h2>
+<p>There are many things regarding the simulation of different weather
+and shading scenarios that could be analyzed. Shading and PV cell
+mismatch are known to have significant adverse effects, and in this case
+study, it has been assumed absent. A function of temperature over time
+could be added to the simulation to see how PV and battery efficiency
+changes. It would be interesting to do similar simulations based on real
+charging and consumption data. This could, for instance, be done by
+logging charging from a PV module and ambient temperatures, over a
+period of time. Energy consumption data could be monitored and logged
+from a house of interest. The simulations performed in this thesis
+project is accomplished through some relatively simple code lines and
+standard packages for Python. This could be developed to include a GUI.
+Alternatively, more complex simulations, including more parameters,
+could be done using available open-source simulators for
+photovoltaics.</p>
+<h1 id="web-application">Web Application</h1>
+<h4 id="application-and-server-description">Application and Server
+Description:</h4>
+<ul>
+<li><p>Application developed using HTML and Python back-end, combined
+using the Flask framework <span class="citation"
+data-cites="flask"></span>. Some Javascript and CSS through Bootstrap is
+used for front-end design and to obtain screen size responsive design
+<span class="citation" data-cites="bootstrap"></span>.</p></li>
+<li><p>Deployed to the acquired domain techoffgrid.com, hosted on a
+cloud Linux server by linode.com <span class="citation"
+data-cites="linode"></span>. Server using Nginx 1.16.1 and Ubuntu 19.10
+as operating system. Running Python 2.7.17 with Flask 1.1.1 and Pygal
+2.4.0.</p></li>
+</ul>
+<h4 id="web-application-files-and-structure.">Web Application Files and
+Structure.</h4>
+<p>The application consists of six pages that inherits from layout.html.
+Start and about page is informative only. Page 1 to 4 contain various PV
+system sizing resources. Example screenshots of the six web application
+pages included below. The application was initially based on starter
+code snippets from Flask <span class="citation"
+data-cites="flask"></span> and Bootstrap <span class="citation"
+data-cites="bootstrap"></span> as described in section <a href="#webapp"
+data-reference-type="ref" data-reference="webapp">2.6</a>. It is then
+further developed to obtain the desired functionalities. A couple of
+different Flask imports is necessary for template inheritance and user
+request handling. Pygal bar charts is used for the interactive
+histograms on the application page #3 <span class="citation"
+data-cites="pygal"></span>.</p>
+<div class="forest">
+<p>for tree=<span>font=, grow’=0, folder indent=.9em, folder icons,
+edge=densely dotted</span> [Main application folder [calculator1.py, is
+file] [static [dropdown.js, is file] [main.css, is file]] [templates
+[layout.html, is file] [start.html, is file] [page1.html, is file]
+[page2.html, is file] [page3.html, is file] [page4.html, is file]
+[about.html, is file]] ]</p>
+</div>
+<figure>
+<img src="app_start"
+alt="Screenshot of the web applications start page. Gives information about the content of the different pages and required user input." />
+<figcaption aria-hidden="true">Screenshot of the web applications start
+page. Gives information about the content of the different pages and
+required user input.</figcaption>
+</figure>
+<figure>
+<img src="app_page1"
+alt="Screenshot of the web application page: #1 Energy usage calculator, showing an example of a daily energy consumption result." />
+<figcaption aria-hidden="true">Screenshot of the web application page:
+#1 Energy usage calculator, showing an example of a daily energy
+consumption result.</figcaption>
+</figure>
+<figure>
+<img src="app_page2"
+alt="Screenshot of the application page: #2 Battery bank dimensioning." />
+<figcaption aria-hidden="true">Screenshot of the application page: #2
+Battery bank dimensioning.</figcaption>
+</figure>
+<figure>
+<img src="app_page3"
+alt="Screenshot of the web application page: #3 Monthly irradiation evaluator, comparing two locations opposite of the equator. December month value for Cape Town shown by hovering over." />
+<figcaption aria-hidden="true">Screenshot of the web application page:
+#3 Monthly irradiation evaluator, comparing two locations opposite of
+the equator. December month value for Cape Town shown by hovering
+over.</figcaption>
+</figure>
+<figure>
+<img src="app_page4"
+alt="Screenshot of the web application about page." />
+<figcaption aria-hidden="true">Screenshot of the web application about
+page.</figcaption>
+</figure>
+<figure>
+<img src="app_about"
+alt="Screenshot of the web application about page." />
+<figcaption aria-hidden="true">Screenshot of the web application about
+page.</figcaption>
+</figure>
+<h1 id="solar-data-extraction">Solar Data Extraction</h1>
+<h4 id="description">Description:</h4>
+<p>Irradiation data used in the report and web application is sourced
+from EUMETSAT’s Satellite Application Facility on Climate Monitoring (CM
+SAF) <span class="citation" data-cites="cm_saf_overview"></span>. The
+histograms produced is based on ten years (2008-2017) of satellite
+derived shortwave incoming solar (SIS) radiation data (horizontal
+surface). Data aquired and processed as described below.</p>
+<ol>
+<li><p>SIS data ordered and downloaded from CM SAF <span
+class="citation" data-cites="sis_data"></span>.</p></li>
+<li><p>The ordered NetCDF files is delivered as a single TAR (Tape
+ARchive) file, which is unpacked using the CM SAF R Toolbox <span
+class="citation" data-cites="rtoolbox"></span>.<br />
+Total filesize 935,5 megabytes.</p></li>
+<li><p>Using the R Toolbox, desired geographical (spatial) coverage is
+chosen to output 120 pieces of NetCDF files containing the required
+temporal coverage (ten years and twelve months).</p></li>
+<li><p>Processing of NetCDF grid data using Python.</p>
+<ol>
+<li><p>Dataset opened using the xarray module <span class="citation"
+data-cites="xarray"></span>.</p></li>
+<li><p>The SIS parameter extracted and read into an numpy array <span
+class="citation" data-cites="numpy_scipy"></span>.</p></li>
+<li><p>Grid projections defined using pyproj <span class="citation"
+data-cites="pyproj"></span>.</p></li>
+<li><p>2D (longitude/latitude) meshgrid array created using numpy <span
+class="citation" data-cites="numpy_scipy"></span>.</p></li>
+<li><p>Meshgrid transformed into ECEF projection, containg
+longitude/latitude positions, using pyproj <span class="citation"
+data-cites="pyproj"></span>.</p></li>
+<li><p>Processing of ECEF projection using KDTree from scipy <span
+class="citation" data-cites="numpy_scipy"></span>.</p></li>
+<li><p>Looping through all months and years for the coordinate of
+interest, to calculate monthly averages.</p></li>
+<li><p>Returning list of resulting values.</p></li>
+</ol></li>
+</ol>
+<h4 id="filenames">Filenames:</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">SISmm200801010000003231000101MA.nc</th>
+<th style="text-align: left;">This sample filename, containing data for
+January 2008, is one of the 120 NetCDF files that have been
+processed.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">cmsafSisReader.py</td>
+<td style="text-align: left;">Python script for processing of the above
+NetCDF files.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="list-of-source-files">List of Source Files</h1>
+<table>
+<thead>
+<tr class="header">
+<th colspan="3" style="text-align: center;">Summary of Python source
+files used for simulations and plots.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Figure</td>
+<td style="text-align: left;">Content</td>
+<td style="text-align: left;">Source files</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="#irr1" data-reference-type="ref"
+data-reference="irr1">2.1</a></td>
+<td style="text-align: left;">Wavelenght spectrum plot. Data from Matlab
+Fileexchange <span class="citation" data-cites="matlab"></span>.</td>
+<td style="text-align: left;">plotSpectral.py SpectrumAM.xls</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="#iv2" data-reference-type="ref"
+data-reference="iv2">2.3</a></td>
+<td style="text-align: left;">Ideal PV cell Power &amp; IV-curve
+plot.</td>
+<td style="text-align: left;">plotIdealCell.py</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="#timeline"
+data-reference-type="ref" data-reference="timeline">3.1</a></td>
+<td style="text-align: left;">Power consumption timeline plot.</td>
+<td style="text-align: left;">timeline.py</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="#kwconsumption"
+data-reference-type="ref" data-reference="kwconsumption">3.2</a></td>
+<td style="text-align: left;">Power consumption curve.</td>
+<td style="text-align: left;">kWdischarge24.py</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="#histstvg"
+data-reference-type="ref" data-reference="histstvg">3.4</a></td>
+<td style="text-align: left;">Irradiation histogram.</td>
+<td style="text-align: left;">histogramStvg.py</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="#irr_charge_curve"
+data-reference-type="ref" data-reference="irr_charge_curve">3.5</a></td>
+<td style="text-align: left;">Solar irradiation curve, daily average
+December.</td>
+<td style="text-align: left;">24irradiation.py</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="#chargingcurve"
+data-reference-type="ref" data-reference="chargingcurve">3.7</a></td>
+<td style="text-align: left;">PV array output plot, for an average
+day.</td>
+<td style="text-align: left;">kWcharging24.py</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="#goodday"
+data-reference-type="ref" data-reference="goodday">3.8</a></td>
+<td style="text-align: left;">PV array output plot, for a "good
+day".</td>
+<td style="text-align: left;">kWcharging24.py</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="#badday"
+data-reference-type="ref" data-reference="badday">3.9</a></td>
+<td style="text-align: left;">PV array output plot, for a “bad
+day”.</td>
+<td style="text-align: left;">kWcharging24.py</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="#cat1sankey"
+data-reference-type="ref" data-reference="cat1sankey">4.1</a></td>
+<td style="text-align: left;">Sankey/losses diagram.</td>
+<td style="text-align: left;">sankeyCat1.py</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="#cat2sankey"
+data-reference-type="ref" data-reference="cat2sankey">4.2</a></td>
+<td style="text-align: left;">Sankey/losses diagram.</td>
+<td style="text-align: left;">sankeyCat2.py</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="#overallsankey"
+data-reference-type="ref" data-reference="overallsankey">4.3</a></td>
+<td style="text-align: left;">Sankey/losses diagram.</td>
+<td style="text-align: left;">sankeyOverall.py</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="#sim1" data-reference-type="ref"
+data-reference="sim1">4.4</a></td>
+<td style="text-align: left;">24 hour simulation, at average
+irradiation.</td>
+<td style="text-align: left;">simulation24h.py</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="#sim2" data-reference-type="ref"
+data-reference="sim2">4.5</a></td>
+<td style="text-align: left;">72 hour simulation, at zero
+irradiation.</td>
+<td style="text-align: left;">simulation72h1.py</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="#sim3" data-reference-type="ref"
+data-reference="sim3">4.6</a></td>
+<td style="text-align: left;">72 hour simulation, at "good day"
+irradiation.</td>
+<td style="text-align: left;">simulation72h2.py</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="#june_irr"
+data-reference-type="ref" data-reference="june_irr">4.8</a></td>
+<td style="text-align: left;">Solar irradiation curve, daily average
+June.</td>
+<td style="text-align: left;">24irradiationJune.py</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
