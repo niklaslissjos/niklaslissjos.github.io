@@ -194,17 +194,18 @@
                     let radiationValue = parseFloat(data.properties.parameter[parameters][dateKey]);
                     console.log('Raw radiation value:', radiationValue);
                     
-                    if (isNaN(radiationValue) || radiationValue < 0) {
+                    if (isNaN(radiationValue)) {
                         console.log('Invalid radiation value detected. This might indicate an error in the data.');
                         document.getElementById('radiation-value').textContent = 'N/A';
                         document.getElementById('radiation-unit').textContent = '';
                     } else {
+                        // Convert negative values to positive
+                        radiationValue = Math.abs(radiationValue);
                         const convertedValue = (radiationValue / 1000).toFixed(3);
                         document.getElementById('radiation-value').textContent = convertedValue;
                         document.getElementById('radiation-unit').textContent = 'kW/m²';
                     }
                     
-                    // Add units and timestamp
                     document.getElementById('radiation-timestamp').textContent = `Data Fetched: ${new Date().toLocaleString()}`;
                 } else {
                     throw new Error('Unexpected data structure received from API');
