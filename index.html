@@ -191,19 +191,20 @@
                 // Check if the data has the expected structure
                 if (data && data.properties && data.properties.parameter && data.properties.parameter[parameters]) {
                     const dateKey = Object.keys(data.properties.parameter[parameters])[0];
-                    const radiationValue = data.properties.parameter[parameters][dateKey];
+                    let radiationValue = parseFloat(data.properties.parameter[parameters][dateKey]);
                     console.log('Raw radiation value:', radiationValue);
                     
-                    if (radiationValue < 0) {
-                        console.log('Negative radiation value detected. This might indicate nighttime or an error in the data.');
-                        document.getElementById('radiation-value').textContent = '0.000';
+                    if (isNaN(radiationValue) || radiationValue < 0) {
+                        console.log('Invalid radiation value detected. This might indicate an error in the data.');
+                        document.getElementById('radiation-value').textContent = 'N/A';
+                        document.getElementById('radiation-unit').textContent = '';
                     } else {
                         const convertedValue = (radiationValue / 1000).toFixed(3);
                         document.getElementById('radiation-value').textContent = convertedValue;
+                        document.getElementById('radiation-unit').textContent = 'kW/m²';
                     }
                     
                     // Add units and timestamp
-                    document.getElementById('radiation-unit').textContent = 'kW/m²';
                     document.getElementById('radiation-timestamp').textContent = `Data Fetched: ${new Date().toLocaleString()}`;
                 } else {
                     throw new Error('Unexpected data structure received from API');
