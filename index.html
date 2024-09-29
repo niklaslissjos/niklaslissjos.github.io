@@ -84,10 +84,11 @@
         .copyright {
             position: fixed;
             top: 50%;
-            right: 0;  /* Changed from negative value to ensure visibility */
-            transform: translateY(-50%);  /* Removed rotation for now */
-            font-size: 12px;  /* Reduced font size */
-            color: #808080;  /* Changed to gray */
+            right: 0;
+            transform: rotate(-90deg) translateY(-50%);
+            transform-origin: right center;
+            font-size: 12px;
+            color: #808080;
             padding: 10px;
             white-space: nowrap;
             z-index: 9999;
