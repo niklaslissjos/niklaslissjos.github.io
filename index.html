@@ -153,28 +153,27 @@
         // Call the function when the page loads
         updateSolarRadiation();
 
-        // NASA POWER API call and update
         async function updateSolarRadiation() {
             const lat = 32.7157; // San Diego latitude
             const lon = -117.1611; // San Diego longitude
             
-            // Calculate date range for the last 7 days
-            const end = new Date();
-            const start = new Date(end);
-            start.setDate(start.getDate() - 7);
+            // Get yesterday's date
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
             
             const formatDate = (date) => {
-                return date.toISOString().split('T')[0].replace(/-/g, '');
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}${month}${day}`;
             };
             
-            const startDate = formatDate(start);
-            const endDate = formatDate(end);
+            const date = formatDate(yesterday);
             
-            console.log('Start date:', startDate);
-            console.log('End date:', endDate);
+            console.log('Date being used for API request:', date);
 
             const parameters = 'ALLSKY_SFC_SW_DWN'; // All Sky Surface Shortwave Downward Irradiance
-            const apiUrl = `https://power.larc.nasa.gov/api/temporal/hourly/point?parameters=${parameters}&community=RE&longitude=${lon}&latitude=${lat}&format=JSON&start=${startDate}&end=${endDate}`;
+            const apiUrl = `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${parameters}&community=RE&longitude=${lon}&latitude=${lat}&start=${date}&end=${date}&format=JSON`;
 
             try {
                 console.log('Fetching data from:', apiUrl);
@@ -182,8 +181,6 @@
                 console.log('Response status:', response.status);
                 
                 if (!response.ok) {
-                    const errorText = await response.text();
-                    console.error('Error response body:', errorText);
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
@@ -191,43 +188,31 @@
                 console.log('Received data:', JSON.stringify(data, null, 2));
                 
                 if (data && data.properties && data.properties.parameter && data.properties.parameter[parameters]) {
-                    const dates = Object.keys(data.properties.parameter[parameters]);
-                    const validValues = dates.flatMap(date => 
-                        Object.values(data.properties.parameter[parameters][date])
-                            .filter(value => value !== -999)
-                    );
+                    const radiationValue = data.properties.parameter[parameters][date];
+                    console.log('Raw radiation value:', radiationValue);
                     
-                    if (validValues.length > 0) {
-                        const averageValue = validValues.reduce((sum, value) => sum + value, 0) / validValues.length;
-                        console.log('Average radiation value:', averageValue);
-                        
-                        // Convert to kW/m²
-                        const convertedValue = (averageValue / 1000).toFixed(3);
+                    if (radiationValue !== -999) {
+                        // Convert kWh/m^2/day to kW/m²
+                        const convertedValue = (radiationValue / 24).toFixed(3);
                         console.log('Converted radiation value:', convertedValue);
                         document.getElementById('radiation-value').textContent = convertedValue;
                         document.getElementById('radiation-unit').textContent = 'kW/m²';
-                        
-                        const mostRecentDate = new Date(Math.max(...dates.map(date => new Date(date.slice(0, 4) + '-' + date.slice(4, 6) + '-' + date.slice(6, 8)))));
-                        document.getElementById('radiation-timestamp').textContent = `Data Date: ${mostRecentDate.toLocaleDateString()}`;
+                        document.getElementById('radiation-timestamp').textContent = `Data Date: ${yesterday.toLocaleDateString()}`;
                     } else {
-                        console.log('No valid data available for the last 7 days.');
+                        console.log('No valid data available for yesterday.');
                         document.getElementById('radiation-value').textContent = 'N/A';
                         document.getElementById('radiation-unit').textContent = '';
-                        document.getElementById('radiation-timestamp').textContent = 'No recent data available';
+                        document.getElementById('radiation-timestamp').textContent = 'No data available for yesterday';
                     }
                 } else {
                     throw new Error('Unexpected data structure received from API');
                 }
             } catch (error) {
                 console.error('Error fetching solar radiation data:', error);
-                console.error('Error details:', error.message);
                 document.getElementById('radiation-value').textContent = 'unavailable';
                 document.getElementById('radiation-unit').textContent = '';
-                document.getElementById('radiation-timestamp').textContent = '';
+                document.getElementById('radiation-timestamp').textContent = 'Error fetching data';
             }
-            
-            // Update every hour (3600000 ms)
-            setTimeout(updateSolarRadiation, 3600000);
         }
         
         // Set the year for the copyright
