@@ -54,6 +54,7 @@
     <div id="content">
         <h3>Niklas Lissjos</h3>
         this site is not broken, it's just glitchy by design
+        <p>Solar radiation in Stockholm: <span id="radiation-value">Loading...</span> kW/m²</p>
     </div>
     <script>
         function createGlitch(intense = false) {
@@ -78,34 +79,31 @@
 
         simulateBadConnection();
 
+        // Call the function when the page loads
+        updateSolarRadiation();
 
         // NASA POWER API call and update
         async function updateSolarRadiation() {
-                    const lat = 59.3293; // Stockholm latitude
-                    const lon = 18.0686; // Stockholm longitude
-                    const start = new Date().toISOString().split('T')[0]; // Today's date
-                    const end = start; // Same as start for single day
-                    const parameters = 'ALLSKY_SFC_SW_DWN'; // All Sky Surface Shortwave Downward Irradiance
-                    const apiUrl = `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${parameters}&community=RE&longitude=${lon}&latitude=${lat}&start=${start}&end=${end}&format=JSON`;
+            const lat = 59.3293; // Stockholm latitude
+            const lon = 18.0686; // Stockholm longitude
+            const start = new Date().toISOString().split('T')[0]; // Today's date
+            const end = start; // Same as start for single day
+            const parameters = 'ALLSKY_SFC_SW_DWN'; // All Sky Surface Shortwave Downward Irradiance
+            const apiUrl = `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${parameters}&community=RE&longitude=${lon}&latitude=${lat}&start=${start}&end=${end}&format=JSON`;
 
-                    try {
-                        const response = await fetch(apiUrl);
-                        const data = await response.json();
-                        const radiationValue = data.properties.parameter[parameters][start];
-                        document.getElementById('radiation-value').textContent = (radiationValue / 1000).toFixed(3); // Convert W/m² to kW/m²
-                    } catch (error) {
-                        console.error('Error fetching solar radiation data:', error);
-                        document.getElementById('radiation-value').textContent = 'unavailable';
-                    }
-                    
-                    // Update every hour (3600000 ms)
-                    setTimeout(updateSolarRadiation, 3600000);
-                }
-
-
-
-
-
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                const radiationValue = data.properties.parameter[parameters][start];
+                document.getElementById('radiation-value').textContent = (radiationValue / 1000).toFixed(3); // Convert W/m² to kW/m²
+            } catch (error) {
+                console.error('Error fetching solar radiation data:', error);
+                document.getElementById('radiation-value').textContent = 'unavailable';
+            }
+            
+            // Update every hour (3600000 ms)
+            setTimeout(updateSolarRadiation, 3600000);
+        }
     </script>
 </body>
 </html>
