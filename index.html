@@ -158,19 +158,8 @@
             const lat = 32.7157; // San Diego latitude
             const lon = -117.1611; // San Diego longitude
             
-            // Use today's date in YYYYMMDD format
-            const today = new Date();
-            const formatDate = (date) => {
-                const year = date.getFullYear();
-                const month = String(date.getMonth() + 1).padStart(2, '0');
-                const day = String(date.getDate()).padStart(2, '0');
-                return `${year}${month}${day}`;
-            };
-            const start = formatDate(today);
-            const end = start; // Same as start for single day
-            
             const parameters = 'ALLSKY_SFC_SW_DWN'; // All Sky Surface Shortwave Downward Irradiance
-            const apiUrl = `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${parameters}&community=RE&longitude=${lon}&latitude=${lat}&start=${start}&end=${end}&format=JSON`;
+            const apiUrl = `https://power.larc.nasa.gov/api/temporal/hourly/point?parameters=${parameters}&community=RE&longitude=${lon}&latitude=${lat}&format=JSON&start=2023-01-01&end=2023-12-31`;
 
             try {
                 console.log('Fetching data from:', apiUrl);
@@ -185,23 +174,29 @@
                 console.log('Received data:', JSON.stringify(data, null, 2));
                 
                 if (data && data.properties && data.properties.parameter && data.properties.parameter[parameters]) {
-                    const dateKey = Object.keys(data.properties.parameter[parameters])[0];
-                    let radiationValue = parseFloat(data.properties.parameter[parameters][dateKey]);
-                    console.log('Raw radiation value:', radiationValue);
+                    const dates = Object.keys(data.properties.parameter[parameters]);
+                    const mostRecentDate = dates[dates.length - 1];
+                    const hourlyValues = data.properties.parameter[parameters][mostRecentDate];
                     
-                    if (isNaN(radiationValue) || radiationValue === -999) {
-                        console.log('No valid data available for this date.');
+                    // Calculate the average for the day
+                    const validValues = Object.values(hourlyValues).filter(value => value !== -999);
+                    const averageValue = validValues.reduce((sum, value) => sum + value, 0) / validValues.length;
+                    
+                    console.log('Average radiation value:', averageValue);
+                    
+                    if (isNaN(averageValue)) {
+                        console.log('No valid data available for the most recent date.');
                         document.getElementById('radiation-value').textContent = 'N/A';
                         document.getElementById('radiation-unit').textContent = '';
                     } else {
                         // Convert to kW/m²
-                        const convertedValue = (radiationValue / 24).toFixed(3); // Divide by 24 to convert from kW-hr/m^2/day to kW/m²
+                        const convertedValue = averageValue.toFixed(3);
                         console.log('Converted radiation value:', convertedValue);
                         document.getElementById('radiation-value').textContent = convertedValue;
                         document.getElementById('radiation-unit').textContent = 'kW/m²';
                     }
                     
-                    document.getElementById('radiation-timestamp').textContent = `Data Date: ${new Date(dateKey).toLocaleDateString()}`;
+                    document.getElementById('radiation-timestamp').textContent = `Data Date: ${new Date(mostRecentDate).toLocaleDateString()}`;
                 } else {
                     throw new Error('Unexpected data structure received from API');
                 }
