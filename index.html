@@ -52,7 +52,7 @@
 </head>
 <body>
     <div id="content">
-        <h4>Published byNiklas Lissjos</h4>
+        <h4>Published by Niklas Lissjos</h4>
         This site is not broken, it's glitchy by design.
         <p>Solar radiation in Stockholm: <span id="radiation-value">Loading...</span> kW/m²</p>
     </div>
@@ -90,7 +90,7 @@
             // Use yesterday's date
             const yesterday = new Date();
             yesterday.setDate(yesterday.getDate() - 1);
-            const start = yesterday.toISOString().split('T')[0];
+            const start = Math.floor(yesterday.getTime() / 86400000); // Convert to days since 1970-01-01
             const end = start; // Same as start for single day
             
             const parameters = 'ALLSKY_SFC_SW_DWN'; // All Sky Surface Shortwave Downward Irradiance
@@ -113,7 +113,8 @@
                 
                 // Check if the data has the expected structure
                 if (data && data.properties && data.properties.parameter && data.properties.parameter[parameters]) {
-                    const radiationValue = data.properties.parameter[parameters][start];
+                    const dateKey = Object.keys(data.properties.parameter[parameters])[0];
+                    const radiationValue = data.properties.parameter[parameters][dateKey];
                     document.getElementById('radiation-value').textContent = (radiationValue / 1000).toFixed(3); // Convert W/m² to kW/m²
                 } else {
                     throw new Error('Unexpected data structure received from API');
