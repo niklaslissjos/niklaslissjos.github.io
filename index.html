@@ -78,20 +78,25 @@
     </style>
 </head>
 <body>
+
+
+
+    <div class="solar-info">
+        <p id="radiation-timestamp"></p>
+        <p>Solar radiation in Stockholm: 
+            <span id="radiation-value">Loading...</span> 
+            <span id="radiation-unit"></span>
+        </p>
+        <small>Data provided by NASA POWER Project. This value represents the daily average of all sky surface shortwave downward irradiance for the previous day in Stockholm, Sweden. It's updated hourly and helps in understanding the solar energy potential in the area.</small>
+    </div>
+
+
     <div id="content">
         <h4>Built by Niklas Lissjos</h4>
         This site is not broken, it's glitchy by design.
     </div>
 
-    <div class="solar-info">
-        <h3>Solar Radiation Data</h3>
-        <p>Solar radiation in Stockholm: 
-            <span id="radiation-value">Loading...</span> 
-            <span id="radiation-unit"></span>
-        </p>
-        <p id="radiation-timestamp"></p>
-        <small>Data provided by NASA POWER Project. This value represents the daily average of all sky surface shortwave downward irradiance for the previous day in Stockholm, Sweden. It's updated hourly and helps in understanding the solar energy potential in the area.</small>
-    </div>
+
 
     <script>
         function createGlitch(intense = false) {
