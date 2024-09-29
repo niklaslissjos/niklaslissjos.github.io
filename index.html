@@ -186,7 +186,7 @@
                 }
                 
                 const data = await response.json();
-                console.log('Received data:', data);
+                console.log('Received data:', JSON.stringify(data, null, 2));
                 
                 // Check if the data has the expected structure
                 if (data && data.properties && data.properties.parameter && data.properties.parameter[parameters]) {
@@ -202,6 +202,7 @@
                         // Convert negative values to positive
                         radiationValue = Math.abs(radiationValue);
                         const convertedValue = (radiationValue / 1000).toFixed(3);
+                        console.log('Converted radiation value:', convertedValue);
                         document.getElementById('radiation-value').textContent = convertedValue;
                         document.getElementById('radiation-unit').textContent = 'kW/m²';
                     }
