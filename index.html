@@ -54,7 +54,12 @@
     <div id="content">
         <h4>Published by Niklas Lissjos</h4>
         This site is not broken, it's glitchy by design.
-        <p>Solar radiation in Stockholm: <span id="radiation-value">Loading...</span> kW/m²</p>
+        <p>Solar radiation in Stockholm: 
+            <span id="radiation-value">Loading...</span> 
+            <span id="radiation-unit"></span>
+            <br>
+            <small id="radiation-timestamp"></small>
+        </p>
     </div>
     <script>
         function createGlitch(intense = false) {
@@ -121,7 +126,19 @@
                 if (data && data.properties && data.properties.parameter && data.properties.parameter[parameters]) {
                     const dateKey = Object.keys(data.properties.parameter[parameters])[0];
                     const radiationValue = data.properties.parameter[parameters][dateKey];
-                    document.getElementById('radiation-value').textContent = (radiationValue / 1000).toFixed(3); // Convert W/m² to kW/m²
+                    console.log('Raw radiation value:', radiationValue);
+                    
+                    if (radiationValue < 0) {
+                        console.log('Negative radiation value detected. This might indicate nighttime or an error in the data.');
+                        document.getElementById('radiation-value').textContent = '0.000';
+                    } else {
+                        const convertedValue = (radiationValue / 1000).toFixed(3);
+                        document.getElementById('radiation-value').textContent = convertedValue;
+                    }
+                    
+                    // Add units and timestamp
+                    document.getElementById('radiation-unit').textContent = 'kW/m²';
+                    document.getElementById('radiation-timestamp').textContent = `Last updated: ${new Date().toLocaleString()}`;
                 } else {
                     throw new Error('Unexpected data structure received from API');
                 }
@@ -129,6 +146,8 @@
                 console.error('Error fetching solar radiation data:', error);
                 console.error('Error details:', error.message);
                 document.getElementById('radiation-value').textContent = 'unavailable';
+                document.getElementById('radiation-unit').textContent = '';
+                document.getElementById('radiation-timestamp').textContent = '';
             }
             
             // Update every hour (3600000 ms)
