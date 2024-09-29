@@ -30,6 +30,11 @@
         }
         a {
             color: #ff6a00;
+            text-decoration: none;  /* This removes the underline */
+        }
+        /* If you want to add an underline on hover, you can use this: */
+        a:hover {
+            text-decoration: underline;
         }
         .glitch {
             position: absolute;
@@ -59,7 +64,7 @@
             padding: 20px;
             border-radius: 10px;
             max-width: 80%;
-            width: 400px;
+            width: 500px;
         }
 
         .solar-info h3 {
@@ -80,12 +85,10 @@
 <body>
 
     <div class="solar-info">
-       
         <p>Solar radiation in Stockholm: 
             <span id="radiation-value">Loading...</span> 
             <span id="radiation-unit"></span>
         </p>
-        <br>
         <p id="radiation-timestamp"></p>
         
 
@@ -96,11 +99,9 @@
 
 
         <p>
-            
             <a href="thesis.html" style="color: #ff6a00;">
             <small>Off-grid Photovoltaics system design and simulation:
             A case study using irradiation data</small></a>
-            
         </p>
     </div>
 
