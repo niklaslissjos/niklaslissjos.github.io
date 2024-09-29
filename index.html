@@ -84,16 +84,16 @@
         .copyright {
             position: fixed;
             top: 50%;
-            right: 0;  /* Changed from negative value */
+            right: 0;
             transform: rotate(90deg) translateY(-50%);
             transform-origin: right center;
-            font-size: 16px;  /* Increased for visibility */
-            color: white;  /* Changed for contrast */
-            background-color: red;  /* Changed for visibility */
-            padding: 10px;  /* Increased padding */
+            font-size: 16px;
+            color: white;
+            background-color: red;
+            padding: 10px;
             border-radius: 5px;
             white-space: nowrap;
-            z-index: 9999;  /* Ensure it's on top */
+            z-index: 9999;
         }
     </style>
 </head>
@@ -126,7 +126,7 @@
         <b>Built by Niklas Lissjos</b></small>
     </div>
 
-    <div class="copyright" style="background-color: red; color: white; font-size: 16px;">
+    <div class="copyright">
         Copyright Test &copy; <span id="year">2024</span> Niklas Lissjos
     </div>
 
@@ -228,7 +228,17 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Page loaded');
-            console.log('Copyright element:', document.querySelector('.copyright'));
+            const copyrightElement = document.querySelector('.copyright');
+            console.log('Copyright element:', copyrightElement);
+            if (copyrightElement) {
+                const rect = copyrightElement.getBoundingClientRect();
+                console.log('Copyright position:', {
+                    top: rect.top,
+                    right: rect.right,
+                    bottom: rect.bottom,
+                    left: rect.left
+                });
+            }
         });
     </script>
 </body>
