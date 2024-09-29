@@ -77,6 +77,35 @@
         }
 
         simulateBadConnection();
+
+
+        // NASA POWER API call and update
+        async function updateSolarRadiation() {
+                    const lat = 59.3293; // Stockholm latitude
+                    const lon = 18.0686; // Stockholm longitude
+                    const start = new Date().toISOString().split('T')[0]; // Today's date
+                    const end = start; // Same as start for single day
+                    const parameters = 'ALLSKY_SFC_SW_DWN'; // All Sky Surface Shortwave Downward Irradiance
+                    const apiUrl = `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${parameters}&community=RE&longitude=${lon}&latitude=${lat}&start=${start}&end=${end}&format=JSON`;
+
+                    try {
+                        const response = await fetch(apiUrl);
+                        const data = await response.json();
+                        const radiationValue = data.properties.parameter[parameters][start];
+                        document.getElementById('radiation-value').textContent = (radiationValue / 1000).toFixed(3); // Convert W/m² to kW/m²
+                    } catch (error) {
+                        console.error('Error fetching solar radiation data:', error);
+                        document.getElementById('radiation-value').textContent = 'unavailable';
+                    }
+                    
+                    // Update every hour (3600000 ms)
+                    setTimeout(updateSolarRadiation, 3600000);
+                }
+
+
+
+
+
     </script>
 </body>
 </html>
