@@ -157,9 +157,10 @@
             const lat = 32.7157; // San Diego latitude
             const lon = -117.1611; // San Diego longitude
             
-            // Get yesterday's date
-            const yesterday = new Date();
-            yesterday.setDate(yesterday.getDate() - 1);
+            // Get date from one year ago
+            const oneYearAgo = new Date();
+            oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+            oneYearAgo.setDate(oneYearAgo.getDate() - 1); // Also go back one day to ensure we're not in the future
             
             const formatDate = (date) => {
                 const year = date.getFullYear();
@@ -168,7 +169,7 @@
                 return `${year}${month}${day}`;
             };
             
-            const date = formatDate(yesterday);
+            const date = formatDate(oneYearAgo);
             
             console.log('Date being used for API request:', date);
 
@@ -197,12 +198,12 @@
                         console.log('Converted radiation value:', convertedValue);
                         document.getElementById('radiation-value').textContent = convertedValue;
                         document.getElementById('radiation-unit').textContent = 'kW/m²';
-                        document.getElementById('radiation-timestamp').textContent = `Data Date: ${yesterday.toLocaleDateString()}`;
+                        document.getElementById('radiation-timestamp').textContent = `Data Date: ${oneYearAgo.toLocaleDateString()}`;
                     } else {
-                        console.log('No valid data available for yesterday.');
+                        console.log('No valid data available for the requested date.');
                         document.getElementById('radiation-value').textContent = 'N/A';
                         document.getElementById('radiation-unit').textContent = '';
-                        document.getElementById('radiation-timestamp').textContent = 'No data available for yesterday';
+                        document.getElementById('radiation-timestamp').textContent = 'No data available for the requested date';
                     }
                 } else {
                     throw new Error('Unexpected data structure received from API');
