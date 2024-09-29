@@ -87,13 +87,14 @@
             <span id="radiation-unit"></span>
         </p>
         <small>/ Data provided by NASA POWER Project. This value represents the daily average of all sky surface shortwave downward irradiance for the previous day in Stockholm, Sweden. It's updated hourly and helps in understanding the solar energy potential in the area.</small>
-    </div>
-
-    <br><br>
-    <p><a href="thesis.html" style="color: #ff6a00;">
-        Off-grid Photovoltaics system design and simulation:
-        <br>A case study using irradiation data
+    
+    
+        <br><br>
+            <p><a href="thesis.html" style="color: #ff6a00;">
+            Off-grid Photovoltaics system design and simulation:
+            <br>A case study using irradiation data
         </a></p>
+    </div>
 
 
     <div id="content">
@@ -178,7 +179,7 @@
                     
                     // Add units and timestamp
                     document.getElementById('radiation-unit').textContent = 'kW/m²';
-                    document.getElementById('radiation-timestamp').textContent = `Data retrieved: ${new Date().toLocaleString()}`;
+                    document.getElementById('radiation-timestamp').textContent = `Irradiation Data Retrieved: ${new Date().toLocaleString()}`;
                 } else {
                     throw new Error('Unexpected data structure received from API');
                 }
