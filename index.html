@@ -192,28 +192,29 @@
                 
                 if (data && data.properties && data.properties.parameter && data.properties.parameter[parameters]) {
                     const dates = Object.keys(data.properties.parameter[parameters]);
-                    const mostRecentDate = dates[dates.length - 1];
-                    const hourlyValues = data.properties.parameter[parameters][mostRecentDate];
+                    const validValues = dates.flatMap(date => 
+                        Object.values(data.properties.parameter[parameters][date])
+                            .filter(value => value !== -999)
+                    );
                     
-                    // Calculate the average for the day
-                    const validValues = Object.values(hourlyValues).filter(value => value !== -999);
-                    const averageValue = validValues.reduce((sum, value) => sum + value, 0) / validValues.length;
-                    
-                    console.log('Average radiation value:', averageValue);
-                    
-                    if (isNaN(averageValue)) {
-                        console.log('No valid data available for the most recent date.');
-                        document.getElementById('radiation-value').textContent = 'N/A';
-                        document.getElementById('radiation-unit').textContent = '';
-                    } else {
+                    if (validValues.length > 0) {
+                        const averageValue = validValues.reduce((sum, value) => sum + value, 0) / validValues.length;
+                        console.log('Average radiation value:', averageValue);
+                        
                         // Convert to kW/m²
                         const convertedValue = (averageValue / 1000).toFixed(3);
                         console.log('Converted radiation value:', convertedValue);
                         document.getElementById('radiation-value').textContent = convertedValue;
                         document.getElementById('radiation-unit').textContent = 'kW/m²';
+                        
+                        const mostRecentDate = new Date(Math.max(...dates.map(date => new Date(date.slice(0, 4) + '-' + date.slice(4, 6) + '-' + date.slice(6, 8)))));
+                        document.getElementById('radiation-timestamp').textContent = `Data Date: ${mostRecentDate.toLocaleDateString()}`;
+                    } else {
+                        console.log('No valid data available for the last 7 days.');
+                        document.getElementById('radiation-value').textContent = 'N/A';
+                        document.getElementById('radiation-unit').textContent = '';
+                        document.getElementById('radiation-timestamp').textContent = 'No recent data available';
                     }
-                    
-                    document.getElementById('radiation-timestamp').textContent = `Data Date: ${new Date(mostRecentDate).toLocaleDateString()}`;
                 } else {
                     throw new Error('Unexpected data structure received from API');
                 }
