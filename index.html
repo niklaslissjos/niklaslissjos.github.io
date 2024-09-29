@@ -225,6 +225,11 @@
         
         // Set the year for the copyright
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded');
+            console.log('Copyright element:', document.querySelector('.copyright'));
+        });
     </script>
 </body>
 </html>
