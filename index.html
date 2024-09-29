@@ -169,6 +169,13 @@
                 return `${year}${month}${day}`;
             };
             
+            const parseDate = (dateString) => {
+                const year = parseInt(dateString.slice(0, 4));
+                const month = parseInt(dateString.slice(4, 6)) - 1; // JS months are 0-indexed
+                const day = parseInt(dateString.slice(6, 8));
+                return new Date(year, month, day);
+            };
+            
             const startDate = formatDate(start);
             const endDate = formatDate(end);
             
@@ -191,15 +198,18 @@
                 
                 if (data && data.properties && data.properties.parameter && data.properties.parameter[parameters]) {
                     const radiationData = data.properties.parameter[parameters];
-                    const validData = Object.entries(radiationData).filter(([date, value]) => value !== -999);
+                    const validData = Object.entries(radiationData)
+                        .filter(([date, value]) => value !== -999)
+                        .map(([date, value]) => [parseDate(date), value]);
                     
                     if (validData.length > 0) {
-                        const [mostRecentDate, radiationValue] = validData[validData.length - 1];
+                        validData.sort((a, b) => b[0] - a[0]); // Sort by date, most recent first
+                        const [mostRecentDate, radiationValue] = validData[0];
                         const convertedValue = (radiationValue / 24).toFixed(3);
-                        console.log('Most recent valid data:', mostRecentDate, 'Value:', convertedValue);
+                        console.log('Most recent valid data:', mostRecentDate.toISOString(), 'Value:', convertedValue);
                         document.getElementById('radiation-value').textContent = convertedValue;
                         document.getElementById('radiation-unit').textContent = 'kW/m²';
-                        document.getElementById('radiation-timestamp').textContent = `Data Date: ${new Date(mostRecentDate).toLocaleDateString()}`;
+                        document.getElementById('radiation-timestamp').textContent = `Data Date: ${mostRecentDate.toLocaleDateString()}`;
                     } else {
                         console.log('No valid data available for the last 7 days.');
                         document.getElementById('radiation-value').textContent = 'N/A';
