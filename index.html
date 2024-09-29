@@ -158,8 +158,20 @@
             const lat = 32.7157; // San Diego latitude
             const lon = -117.1611; // San Diego longitude
             
+            // Calculate date range for the last 7 days
+            const end = new Date();
+            const start = new Date(end);
+            start.setDate(start.getDate() - 7);
+            
+            const formatDate = (date) => {
+                return date.toISOString().split('T')[0];
+            };
+            
+            const startDate = formatDate(start);
+            const endDate = formatDate(end);
+            
             const parameters = 'ALLSKY_SFC_SW_DWN'; // All Sky Surface Shortwave Downward Irradiance
-            const apiUrl = `https://power.larc.nasa.gov/api/temporal/hourly/point?parameters=${parameters}&community=RE&longitude=${lon}&latitude=${lat}&format=JSON&start=2023-01-01&end=2023-12-31`;
+            const apiUrl = `https://power.larc.nasa.gov/api/temporal/hourly/point?parameters=${parameters}&community=RE&longitude=${lon}&latitude=${lat}&format=JSON&start=${startDate}&end=${endDate}`;
 
             try {
                 console.log('Fetching data from:', apiUrl);
@@ -167,6 +179,8 @@
                 console.log('Response status:', response.status);
                 
                 if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Error response body:', errorText);
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
@@ -190,7 +204,7 @@
                         document.getElementById('radiation-unit').textContent = '';
                     } else {
                         // Convert to kW/m²
-                        const convertedValue = averageValue.toFixed(3);
+                        const convertedValue = (averageValue / 1000).toFixed(3);
                         console.log('Converted radiation value:', convertedValue);
                         document.getElementById('radiation-value').textContent = convertedValue;
                         document.getElementById('radiation-unit').textContent = 'kW/m²';
