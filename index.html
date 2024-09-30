@@ -105,7 +105,7 @@
         <p id="radiation-timestamp"></p>
         
 
-        <small>/ Data provided by NASA POWER Project. This value represents the average hourly solar radiation for the most recent available day in San Diego, California. It's derived from the daily total of all sky surface shortwave downward irradiance, converted from kWh/m²/day to kW/m². The data is updated daily and helps in understanding the solar energy potential in the area.</small>
+        <small>/ Data provided by NASA POWER Project. This value represents the average hourly solar radiation for the most recent available day in San Diego, California. It's derived from the daily total of all sky surface shortwave downward irradiance, converted from kWh/m²/day to W/m². The data is updated daily and helps in understanding the solar energy potential in the area.</small>
     
     
         <br><br>
@@ -205,10 +205,11 @@
                     if (validData.length > 0) {
                         validData.sort((a, b) => b[0] - a[0]); // Sort by date, most recent first
                         const [mostRecentDate, radiationValue] = validData[0];
-                        const convertedValue = (radiationValue / 24).toFixed(3);
+                        // Convert kWh/m²/day to W/m² (multiply by 1000 to convert kW to W)
+                        const convertedValue = ((radiationValue / 24) * 1000).toFixed(0);
                         console.log('Most recent valid data:', mostRecentDate.toISOString(), 'Value:', convertedValue);
                         document.getElementById('radiation-value').textContent = convertedValue;
-                        document.getElementById('radiation-unit').textContent = 'kW/m²';
+                        document.getElementById('radiation-unit').textContent = 'W/m²';
                         document.getElementById('radiation-timestamp').textContent = `Data Date: ${mostRecentDate.toLocaleDateString()}`;
                     } else {
                         console.log('No valid data available for the last 7 days.');
