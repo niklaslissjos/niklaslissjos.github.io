@@ -103,13 +103,14 @@
             <span id="radiation-unit"></span>
         </p>
         <p id="radiation-timestamp"></p>
-        
+        <p>Estimated Peak Solar Radiation: 
+            <span id="peak-radiation-value">Loading...</span> 
+            <span id="peak-radiation-unit"></span>
+        </p>
 
-        <small>/ Data provided by NASA POWER Project. This value represents the average solar radiation over a 24-hour period for the most recent available day in San Diego, California. It's derived from the daily total of all sky surface shortwave downward irradiance, converted from kWh/m²/day to W/m². Note that actual solar radiation varies significantly throughout the day, with peak values typically occurring at midday and zero values at night. The data is updated daily and helps in understanding the overall solar energy potential in the area.</small>
-    
+        <small>/ Data provided by NASA POWER Project. The first value represents the average solar radiation over a 24-hour period for the most recent available day in San Diego, California. It's derived from the daily total of all sky surface shortwave downward irradiance, converted from kWh/m²/day to W/m². The estimated peak value is calculated as approximately 4.5 times the daily average, representing the maximum solar radiation typically occurring at midday. Note that actual solar radiation varies significantly throughout the day, with zero values at night. This data helps in understanding the overall solar energy potential in the area.</small>
     
         <br><br>
-
 
         <p>
             <a href="thesis.html" style="color: #ff6a00;">
@@ -206,11 +207,14 @@
                         validData.sort((a, b) => b[0] - a[0]); // Sort by date, most recent first
                         const [mostRecentDate, radiationValue] = validData[0];
                         // Convert kWh/m²/day to W/m² (multiply by 1000 to convert kW to W)
-                        const convertedValue = ((radiationValue / 24) * 1000).toFixed(0);
-                        console.log('Most recent valid data:', mostRecentDate.toISOString(), 'Value:', convertedValue);
-                        document.getElementById('radiation-value').textContent = convertedValue;
+                        const averageValue = ((radiationValue / 24) * 1000).toFixed(0);
+                        const estimatedPeakValue = (averageValue * 4.5).toFixed(0); // Estimate peak as 4.5 times average
+                        console.log('Most recent valid data:', mostRecentDate.toISOString(), 'Average Value:', averageValue, 'Estimated Peak:', estimatedPeakValue);
+                        document.getElementById('radiation-value').textContent = averageValue;
                         document.getElementById('radiation-unit').textContent = 'W/m²';
                         document.getElementById('radiation-timestamp').textContent = `Data Date: ${mostRecentDate.toLocaleDateString()}`;
+                        document.getElementById('peak-radiation-value').textContent = estimatedPeakValue;
+                        document.getElementById('peak-radiation-unit').textContent = 'W/m²';
                     } else {
                         console.log('No valid data available for the last 7 days.');
                         document.getElementById('radiation-value').textContent = 'N/A';
