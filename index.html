@@ -83,7 +83,7 @@
 
         .copyright {
             position: fixed;
-            top: 15%;
+            top: 11%;
             right: 0;
             transform: rotate(-90deg) translateY(-50%);
             transform-origin: right center;
@@ -124,7 +124,7 @@
     </div>
 
     <div class="copyright">
-        Copyright &copy; <span id="year"></span> / Built by Niklas Lissjos, using Cursor with Claude 3.5 Sonnet
+        Copyright &copy; <span id="year"></span> / Built by Niklas Lissjos, using Cursor and Claude 3.5 Sonnet
     </div>
 
     <script>
@@ -210,7 +210,7 @@
                         console.log('Most recent valid data:', mostRecentDate.toISOString(), 'Value:', convertedValue);
                         document.getElementById('radiation-value').textContent = convertedValue;
                         document.getElementById('radiation-unit').textContent = 'W/m²';
-                        document.getElementById('radiation-timestamp').textContent = `Fetch Date: ${mostRecentDate.toLocaleDateString()}`;
+                        document.getElementById('radiation-timestamp').textContent = `Data Date: ${mostRecentDate.toLocaleDateString()}`;
                     } else {
                         console.log('No valid data available for the last 7 days.');
                         document.getElementById('radiation-value').textContent = 'N/A';
