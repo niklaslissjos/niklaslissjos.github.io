@@ -799,8 +799,7 @@
       <p>Solar noon: At a specific location, the time where the sun
         reaches the highest position in the sky, meaning the sun crosses the
         meridian the location. Solar noon occurs at different hours at different
-        locations since the earth rotational axis is tilted 23.5<span class="math inline">$°$</span>, in relation
-        to a perpendicular
+        locations since the earth rotational axis is tilted 23.5<span class="math inline">$°$</span>, in relation to a perpendicular
         line with the sun <span class="citation" data-cites="messenger"></span>.</p>
     </li>
     <li>
@@ -1778,8 +1777,7 @@
     information, is translated into an 24 hour continous curve. In addition
     to the solar noon time (12:34), found in section <a href="#maximizing" data-reference-type="ref"
       data-reference="maximizing">2.2.4</a>, the
-    below information is extracted online, for Stavanger in December 21th
-    2019 <span class="citation" data-cites="timeanddate"></span>.</p>
+    below information is extracted online, for Stavanger in December 21th 2019 <span class="citation" data-cites="timeanddate"></span>.</p>
   <ul>
     <li>
       <p>Sunrise at 09:29, at 138<span class="math inline">$°$</span> SE</p>
@@ -3067,6 +3065,29 @@
       </tr>
     </tbody>
   </table>
+  <script>
+    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme) {
+      document.body.classList.add(currentTheme);
+      if (currentTheme === 'dark-theme') {
+        toggleSwitch.checked = true;
+      }
+    }
+
+    function switchTheme(e) {
+      if (e.target.checked) {
+        document.body.classList.add('dark-theme');
+        localStorage.setItem('theme', 'dark-theme');
+      } else {
+        document.body.classList.remove('dark-theme');
+        localStorage.setItem('theme', 'light-theme');
+      }    
+    }
+
+    toggleSwitch.addEventListener('change', switchTheme, false);
+  </script>
 </body>
 
 </html>
