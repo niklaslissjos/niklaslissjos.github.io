@@ -240,26 +240,33 @@ ul.task-list li input[type="checkbox"] {
 }
 
 /* Dark theme styles */
+html.dark-theme,
 body.dark-theme {
   background-color: #1a1a1a;
   color: #f0f0f0;
 }
 
+html.dark-theme a,
 body.dark-theme a,
+html.dark-theme a:visited,
 body.dark-theme a:visited {
   color: #f0f0f0;
 }
 
+html.dark-theme blockquote,
 body.dark-theme blockquote {
   border-left-color: #606060;
   color: #b0b0b0;
 }
 
+html.dark-theme hr,
 body.dark-theme hr {
   background-color: #f0f0f0;
 }
 
+html.dark-theme tbody,
 body.dark-theme tbody,
+html.dark-theme th,
 body.dark-theme th {
   border-color: #f0f0f0;
 }
@@ -321,4 +328,21 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.back-link {
+  /* ... existing styles ... */
+  background-color: rgba(245, 86, 0, 0.7);
+  color: #f0f0f0;
+}
+
+html.dark-theme .back-link,
+body.dark-theme .back-link {
+  background-color: rgba(245, 86, 0, 0.9);
+  color: #1a1a1a;
+}
+
+html.dark-theme .back-link:hover,
+body.dark-theme .back-link:hover {
+  background-color: rgba(255, 96, 10, 1);
 }

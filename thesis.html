@@ -805,7 +805,7 @@
     <li>
       <p>Solar altitude angle: The suns angular height in relation to the
         horizontal. 0 degress at sunrise/sunset and at most 90 degrees at solar
-        noon. <span class="citation" data-cites="pveducation"></span></p>
+        noon. <span class="citation" data-cites="pveducation"></span>.</p>
     </li>
     <li>
       <p>Module elevation angle, <span class="math inline"><em>θ</em></span>: The angle of which the PV module
@@ -847,8 +847,7 @@
     tilted axis
     in relation to the sun, the declination angle <span class="math inline"><em>δ</em></span> appears. This angle varies
     between
-    23.45<span class="math inline">$°$</span> in the summer, and
-    -23.45<span class="math inline">$°$</span> in the winter <span class="citation"
+    23.45<span class="math inline">$°$</span> in the summer, and -23.45<span class="math inline">$°$</span> in the winter <span class="citation"
       data-cites="messenger"></span>.</p>
   <figure>
     <img src="declination" id="declinaton" alt="Illustration of the earth's orbit, and the declination angle \delta." />
@@ -1646,7 +1645,7 @@
             <a href="#averagetemp" data-reference-type="ref" data-reference="averagetemp">[averagetemp]</a>). (25<span
               class="math inline">$°$</span> C - 5.04<span class="math inline">$°$</span> C) = 19.96 [<span
               class="math inline">$°$</span>C] drop from nominal 25 [<span class="math inline">$°$</span>C]
-            at 200 [Ah]. <span class="math inline">$°$</span> C <span class="math inline">⋅</span> 1.6 = 31.936
+            at 200 [<span class="math inline">$°$</span>C]. <span class="math inline">$°$</span> C <span class="math inline">⋅</span> 1.6 = 31.936
             [Ah] drop from nominal 200
             [Ah]. <span class="math display">$$\rightarrow \eta_{batt-temp} =
               \frac{200-31.936}{200} \cdot 100[\%] \approx 84[\%], \textnormal{ of
@@ -1670,8 +1669,7 @@
     <li>
       <p>The result from step 1, compensated for the preferred 50 percent
         DOD: <span class="math inline">11.451</span> [kWh] <span class="math inline">⋅</span> <span
-          class="math inline"> ≈ 22.902</span>
-        [kWh] Note: DOD can be up to 80 percent using Li-ion, to help minimizing
+          class="math inline"> ≈ 22.902</span> [kWh] Note: DOD can be up to 80 percent using Li-ion, to help minimizing
         battery bank capacity.</p>
     </li>
     <li>
@@ -1897,8 +1895,7 @@
       data-reference="Pmrp">2.2.3</a>).
     During these <span class="math inline">±</span>15 degrees travel of the
     sun in relation to solar noon, the solar altitude angle will change just
-    slightly. Based on this, the approximation of <span class="math inline"><em>θ</em><sub><em>i</em></sub></span> =
-    5<span class="math inline">$°$</span> has been used as an average in the
+    slightly. Based on this, the approximation of <span class="math inline"><em>θ</em><sub><em>i</em></sub></span> = 5<span class="math inline">$°$</span> has been used as an average in the
     Case 2 equation (<a href="#case2" data-reference-type="ref" data-reference="case2">[case2]</a>). Using <span
       class="math inline"><em>θ</em><sub><em>i</em></sub></span> = 5<span class="math inline">$°$</span> in the
     calculation will add a small
@@ -2593,8 +2590,7 @@
     </li>
   </ul>
   <h2 id="simulation-results">Simulation Results</h2>
-  <p>The first simulation result (figure <a href="#sim1" data-reference-type="ref" data-reference="sim1">4.4</a>)
-    following the
+  <p>The first simulation result (figure <a href="#sim1" data-reference-type="ref" data-reference="sim1">4.4</a>) following the
     steps outlined in section <a href="#systsim" data-reference-type="ref" data-reference="systsim">3.6</a> confirms
     that the PV array sizing is
     sufficient for the battery-bank and energy usage for the case study at
@@ -3070,6 +3066,7 @@
     const currentTheme = localStorage.getItem('theme');
 
     if (currentTheme) {
+      document.documentElement.classList.add(currentTheme);
       document.body.classList.add(currentTheme);
       if (currentTheme === 'dark-theme') {
         toggleSwitch.checked = true;
@@ -3078,9 +3075,11 @@
 
     function switchTheme(e) {
       if (e.target.checked) {
+        document.documentElement.classList.add('dark-theme');
         document.body.classList.add('dark-theme');
         localStorage.setItem('theme', 'dark-theme');
       } else {
+        document.documentElement.classList.remove('dark-theme');
         document.body.classList.remove('dark-theme');
         localStorage.setItem('theme', 'light-theme');
       }    
