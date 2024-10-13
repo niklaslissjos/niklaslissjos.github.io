@@ -4,6 +4,7 @@ html {
   font-size: 20px;
   color: #1a1a1a;
   background-color: #fdfdfd;
+  min-height: 100vh;
 }
 
 body {
@@ -17,6 +18,7 @@ body {
   overflow-wrap: break-word;
   text-rendering: optimizeLegibility;
   font-kerning: normal;
+  min-height: 100vh;
 }
 
 @media (max-width: 600px) {
@@ -240,8 +242,12 @@ ul.task-list li input[type="checkbox"] {
 }
 
 /* Dark theme styles */
-html.dark-theme,
-body.dark-theme {
+html.dark-theme {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
+
+html.dark-theme body {
   background-color: #1a1a1a;
   color: #f0f0f0;
 }

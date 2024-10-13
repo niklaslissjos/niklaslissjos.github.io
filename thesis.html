@@ -73,7 +73,7 @@
 
   <br><br><br><br><br><br><br><br>
 
-  <h1 class="unnumbered" id="abstract">Abstract</h1>
+  <h1 class="unnumbered smaller-text" id="abstract">Abstract</h1>
   <p>This thesis provides an insight into photovoltaics energy system
     design and simulation. The report describes each step along the design
     path for an electrical system for off-grid use. Solar power feasibility
@@ -92,7 +92,7 @@
     <br><br><br><br><br><br><br><br>
 
 
-  <h1 class="unnumbered" id="acknowledgements">Acknowledgements</h1>
+  <h1 class="unnumbered smaller-text" id="acknowledgements">Acknowledgements</h1>
   <p>I would like to thank my supervisor Prof. Karl Skretting, at the
     University of Stavanger, who has provided helpful guidance and
     discussions along the way. And a special thanks to Daniel Philipp at
@@ -107,7 +107,7 @@
 
   <br><br><br><br><br><br><br><br>
 
-  <h1 id="introduction">Introduction</h1>
+  <h1 class="smaller-text" id="introduction">Introduction</h1>
   <p><em>"Energy is the only universal currency: one of its many forms
       must be transformed to another in order for stars to shine, planets to
       rotate, plants to grow, and civilizations to evolve."</em></p>
@@ -123,7 +123,7 @@
 
     <br><br><br><br><br><br><br><br>
 
-  <h2 id="aim-and-objectives">Aim and Objectives</h2>
+  <h2 class="smaller-text" id="aim-and-objectives">Aim and Objectives</h2>
   <p>The project aims to present an organized way of system design and
     evaluation of the main components, as well as making use of
     meteorological radiation data for the purpose. The report presents a
@@ -149,7 +149,7 @@
 
     <br><br><br><br><br><br><br><br>
 
-  <h2 id="motivation">Motivation</h2>
+  <h2 class="smaller-text" id="motivation">Motivation</h2>
   <p>The production of clean energy is of major importance today and in
     the future. Sustainable living and environmental consciousness are
     becoming a more significant part of each and everyone's lives. The
@@ -166,14 +166,14 @@
 
     <br><br><br><br><br><br><br><br>
 
-  <h1 id="background-theory">Background Theory</h1>
+  <h1 class="smaller-text" id="background-theory">Background Theory</h1>
   <p>This chapter summarizes the theoretical background needed to work
     through and understand the methods and results presented later in this
     report. A focus is on solar radiation energy conversion and how the
     obtained energy can be stored. The chapter also includes some theory on
     energy consumption, and other components needed to design a complete
     system.</p>
-  <h2 id="up">Electrical Units</h2>
+  <h2 class="smaller-text" id="up">Electrical Units</h2>
   <ul>
     <li>
       <p>Power, <span class="math inline"><em>P</em></span>, SI unit Watt
@@ -214,16 +214,18 @@
             <span class="math display">
 
 
-
-
               <em>E</em> = ∫<sub><em>a</em></sub><sup><em>b</em></sup><em>P</em>(<em>t</em>)<em>d</em><em>t</em>
+
+              $$
+              \int_{a}^{b} P(t) dt
+              $$
 
 
 
             </span>  
             Alternatively, when energy figures is wanted, based on discrete power
             data, it can be found through the trapezoidal method, as shown in
-            equation <a href="#trapes" data-reference-type="ref" data-reference="trapes">[trapes]</a>. Useful for
+            equation <a href="#2.2" data-reference-type="ref" data-reference="2.2">[2.2]</a>. Useful for
             simulations and other
             software calculations. 
             <!-- DiscretePower Integral -->
@@ -255,10 +257,10 @@
 
   <br><br><br><br><br><br><br><br>
 
-  <h2 id="photovoltaic-technology">Photovoltaic Technology</h2>
+  <h2 class="smaller-text" id="photovoltaic-technology">Photovoltaic Technology</h2>
   <p>Publicly available radiation data from various online sources can be
     used for the dimenzioning of a PV powered electrical system.</p>
-  <h4 id="cm-saf-radiation-data">CM SAF Radiation Data</h4>
+  <h4 class="smaller-text" id="cm-saf-radiation-data">CM SAF Radiation Data</h4>
   <p>The Satellite Facility on Climate Monitoring (CM SAF) based in
     Germany and Belgium, is an integral part of the European Organization
     for the Exploitation of Meteorological Satellites (EUMETSAT) <span class="citation"
@@ -272,11 +274,11 @@
     called "the CM SAF R Toolbox" provided by CM SAF, the file can be
     prepared, analyzed and visualized. This data has good geographical
     coverage and contains many useful parameters <span class="citation" data-cites="rtoolbox"></span>.</p>
-  <h3 id="pandr">Radiation and Photons</h3>
+  <h3 class="smaller-text" id="pandr">Radiation and Photons</h3>
   <p>As radiation data is available as different parameters with various
     specifications, there is some background knowledge needed to be able to
     find, understand and make use of the appropriate data.</p>
-  <h4 id="photons">Photons</h4>
+  <h4 class="smaller-text" id="photons">Photons</h4>
   <p>Energy from the sun, in the form of electromagnetic (EM) radiation,
     is carried by photons to the earth's surface. Photons is particles of
     light that is characterized by a wavelength (<span class="math inline"><em>λ</em></span>). Photon energy can be
@@ -311,7 +313,7 @@
 
   <br><br><br><br><br><br><br><br>
 
-  <h4 id="radiation">Radiation</h4>
+  <h4 class="smaller-text" id="radiation">Radiation</h4>
   <p>Energy from the sun, in the form of convection, and naturally
     occuring radiation, is at all times reaching the earth. Below, is a
     summary of definitions needed further in this section, to understand how
@@ -487,7 +489,7 @@
       </ul>
     </li>
   </ul>
-  <h3 id="pvct">PV Cell Technology</h3>
+  <h3 class="smaller-text" id="pvct">PV Cell Technology</h3>
   <p>To absorb and convert photon energy, PV cell technology is being
     used. The PV cell can be manufactured using different techniques and is
     usually produced using Silicon (Si). Monocrystalline and Polycrystalline
@@ -648,8 +650,7 @@
     marked area that would represent power. MPP on the IV-curve, will be
     where this gray "power area" is the biggest possible <span class="citation" data-cites="mppta"></span>. The real
     IV-curve for a PV
-    cell or module is found in laboratories under Standard test conditions
-    (STC), as explained in section <a href="#Pmrp" data-reference-type="ref" data-reference="Pmrp">2.2.3</a>.</p>
+    cell or module is found in laboratories under Standard test conditions (STC), as explained in section <a href="#Pmrp" data-reference-type="ref" data-reference="Pmrp">2.2.3</a>.</p>
   <figure>
     <img src="ideal_cell_iv_1" id="iv2" alt="Illustration of Ideal PV cell Power, IV curve, and MPP." />
     <figcaption aria-hidden="true">Illustration of Ideal PV cell Power, IV
@@ -994,7 +995,7 @@
       <p>Volumetric Energy Density: Used to compare batteries energy
         stored per unit volume. Critical specification for compact mobile
         devices. Denoted in <span class="math inline">[<em>W</em><em>h</em></span> <span
-          class="math inline"><em>l</em><sup>−1</sup>]</span>. <span class="citation" data-cites="uniwashington"></span>
+          class="math inline">[<em>l</em><sup>−1</sup>]</span>. <span class="citation" data-cites="uniwashington"></span>
       </p>
     </li>
     <li>
@@ -1331,8 +1332,7 @@
     demands located in Stavanger, Norway. The case study system design, is
     based around specific minimum energy demands, where required PV array
     size and angles is calculated. Six main steps lead forward to final
-    simulations of the complete system. As the case study covers a year
-    round living scenario in Stavanger, it is known that the solar energy
+    simulations of the complete system. As the case study covers a year round living scenario in Stavanger, it is known that the solar energy
     bottleneck will be during wintertime. Therefore from section <a href="#solar_irr" data-reference-type="ref"
       data-reference="solar_irr">3.3</a> onwards, the month with the least
     available irradiation (December) has been used as a basis for design,
@@ -1423,20 +1423,17 @@
         <td style="text-align: left;">Battery temperature effect on
           capacity</td>
         <td style="text-align: left;"><span
-            class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>t</em><em>e</em><em>m</em><em>p</em></sub></span>
-        </td>
+            class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>t</em><em>e</em><em>m</em><em>p</em></sub></span></td>
       </tr>
       <tr class="odd">
         <td style="text-align: left;">Inverter to load cable</td>
         <td style="text-align: left;"><span
-            class="math inline"><em>η</em><sub><em>l</em><em>o</em><em>a</em><em>d</em> − <em>c</em><em>b</em><em>l</em></sub></span>
-        </td>
+            class="math inline"><em>η</em><sub><em>l</em><em>o</em><em>a</em><em>d</em> − <em>c</em><em>b</em><em>l</em></sub></span></td>
       </tr>
       <tr class="even">
         <td style="text-align: left;">Standby power losses</td>
         <td style="text-align: left;"><span
-            class="math inline"><em>η</em><sub><em>s</em><em>t</em><em>a</em><em>n</em><em>d</em><em>b</em><em>y</em></sub></span>
-        </td>
+            class="math inline"><em>η</em><sub><em>s</em><em>t</em><em>a</em><em>n</em><em>d</em><em>b</em><em>y</em></sub></span></td>
       </tr>
     </tbody>
   </table>
@@ -1601,8 +1598,7 @@
     commonly used in larger systems, and for the sake of best possible
     efficiency, a 48 volt battery bank is decided for the case study.
     Knowing that battery capacity will decrease when operating at colder
-    temperatures (section <a href="#batterybackground" data-reference-type="ref"
-      data-reference="batterybackground">2.3</a>),
+    temperatures (section <a href="#batterybackground" data-reference-type="ref" data-reference="batterybackground">2.3</a>),
     ambient temperature has been used for battery bank sizing.</p>
   <ul>
     <li>
@@ -1610,7 +1606,7 @@
           class="math inline"><em>η</em><sub><em>r</em><em>o</em><em>u</em><em>n</em><em>d</em> − <em>t</em><em>r</em><em>i</em><em>p</em></sub></span>)
         is stated at 92 percent, for all LiFePO4 batteries from Victron. <span class="citation"
           data-cites="victron_batt"></span> For the purpose of
-        simulation later in the report, battery round trip efficiency is split
+        simulation later in the report, battery round-trip efficiency is split
         up as follows: <span
           class="math inline"><em>η</em><sub><em>r</em><em>o</em><em>u</em><em>n</em><em>d</em> − <em>t</em><em>r</em><em>i</em><em>p</em></sub> = <em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>c</em><em>h</em><em>n</em><em>g</em></sub> ⋅ <em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>d</em><em>c</em><em>h</em><em>n</em><em>g</em></sub></span>
         For simplicity the charging/discharging efficiencies is assumed similar
@@ -1627,8 +1623,7 @@
     </li>
     <li>
       <p>Ambient temperature effect on capacity (<span
-          class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>t</em><em>e</em><em>m</em><em>p</em></sub></span>)
-        :</p>
+          class="math inline"><em>η</em><sub><em>b</em><em>a</em><em>t</em><em>t</em> − <em>t</em><em>e</em><em>m</em><em>p</em></sub></span>):</p>
       <ul>
         <li>
           <p>Victron datasheet states Nominal capacity at 25[<span class="math inline">$°$</span>C] to be 200
