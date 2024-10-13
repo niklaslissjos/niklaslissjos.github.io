@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>Thesis Page</title>
 
-
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YWZ775JQ74"></script>
   <script>
@@ -18,279 +17,15 @@
     gtag('config', 'G-YWZ775JQ74');
   </script>
 
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="styles.css">
 
-
-  <style>
-    html {
-      line-height: 1.5;
-      font-family: Georgia, serif;
-      font-size: 20px;
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-
-    body {
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-
-    @media (max-width: 600px) {
-      body {
-        font-size: 0.9em;
-        padding: 1em;
-      }
-
-      h1 {
-        font-size: 1.8em;
-      }
-    }
-
-    @media print {
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-
-      p,
-      h2,
-      h3 {
-        orphans: 3;
-        widows: 3;
-      }
-
-      h2,
-      h3,
-      h4 {
-        page-break-after: avoid;
-      }
-    }
-
-    p {
-      margin: 1em 0;
-    }
-
-    a {
-      color: #1a1a1a;
-    }
-
-    a:visited {
-      color: #1a1a1a;
-    }
-
-    img {
-      max-width: 100%;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      margin-top: 1.4em;
-    }
-
-    h5,
-    h6 {
-      font-size: 1em;
-      font-style: italic;
-    }
-
-    h6 {
-      font-weight: normal;
-    }
-
-    ol,
-    ul {
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-
-    li>ol,
-    li>ul {
-      margin-top: 0;
-    }
-
-    blockquote {
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-
-    code {
-      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
-      font-size: 85%;
-      margin: 0;
-    }
-
-    pre {
-      margin: 1em 0;
-      overflow: auto;
-    }
-
-    pre code {
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-
-    .sourceCode {
-      background-color: transparent;
-      overflow: visible;
-    }
-
-    hr {
-      background-color: #1a1a1a;
-      border: none;
-      height: 1px;
-      margin: 1em 0;
-    }
-
-    table {
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-
-    table caption {
-      margin-bottom: 0.75em;
-    }
-
-    tbody {
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-
-    th {
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-
-    td {
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-
-    header {
-      margin-bottom: 4em;
-      text-align: center;
-    }
-
-    #TOC li {
-      list-style: none;
-    }
-
-    #TOC ul {
-      padding-left: 1.3em;
-    }
-
-    #TOC>ul {
-      padding-left: 0;
-    }
-
-    #TOC a:not(:hover) {
-      text-decoration: none;
-    }
-
-    code {
-      white-space: pre-wrap;
-    }
-
-    span.smallcaps {
-      font-variant: small-caps;
-    }
-
-    div.columns {
-      display: flex;
-      gap: min(4vw, 1.5em);
-    }
-
-    div.column {
-      flex: auto;
-      overflow-x: auto;
-    }
-
-    div.hanging-indent {
-      margin-left: 1.5em;
-      text-indent: -1.5em;
-    }
-
-    ul.task-list {
-      list-style: none;
-    }
-
-    ul.task-list li input[type="checkbox"] {
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-
-    .display.math {
-      display: block;
-      text-align: center;
-      margin: 0.5rem auto;
-    }
-
-
-    .back-link {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        font-size: 16px;
-        text-decoration: none;
-        color: #f0f0f0;
-        background-color: rgba(245, 86, 0, 0.7);
-        padding: 10px;
-        border-radius: 5px;
-        z-index: 1000;
-    }
-
-    .back-link:hover {
-        background-color: rgba(30, 30, 30, 0.7);
-    }
-
-    .copyright {
-        position: fixed;
-        top: 55%;
-        right: 0;
-        transform: rotate(-90deg) translateY(-50%);
-        transform-origin: right center;
-        font-size: 12px;
-        color: #808080;
-        padding: 10px;
-        white-space: nowrap;
-        z-index: 9999;
-    }
-
-
-
-
-
-
-
-  </style>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 
-
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-
 </head>
 
 <body>
@@ -317,7 +52,7 @@
 
     <br><br>
 
-    <p>Bachelor’s Thesis in Electrical Engineering 
+    <p>Bachelor's Thesis in Electrical Engineering 
       <br>by <span class="smallcaps">Niklas Lissjos</span>
     </p>
     <br><br>
@@ -355,7 +90,7 @@
   <p>I would like to thank my supervisor Prof. Karl Skretting, at the
     University of Stavanger, who has provided helpful guidance and
     discussions along the way. And a special thanks to Daniel Philipp at
-    Germany’s National Meteorological Service, the Deutscher Wetterdienst,
+    Germany's National Meteorological Service, the Deutscher Wetterdienst,
     who has given helpful advice and guidance during the irradiation data
     extraction and evaluation process.</p>
   <div class="flushright">
@@ -367,12 +102,12 @@
   <br><br><br><br><br><br><br><br>
 
   <h1 id="introduction">Introduction</h1>
-  <p><em>“Energy is the only universal currency: one of its many forms
+  <p><em>"Energy is the only universal currency: one of its many forms
       must be transformed to another in order for stars to shine, planets to
-      rotate, plants to grow, and civilizations to evolve.”</em></p>
-  <p>– Vaclav Smil</p>
+      rotate, plants to grow, and civilizations to evolve."</em></p>
+  <p>– Vaclav Smil</p>
   <p>Photovoltaic energy is the electric energy obtained by capturing and
-    absorbing photons given off by the sun to the earth’s surface. This way
+    absorbing photons given off by the sun to the earth's surface. This way
     of generating electrical power is based on the photovoltaic (PV) effect.
     It is done using photovoltaic cells that are produced using advanced
     semiconductor technology. The thesis is focused on the field of off-grid
@@ -411,7 +146,7 @@
   <h2 id="motivation">Motivation</h2>
   <p>The production of clean energy is of major importance today and in
     the future. Sustainable living and environmental consciousness are
-    becoming a more significant part of each and everyone’s lives. The
+    becoming a more significant part of each and everyone's lives. The
     thesis topic and objective is chosen and formulated based on an interest
     in sustainable energy generation for the future and off-grid living
     technologies. The steps described in the report are aimed at hobbyists
@@ -439,7 +174,7 @@
         [W] or Joules per second <span class="math inline">[<em>J</em><em>s</em><sup>−1</sup>]</span></p>
       <ul>
         <li>
-          <p>Electrical power [W] : The rate of performing work, or electrical
+          <p>Electrical power [W]: The rate of performing work, or electrical
             energy transferred per unit time.</p>
         </li>
         <li>
@@ -456,36 +191,48 @@
       </ul>
     </li>
     <li>
+      <!-- Energy -->
       <p>Energy, <span class="math inline"><em>E</em></span>, SI unit joules <span class="math inline">[<em>J</em>]</span>.</p>
       <ul>
         <li>
+          <!-- Electrical Energy -->
           <p>Electrical energy: Potential energy stored in, or due to electric
-            fields. Defined as power over a certain time and is denoted in watthours
-            <span class="math inline">[<em>W</em><em>h</em>]</span>.<br>
-            Energy can be found by integrating the continous power over time as
-            follows: 
-            
-            
+            fields. Defined as power over a certain time and is denoted in watthours.
+            <span class="math inline">
+              [<em>W</em><em>h</em>].
+            </span>
+            <br>
+            Energy can be found by integrating the continous power over time as follows:
+            <!-- Power Integral -->
             
             <span class="math display">
+
+
+
+
               <em>E</em> = ∫<sub><em>a</em></sub><sup><em>b</em></sup><em>P</em>(<em>t</em>)<em>d</em><em>t</em>
-            </span>
-            
-            
-            
-            
-              Alternatively, when energy figures is wanted, based on discrete power
+
+
+
+            </span>  
+            Alternatively, when energy figures is wanted, based on discrete power
             data, it can be found through the trapezoidal method, as shown in
             equation <a href="#trapes" data-reference-type="ref" data-reference="trapes">[trapes]</a>. Useful for
             simulations and other
-            software calculations. <span class="math display">$$\label{trapes}
+            software calculations. 
+            <!-- DiscretePower Integral -->
+            <span class="math display">
+              $$\label{trapes}
               \int_{a}^{b} P(t) dt \approx
-              (b-a)\Bigg(\frac{P(a)+P(b)}{2}\Bigg)$$</span>
+              (b-a)\Bigg(\frac{P(a)+P(b)}{2}\Bigg)$$
+              <span class="equation-label">(1)</span>
+            </span>
           </p>
         </li>
       </ul>
     </li>
     <li>
+      <!-- Electrical Charge -->
       <p>Electrical charge, <span class="math inline"><em>Q</em></span>,
         SI unit coulombs <span class="math inline">[<em>C</em>]</span>.</p>
       <ul>
@@ -525,7 +272,7 @@
     find, understand and make use of the appropriate data.</p>
   <h4 id="photons">Photons</h4>
   <p>Energy from the sun, in the form of electromagnetic (EM) radiation,
-    is carried by photons to the earth’s surface. Photons is particles of
+    is carried by photons to the earth's surface. Photons is particles of
     light that is characterized by a wavelength (<span class="math inline"><em>λ</em></span>). Photon energy can be
     denoted in
     joules [J] or electron-volts [eV], where electron-volts is the energy
