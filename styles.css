@@ -239,3 +239,54 @@ ul.task-list li input[type="checkbox"] {
   z-index: 9999;
 }
 
+/* Dark theme styles */
+body.dark-theme {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
+
+body.dark-theme a,
+body.dark-theme a:visited {
+  color: #f0f0f0;
+}
+
+body.dark-theme blockquote {
+  border-left-color: #606060;
+  color: #b0b0b0;
+}
+
+body.dark-theme hr {
+  background-color: #f0f0f0;
+}
+
+body.dark-theme tbody,
+body.dark-theme th {
+  border-color: #f0f0f0;
+}
+
+/* Theme toggle button styles */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(245, 86, 0, 0.7);
+  color: #f0f0f0;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(30, 30, 30, 0.7);
+}
+
+body.dark-theme .theme-toggle {
+  background-color: rgba(245, 86, 0, 0.7);
+  color: #f0f0f0;
+}
+
+body.dark-theme .theme-toggle:hover {
+  background-color: rgba(200, 200, 200, 0.7);
+}

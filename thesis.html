@@ -29,7 +29,8 @@
 </head>
 
 <body>
-
+  <!-- Add this button just after the opening body tag -->
+  <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
 
   <div class="copyright">
     Copyright &copy; 2020-<span id="year"></span> Niklas Lissjos. All rights reserved.
@@ -299,7 +300,7 @@
     <li>
       <p>The wavelength <span class="math inline"><em>λ</em></span>, is
         denoted in micrometer [<span class="math inline"><em>μ</em><em>m</em></span>], and the different
-        wavelength’s make up the light spectrum that travels to earth.</p>
+        wavelength's make up the light spectrum that travels to earth.</p>
     </li>
   </ul>
 
@@ -324,7 +325,7 @@
     </li>
     <li>
       <p>Direct beam solar radiation: Solar radiation that reaches the
-        earth’s surface without being diffused.</p>
+        earth's surface without being diffused.</p>
     </li>
     <li>
       <p>Diffuse solar radiation: The solar radiation that is absorbed,
@@ -368,7 +369,7 @@
       data-reference="irr1">2.1</a>
     indicate roughly where these three different radiation types meet. The
     middle section shows the visible light and composes 44 percent of the
-    energy reaching the earth’s surface. The left part at only 9 percent of
+    energy reaching the earth's surface. The left part at only 9 percent of
     received energy is the UV light. The right section is IR, which at 47
     percent is the most significant fraction of energy reaching the earth
     <span class="citation" data-cites="tudelft"></span>.
@@ -538,7 +539,7 @@
     be modelled and approximated by the below ideal cell equivalent circuit.
     This can help to evaluate different situations and understand
     characteristics. By using this circuit model, it is possible to work
-    with Kirchoff’s circuit law’s and derive formulas for testing and
+    with Kirchoff's circuit law's and derive formulas for testing and
     understanding <span class="citation" data-cites="eq_circ"></span>.</p>
   <div class="circuitikz">
     <p>(0,0) to[isource = <span class="math inline"><em>I</em><sub><em>p</em><em>h</em></sub></span>]
@@ -576,7 +577,7 @@
         themselves <span class="citation" data-cites="tudelft"></span>.</p>
     </li>
   </ul>
-  <p>By using Kirchoff’s current law’s, ideal circuit element equations
+  <p>By using Kirchoff's current law's, ideal circuit element equations
     and ohms law, the below characteristic equation describing the PV cell
     output current is found <span class="citation" data-cites="messenger"></span>. <span class="math display">$$I =
       I_{ph}
@@ -838,7 +839,7 @@
   </figure>
   <p>The earth rotates around its axis once per day, as well as orbiting
     in an elliptical path around the sun ones during a year, as shown in
-    figure <a href="#declinaton" data-reference-type="ref" data-reference="declinaton">2.8</a>. Because of the earth’s
+    figure <a href="#declinaton" data-reference-type="ref" data-reference="declinaton">2.8</a>. Because of the earth's
     tilted axis
     in relation to the sun, the declination angle <span class="math inline"><em>δ</em></span> appears. This angle varies
     between
@@ -846,8 +847,8 @@
     -23.45<span class="math inline">$°$</span> in the winter <span class="citation"
       data-cites="messenger"></span>.</p>
   <figure>
-    <img src="declination" id="declinaton" alt="Illustration of the earth’s orbit, and the declination angle \delta." />
-    <figcaption aria-hidden="true">Illustration of the earth’s orbit, and
+    <img src="declination" id="declinaton" alt="Illustration of the earth's orbit, and the declination angle \delta." />
+    <figcaption aria-hidden="true">Illustration of the earth's orbit, and
       the declination angle <span class="math inline"><em>δ</em></span>.</figcaption>
   </figure>
   <p>There is two angles of the PV module that needs to be considered when
@@ -867,7 +868,7 @@
     optimal irradiation absorption. The two-axis tracker adjusts both
     elevation and azimuth, whilst the one axis tracker, is slightly simpler
     and changes only the azimuth angle. Solar tracking maximizes the
-    intersection with the sun’s rays. Figure <a href="#elevation" data-reference-type="ref"
+    intersection with the sun's rays. Figure <a href="#elevation" data-reference-type="ref"
       data-reference="elevation">2.10</a>
     illustrates the cosine to angle relation, that dictates the sun rays
     radiation components that can be absorbed by the PV module <span class="citation" data-cites="messenger"></span>.
@@ -931,7 +932,7 @@
     least at the time. See equation <a href="#am" data-reference-type="ref" data-reference="am">[am]</a>. The intensity
     of the irradiation on the
     module will decrease rapidly before and after one hour from solar noon
-    because of air mass, and the sun’s angle of 15<span class="math inline">$°$</span> traveled per hour <span
+    because of air mass, and the sun's angle of 15<span class="math inline">$°$</span> traveled per hour <span
       class="citation" data-cites="messenger"></span>. Solar noon can be
     calculated based on Astronomy, but it is beyond the scope of this
     project. This can instead be found at various online resources. For
@@ -944,8 +945,7 @@
   <p>A battery is an electrochemical device that could be extensively
     described to fully understand. Instead this section summarizes the main
     parameters, characteristics and efficiency on an electrical level.</p>
-  <p>There are two main categories of batteries: Primary and secondary
-    type, where the primary group covers the non-rechargable. Since
+  <p>There are two main categories of batteries: Primary and secondary type, where the primary group covers the non-rechargable. Since
     recharging is one of the key reasons of a battery bank in an off grid PV
     system, the following information covers exclusively secondary type
     batteries.</p>
@@ -1032,7 +1032,7 @@
             Li-ion. <span class="citation" data-cites="tudelft"></span>.</p>
         </li>
         <li>
-          <p>The lead acid battery’s cell consists of two electrodes, anode
+          <p>The lead acid battery's cell consists of two electrodes, anode
             and an cathode which is made of lead(Pb). The electrodes is positioned
             in a canister with electrolyte. The electrolyte, in liquid or gel form
             contains ions and can be decomposed by electrolysis.</p>
@@ -1294,7 +1294,7 @@
       <p>Wireless router: Can be found with 5 watt consumption.</p>
     </li>
     <li>
-      <p>Lighting: 5 watt LED’s is common replacements for 40 watt
+      <p>Lighting: 5 watt LED's is common replacements for 40 watt
         incandescent lamps that emits approximately the same lumen.</p>
     </li>
     <li>
@@ -1528,7 +1528,7 @@
     follows:</p>
   <p><span class="math display">$$\frac{9376.6}{100\% - 11\%} =
       \frac{9376.6}{89\%} \approx 10536 \textnormal{ [Wh]} = 10.536
-      \textnormal{ [kWh], total per day.}
+      \textnormal{ [kWh]}
       \label{24henergy}$$</span></p>
   <p>With the standby and AC-cabling losses now included in the daily
     total energy usage, it is covered for <span
@@ -1865,8 +1865,7 @@
       data-reference="directirrangles">3.6</a>, it
     is possible to set up the relations in equation <a href="#I_pv" data-reference-type="ref"
       data-reference="I_pv">[I_pv]</a> &amp; <a href="#I_b" data-reference-type="ref" data-reference="I_b">[I_b]</a>.
-    <span
-      class="math display"><em>I</em><sub><em>P</em><em>V</em></sub> = <em>I</em><sub><em>B</em></sub> ⋅ <em>c</em><em>o</em><em>s</em>(<em>θ</em><sub><em>i</em></sub>)</span>
+    <span class="math display"><em>I</em><sub><em>P</em><em>V</em></sub> = <em>I</em><sub><em>B</em></sub> ⋅ <em>c</em><em>o</em><em>s</em>(<em>θ</em><sub><em>i</em></sub>)</span>
     <span class="math display">$$\label{I_b}
       I_{B} = \frac{I_{SIS}}{cos(\theta_{Z})}$$</span> Where <span
       class="math inline"><em>I</em><sub><em>P</em><em>V</em></sub></span> is
@@ -1906,7 +1905,7 @@
     = 0<span class="math inline">$°$</span>.</p>
   <h4 id="optimal-azimuth-angle">Optimal Azimuth Angle</h4>
   <p>Azimuth angle for a fixed installation will be optimized by pointing
-    the module at true south, which is equivalent to the sun’s direction at
+    the module at true south, which is equivalent to the sun's direction at
     solar noon. As explained in section <a href="#Pmrp" data-reference-type="ref" data-reference="Pmrp">2.2.3</a> with
     background from the book Photovoltaics Systems Engineering<span class="citation" data-cites="messenger"></span>,
     less than 2 percent
@@ -1986,7 +1985,7 @@
     <li>
       <p><span
           class="math inline"><em>η</em><sub><em>p</em><em>v</em> − <em>t</em><em>e</em><em>m</em><em>p</em></sub></span>,
-        defined and found below, based on the “Temperature coefficient of power”
+        defined and found below, based on the "Temperature coefficient of power"
         covered in section <a href="#Pmrp" data-reference-type="ref" data-reference="Pmrp">2.2.3</a>. <span
           class="math inline">$\eta_{pv-temp} =\alpha_{p} \cdot \Delta =
           (-0.36\cdot(5.04°-25°)) \approx 7.19$</span> [<span class="math inline">%</span>],</p>
@@ -2069,7 +2068,7 @@
     kilowatthours in a day, if integrated. The plot also illustrates an
     average daily maximum charging, of close to 2.1 kilowatts, which is
     maintaned for about 2 hours during mid day. This curve represents a
-    close approximation of an average day’s available charging from the PV
+    close approximation of an average day's available charging from the PV
     array in December. Note: For sizing of charge-controller and cables,
     summer peak power should be evaluated.</p>
   <p>Irradiation and PV array output during a particular day in the month
@@ -2841,7 +2840,7 @@
     request handling. Pygal bar charts is used for the interactive
     histograms on the application page #3 <span class="citation" data-cites="pygal"></span>.</p>
   <div class="forest">
-    <p>for tree=<span>font=, grow’=0, folder indent=.9em, folder icons,
+    <p>for tree=<span>font=, grow'=0, folder indent=.9em, folder icons,
         edge=densely dotted</span> [Main application folder [calculator1.py, is
       file] [static [dropdown.js, is file] [main.css, is file]] [templates
       [layout.html, is file] [start.html, is file] [page1.html, is file]
@@ -2876,11 +2875,6 @@
       over.</figcaption>
   </figure>
   <figure>
-    <img src="app_page4" alt="Screenshot of the web application about page." />
-    <figcaption aria-hidden="true">Screenshot of the web application about
-      page.</figcaption>
-  </figure>
-  <figure>
     <img src="app_about" alt="Screenshot of the web application about page." />
     <figcaption aria-hidden="true">Screenshot of the web application about
       page.</figcaption>
@@ -2888,7 +2882,7 @@
   <h1 id="solar-data-extraction">Solar Data Extraction</h1>
   <h4 id="description">Description:</h4>
   <p>Irradiation data used in the report and web application is sourced
-    from EUMETSAT’s Satellite Application Facility on Climate Monitoring (CM
+    from EUMETSAT's Satellite Application Facility on Climate Monitoring (CM
     SAF) <span class="citation" data-cites="cm_saf_overview"></span>. The
     histograms produced is based on ten years (2008-2017) of satellite
     derived shortwave incoming solar (SIS) radiation data (horizontal
@@ -3027,8 +3021,8 @@
       </tr>
       <tr class="even">
         <td style="text-align: left;"><a href="#badday" data-reference-type="ref" data-reference="badday">3.9</a></td>
-        <td style="text-align: left;">PV array output plot, for a “bad
-          day”.</td>
+        <td style="text-align: left;">PV array output plot, for a "bad
+          day".</td>
         <td style="text-align: left;">kWcharging24.py</td>
       </tr>
       <tr class="odd">
