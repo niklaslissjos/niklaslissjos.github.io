@@ -29,8 +29,13 @@
 </head>
 
 <body>
-  <!-- Add this button just after the opening body tag -->
-  <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+  <!-- Add this div just after the opening body tag -->
+  <div class="theme-switch-wrapper">
+    <label class="theme-switch" for="checkbox">
+      <input type="checkbox" id="checkbox" />
+      <div class="slider round"></div>
+    </label>
+  </div>
 
   <div class="copyright">
     Copyright &copy; 2020-<span id="year"></span> Niklas Lissjos. All rights reserved.
@@ -2122,8 +2127,7 @@
         and <span
           class="math inline"><em>η</em><sub><em>p</em><em>v</em> − <em>t</em><em>e</em><em>m</em><em>p</em></sub></span>
         can be found as previously described in section <a href="#pv_array_sizing" data-reference-type="ref"
-          data-reference="pv_array_sizing">3.4</a>.
-      </p>
+          data-reference="pv_array_sizing">3.4</a>.</p>
     </li>
     <li>
       <p>With the energy available (<span class="math inline"><em>E</em><sub><em>D</em></sub></span>), found in
