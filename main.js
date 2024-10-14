@@ -20,12 +20,14 @@ document.addEventListener('DOMContentLoaded', function() {
 // Theme switch code
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 const currentTheme = localStorage.getItem('theme');
+const themeIcon = document.querySelector('.theme-icon');
 
 if (currentTheme) {
   document.documentElement.classList.add(currentTheme);
   document.body.classList.add(currentTheme);
   if (currentTheme === 'dark-theme') {
     toggleSwitch.checked = true;
+    themeIcon.textContent = '🌙';
   }
 }
 
@@ -34,10 +36,12 @@ function switchTheme(e) {
     document.documentElement.classList.add('dark-theme');
     document.body.classList.add('dark-theme');
     localStorage.setItem('theme', 'dark-theme');
+    themeIcon.textContent = '🌙';
   } else {
     document.documentElement.classList.remove('dark-theme');
     document.body.classList.remove('dark-theme');
     localStorage.setItem('theme', 'light-theme');
+    themeIcon.textContent = '☀️';
   }    
 }
 
