@@ -324,7 +324,7 @@ body.dark-theme th {
 }
 
 input:checked + .slider {
-  background-color: #333; /* Changed from #66bb6a */
+  background-color: #555; /* Changed from #333 to a lighter gray */
 }
 
 input:checked + .slider:before {
