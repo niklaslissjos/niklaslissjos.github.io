@@ -213,19 +213,22 @@ ul.task-list li input[type="checkbox"] {
 
 .back-link {
   position: fixed;
-  top: 20px;
+  top: 80px; /* Changed from 20px to move it lower */
   left: 20px;
   font-size: 16px;
   text-decoration: none;
   color: #f0f0f0;
-  background-color: rgba(245, 86, 0, 0.7);
+  background-color: rgba(128, 128, 128, 0.7); /* Changed to gray */
   padding: 10px;
   border-radius: 5px;
   z-index: 1000;
+  filter: grayscale(100%); /* Added to make it grayscale */
+  transition: filter 0.3s ease; /* Added for smooth transition */
 }
 
 .back-link:hover {
-  background-color: rgba(30, 30, 30, 0.7);
+  background-color: rgba(160, 160, 160, 0.7); /* Changed to lighter gray */
+  filter: grayscale(0%); /* Remove grayscale on hover */
 }
 
 .copyright {
@@ -289,9 +292,9 @@ body.dark-theme th {
 
 .theme-switch {
   display: inline-block;
-  height: 34px;
+  height: 22px; /* Reduced from 34px */
   position: relative;
-  width: 60px;
+  width: 40px; /* Reduced from 60px */
 }
 
 .theme-switch input {
@@ -311,29 +314,35 @@ body.dark-theme th {
 
 .slider:before {
   background-color: #fff;
-  bottom: 4px;
+  bottom: 3px; /* Adjusted from 4px */
   content: "";
-  height: 26px;
-  left: 4px;
+  height: 17px; /* Reduced from 26px */
+  left: 3px; /* Adjusted from 4px */
   position: absolute;
   transition: .4s;
-  width: 26px;
+  width: 17px; /* Reduced from 26px */
 }
 
 input:checked + .slider {
-  background-color: #66bb6a;
+  background-color: #333; /* Changed from #66bb6a */
 }
 
 input:checked + .slider:before {
-  transform: translateX(26px);
+  transform: translateX(18px); /* Adjusted from 26px */
 }
 
 .slider.round {
-  border-radius: 34px;
+  border-radius: 22px; /* Adjusted from 34px */
 }
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+/* New styles for the icon */
+.theme-icon {
+  font-size: 16px;
+  margin-right: 8px;
 }
 
 .back-link {
@@ -344,13 +353,13 @@ input:checked + .slider:before {
 
 html.dark-theme .back-link,
 body.dark-theme .back-link {
-  background-color: rgba(245, 86, 0, 0.9);
-  color: #1a1a1a;
+  background-color: rgba(96, 96, 96, 0.9); /* Darker gray for dark theme */
+  color: #f0f0f0;
 }
 
 html.dark-theme .back-link:hover,
 body.dark-theme .back-link:hover {
-  background-color: rgba(255, 96, 10, 1);
+  background-color: rgba(128, 128, 128, 1); /* Lighter gray for dark theme hover */
 }
 
 .math-container {
