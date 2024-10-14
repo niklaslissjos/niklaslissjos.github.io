@@ -213,17 +213,18 @@ ul.task-list li input[type="checkbox"] {
 
 .back-link {
   position: fixed;
-  top: 80px; /* Changed from 20px to move it lower */
+  top: 20px; /* Keep the original top position */
   left: 20px;
   font-size: 16px;
   text-decoration: none;
   color: #f0f0f0;
   background-color: rgba(128, 128, 128, 0.7); /* Changed to gray */
   padding: 10px;
+  padding-top: 30px; /* Increase top padding to make the button lower */
   border-radius: 5px;
   z-index: 1000;
-  filter: grayscale(100%); /* Added to make it grayscale */
-  transition: filter 0.3s ease; /* Added for smooth transition */
+  filter: grayscale(100%); /* Make it grayscale */
+  transition: filter 0.3s ease, background-color 0.3s ease;
 }
 
 .back-link:hover {
