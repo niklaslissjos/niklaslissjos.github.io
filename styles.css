@@ -213,23 +213,23 @@ ul.task-list li input[type="checkbox"] {
 
 .back-link {
   position: fixed;
-  top: 20px; /* Keep the original top position */
+  top: 20px;
   left: 20px;
-  font-size: 16px;
+  font-size: 14px;
   text-decoration: none;
   color: #f0f0f0;
-  background-color: rgba(128, 128, 128, 0.7); /* Changed to gray */
-  padding: 10px;
-  padding-top: 30px; /* Increase top padding to make the button lower */
-  border-radius: 5px;
+  background-color: rgba(128, 128, 128, 0.7);
+  padding: 5px 10px;
+  border-radius: 3px;
   z-index: 1000;
-  filter: grayscale(100%); /* Make it grayscale */
+  filter: grayscale(100%);
   transition: filter 0.3s ease, background-color 0.3s ease;
+  line-height: 1;
 }
 
 .back-link:hover {
-  background-color: rgba(160, 160, 160, 0.7); /* Changed to lighter gray */
-  filter: grayscale(0%); /* Remove grayscale on hover */
+  background-color: rgba(160, 160, 160, 0.7);
+  filter: grayscale(0%);
 }
 
 .copyright {
