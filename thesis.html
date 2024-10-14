@@ -26,6 +26,9 @@
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Add this line to include the new JavaScript file -->
+  <script src="main.js" defer></script>
 </head>
 
 <body>
@@ -217,22 +220,18 @@
             </span>  
             Alternatively, when energy figures is wanted, based on discrete power
             data, it can be found through the trapezoidal method, as shown in
-            equation <a href="#2.2" data-reference-type="ref" data-reference="2.2">[2.2]</a>. Useful for
-            simulations and other
-            software calculations.
+            equation <a href="#equation-2.2" data-reference-type="ref" data-reference="2.2">[2.2]</a>. Useful for
+            simulations and other software calculations.
 
             <!-- DiscretePower Integral -->
-            <span class="math display">
-              $$\label{trapes}
-              \int_{a}^{b} P(t) dt \approx
-              (b-a)\Bigg(\frac{P(a)+P(b)}{2}\Bigg)$$
+            <div id="equation-2.2" class="math-container">
+              <span class="math display">
+                $$\label{trapes}
+                \int_{a}^{b} P(t) dt \approx
+                (b-a)\Bigg(\frac{P(a)+P(b)}{2}\Bigg)$$
+              </span>
               <span class="equation-label">(2.2)</span>
-
-
-
-
-
-            </span>
+            </div>
           </p>
         </li>
       </ul>
@@ -2689,8 +2688,7 @@
       class="math inline"><em>η</em><sub><em>a</em><em>n</em><em>g</em><em>l</em><em>e</em></sub></span>
     = 415.18 percent in December.) This makes sense, since the solar
     altitude angle is significantle larger, during summer. Average June
-    irradiation on to the PV modules, <span class="math inline"><em>I</em><sub><em>P</em><em>V</em></sub></span>
-    (potentially absorbed power), is calculated below. <span class="math display">$$\label{I_pv_june}
+    irradiation on to the PV modules, <span class="math inline"><em>I</em><sub><em>P</em><em>V</em></sub></span>, is calculated below. <span class="math display">$$\label{I_pv_june}
       I_{PV} = 102.72 [\%] \cdot 217.3 \textnormal{ [W}m^{-2}] \approx 223.21
       \textnormal{ [W}m^{-2}]$$</span> Based on equation <a href="#neededarea" data-reference-type="ref"
       data-reference="neededarea">[neededarea]</a>,
@@ -3054,32 +3052,6 @@
       </tr>
     </tbody>
   </table>
-  <script>
-    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-    const currentTheme = localStorage.getItem('theme');
-
-    if (currentTheme) {
-      document.documentElement.classList.add(currentTheme);
-      document.body.classList.add(currentTheme);
-      if (currentTheme === 'dark-theme') {
-        toggleSwitch.checked = true;
-      }
-    }
-
-    function switchTheme(e) {
-      if (e.target.checked) {
-        document.documentElement.classList.add('dark-theme');
-        document.body.classList.add('dark-theme');
-        localStorage.setItem('theme', 'dark-theme');
-      } else {
-        document.documentElement.classList.remove('dark-theme');
-        document.body.classList.remove('dark-theme');
-        localStorage.setItem('theme', 'light-theme');
-      }    
-    }
-
-    toggleSwitch.addEventListener('change', switchTheme, false);
-  </script>
 </body>
 
 </html>
