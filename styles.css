@@ -367,3 +367,18 @@ body.dark-theme .back-link:hover {
 .equation-label {
   margin-left: 1em;
 }
+
+#abbreviations table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#abbreviations td {
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+#abbreviations td:first-child {
+  font-weight: bold;
+  width: 20%;
+}
